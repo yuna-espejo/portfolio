@@ -469,6 +469,7 @@ export default function Circuit() {
           display: "flex",
           gap: "80px",
           alignItems: "flex-start",
+          flexWrap: "wrap"
         }}
       >
         {/* LEFT INFO PANEL */}
@@ -477,7 +478,9 @@ export default function Circuit() {
             display: "flex",
             flexDirection: "column",
             gap: "24px",
-            flex: "0 0 220px"
+            flex: "0 0 220px",
+            width: "100%",
+            maxWidth: "220px",
           }}
         >
           {/* LIVERY */}
@@ -552,7 +555,7 @@ export default function Circuit() {
         </div>
 
         {/* RIGHT CIRCUIT */}
-        <div style={{ flex: 1, maxWidth: "900px" }}>
+        <div style={{ flex: 1, maxWidth: "900px", width: "100%" }}>
           <canvas
             ref={canvasRef}
             style={{
