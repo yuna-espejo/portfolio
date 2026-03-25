@@ -59,9 +59,23 @@ export default function AboutPage() {
         <h2 style={sectionTitle}>Certifications</h2>
 
         <div style={row}>
-          <div style={card}>📊 Excel Associate</div>
-          <div style={card}>☁️ SAP BTP</div>
-          <div style={card}>🏆 Excel Championship</div>
+          <a
+            href="https://www.credly.com/badges/200565ce-c8ba-46f8-9ea8-06b69085aff2/linked_in_profile"
+            target="_blank"
+            style={card}
+          >
+            📊 Excel Associate
+          </a>
+          <a
+            href="https://www.credly.com/badges/a2049f18-c4ce-473d-ad92-3fe67f517de3/linked_in_profile"
+            target="_blank"
+            style={card}
+          >
+            ☁️ SAP BTP
+          </a>
+          <a href="/excel-championship.png" target="_blank" style={card}>
+            🏆 Excel Championship (3rd place)
+          </a>
         </div>
       </section>
 
