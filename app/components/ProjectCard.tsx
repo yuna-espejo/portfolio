@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 export default function ProjectCard({ project }: any) {
+  if (!project?.slug) return null;
   return (
     <Link
       href={`/projects/${project.slug}`}
@@ -37,9 +38,8 @@ export default function ProjectCard({ project }: any) {
           <p style={{ opacity: 0.6 }}>{project.description}</p>
 
           <div style={{ marginTop: "10px", display: "flex", gap: "6px", flexWrap: "wrap" }}>
-            {project.tags.map((tag: string) => (
-              <span
-                key={tag}
+          {project.tags.map((tag: string, i: number) => (
+             <span key={`${tag}-${i}`}
                 style={{
                   fontSize: "11px",
                   padding: "3px 8px",
