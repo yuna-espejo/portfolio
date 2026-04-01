@@ -1,120 +1,104 @@
 "use client";
-
 import { useState } from "react";
-import { Mail, MessageCircle, Linkedin } from "lucide-react";
+import { Mail, MessageCircle, Linkedin, X } from "lucide-react";
 
 export default function ContactButton() {
   const [open, setOpen] = useState(false);
 
   return (
-    <>
-      {/* CONTAINER */}
-      <div
+    <div style={{
+      position: "fixed",
+      bottom: "2rem",
+      right: "2rem",
+      display: "flex",
+      flexDirection: "column",
+      gap: "6px",
+      alignItems: "flex-end",
+      zIndex: 1000,
+      fontFamily: "var(--font-jetbrains), monospace",
+    }}>
+
+      {open && (
+        <>
+          {[
+            { href: "mailto:y.espejo.santana@gmail.com", label: "email", prefix: "01" },
+            { href: "https://wa.me/34722332309", label: "whatsapp", prefix: "02" },
+            { href: "https://www.linkedin.com/in/yuna-espejo-santana/", label: "linkedin", prefix: "03" },
+          ].map(({ href, label, prefix }) => (
+            <a key={label} href={href} target="_blank" rel="noreferrer"
+              style={contactBtn}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = "var(--accent)";
+                e.currentTarget.style.color = "var(--accent)";
+                e.currentTarget.style.background = "var(--bg-card)";
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = "var(--border)";
+                e.currentTarget.style.color = "var(--text-muted)";
+                e.currentTarget.style.background = "var(--bg-soft)";
+              }}
+            >
+              <span style={contactPrefix}>{prefix}</span>
+              <span style={contactDivider} />
+              <span style={{ fontSize: "12px", letterSpacing: "0.08em" }}>
+                ./{label}
+              </span>
+              <span style={{ marginLeft: "auto", fontSize: "11px", color: "var(--text-dim)" }}>↗</span>
+            </a>
+          ))}
+        </>
+      )}
+
+      <button
+        onClick={() => setOpen(!open)}
         style={{
-          position: "fixed",
-          bottom: "30px",
-          right: "30px",
+          width: "56px",
+          height: "56px",
           display: "flex",
-          flexDirection: "column",
-          gap: "12px",
-          alignItems: "flex-end",
-          zIndex: 1000,
+          alignItems: "center",
+          justifyContent: "center",
+          cursor: "pointer",
+          transition: "all 0.2s",
+          outline: "none",
+          background: open ? "var(--bg-soft)" : "var(--accent)",
+          border: open ? "1px solid var(--accent)" : "none",
         }}
+        onMouseEnter={e => e.currentTarget.style.transform = "scale(1.05)"}
+        onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
       >
-        {/* BOTONES (solo si está abierto) */}
-        {open && (
-          <>
-            <a
-              href="mailto:y.espejo.santana@gmail.com"
-              style={btn}
-              onMouseEnter={hoverIn}
-              onMouseLeave={hoverOut}
-            >
-              <Mail size={16} /> Email
-            </a>
-
-            <a
-              href="https://wa.me/34722332309"
-              target="_blank"
-              style={btn}
-              onMouseEnter={hoverIn}
-              onMouseLeave={hoverOut}
-            >
-              <MessageCircle size={16} /> WhatsApp
-            </a>
-
-            <a
-              href="https://www.linkedin.com/in/yuna-espejo-santana/"
-              target="_blank"
-              style={btn}
-              onMouseEnter={hoverIn}
-              onMouseLeave={hoverOut}
-            >
-              <Linkedin size={16} /> LinkedIn
-            </a>
-          </>
-        )}
-
-        {/* BOTÓN PRINCIPAL */}
-        <div
-          onClick={() => setOpen(!open)}
-          style={mainBtn}
-          onMouseEnter={(e) =>
-            (e.currentTarget.style.transform = "scale(1.1)")
-          }
-          onMouseLeave={(e) =>
-            (e.currentTarget.style.transform = "scale(1)")
-          }
-        >
-          <Mail size={20} />
-        </div>
-      </div>
-    </>
+        {open
+          ? <X size={20} color="var(--accent)" />
+          : <Mail size={20} color="var(--accent-dark)" />
+        }
+      </button>
+    </div>
   );
 }
 
-/* 🎨 STYLES */
-
-const btn: React.CSSProperties = {
+const contactBtn: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
-  gap: "8px",
-  padding: "10px 14px",
-  borderRadius: "10px",
-  background: "rgba(15,23,42,0.9)",
-  border: "1px solid #1e293b",
-  color: "white",
+  gap: "12px",
+  padding: "12px 18px",
+  width: "200px",
+  background: "var(--bg-soft)",
+  border: "1px solid var(--border)",
+  color: "var(--text-muted)",
   textDecoration: "none",
-  backdropFilter: "blur(10px)",
-  transition: "0.2s",
+  backdropFilter: "blur(12px)",
+  transition: "all 0.2s",
 };
 
-const mainBtn: React.CSSProperties = {
-  width: "55px",
-  height: "55px",
-  borderRadius: "50%",
-  background: "#e11d48",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  color: "white",
-  cursor: "pointer",
-
-  // 👇 MUCHO más sutil
-  boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
-  border: "1px solid rgba(255,255,255,0.08)",
-
-  transition: "0.2s",
+const contactPrefix: React.CSSProperties = {
+  fontSize: "10px",
+  color: "var(--accent)",
+  letterSpacing: "0.1em",
+  flexShrink: 0,
 };
 
-/* ✨ HOVER */
-
-function hoverIn(e: React.MouseEvent<HTMLAnchorElement>) {
-  e.currentTarget.style.transform = "translateX(-5px)";
-  e.currentTarget.style.borderColor = "#e11d48";
-}
-
-function hoverOut(e: React.MouseEvent<HTMLAnchorElement>) {
-  e.currentTarget.style.transform = "translateX(0)";
-  e.currentTarget.style.borderColor = "#1e293b";
-}
+const contactDivider: React.CSSProperties = {
+  width: "1px",
+  height: "12px",
+  background: "var(--border)",
+  flexShrink: 0,
+};

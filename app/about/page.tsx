@@ -3,257 +3,276 @@
 export default function AboutPage() {
   return (
     <main style={container}>
-      {/* PROFILE */}
+
       <section style={profileSection}>
-        <img src="/me.jpg" alt="Yuna" style={profileImg} />
-
-        <div style={{ maxWidth: "600px" }}>
-          <h1 style={{ fontSize: "44px", marginBottom: "10px" }}>
-            Hi, I'm Yuna.
-          </h1>
-
-          <h2 style={subtitle}>
-            Junior Technology Consultant · Future Software Engineer
-          </h2>
-
-          <p style={muted}>
-            I work on data integrations, automation and backend systems.
+        <div style={imgWrapper}>
+          <img src="/me.jpg" alt="Yuna" style={profileImg} />
+          <div style={imgBorder} />
+        </div>
+        <div style={{ maxWidth: "560px" }}>
+          <div style={termLine}>
+            <span style={{ color: "var(--accent)" }}>yuna@dev</span>
+            <span style={{ color: "var(--text-dim)" }}>:</span>
+            <span style={{ color: "var(--path)" }}>~</span>
+            <span style={{ color: "var(--text-dim)" }}>$</span>
+            <span style={{ color: "var(--text-muted)" }}> cat about.md</span>
+          </div>
+          <h1 style={pageTitle}>Yuna Espejo</h1>
+          <h2 style={pageSubtitle}>Junior Consultant · Future Software Engineer</h2>
+          <p style={mutedText}>
+            Working on data integrations, automation and backend systems at{" "}
+            <span style={{ color: "var(--text)" }}>Timestamp Group.</span>
           </p>
-
-          <p style={{ ...muted, marginTop: "10px" }}>
-            Focused on building software that transforms data into decisions.
+          <p style={{ ...mutedText, marginTop: "0.5rem" }}>
+            Finishing <span style={{ color: "var(--text)" }}>ASIX</span> · Starting CS @{" "}
+            <span style={{ color: "var(--text)" }}>UOC</span> this September.
           </p>
-
-          <br />
-
-          <a href="/cv.pdf" download className="download-btn">
-            Download CV
-          </a>
-        </div>
-      </section>
-
-      {/* EXPERIENCE */}
-      <section style={section}>
-        <h2 style={sectionTitle}>Experience</h2>
-
-        <div style={column}>
-          <div style={card}>
-            <strong>Junior Technology Consultant — Timestamp</strong>
-            <p style={date}>Nov 2025 – Present</p>
-          </div>
-
-          <div style={card}>
-            <strong>SAP Integration Trainee — Timestamp</strong>
-            <p style={date}>Mar 2025 – Oct 2025</p>
-          </div>
-
-          <div style={card}>
-            <strong>ERASMUS+ — ClickTech (Portugal)</strong>
-            <p style={date}>Mar 2024 – Apr 2024</p>
+          <div style={{ marginTop: "1.75rem" }}>
+            <a href="/cv.pdf" download style={dlBtn}>cat cv.pdf</a>
           </div>
         </div>
       </section>
 
-      {/* CERTIFICATIONS */}
-      <section style={section}>
-        <h2 style={sectionTitle}>Certifications</h2>
-
-        <div style={row}>
-          <a
-            href="https://www.credly.com/badges/200565ce-c8ba-46f8-9ea8-06b69085aff2/linked_in_profile"
-            target="_blank"
-            style={card}
-          >
-            📊 Excel Associate
-          </a>
-          <a
-            href="https://www.credly.com/badges/a2049f18-c4ce-473d-ad92-3fe67f517de3/linked_in_profile"
-            target="_blank"
-            style={card}
-          >
-            ☁️ SAP BTP
-          </a>
-          <a href="/excel-championship.png" target="_blank" style={card}>
-            🏆 Excel Championship (3rd place)
-          </a>
+      <section style={blockSection}>
+        <SectionHeader cmd="cat experience.log" title="Experience" />
+        <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
+          {[
+            { role: "Junior Technology Consultant", company: "Timestamp Group", date: "Nov 2025 – Present", active: true },
+            { role: "SAP Integration Trainee", company: "Timestamp Group", date: "Mar 2025 – Oct 2025" },
+            { role: "ERASMUS+ Intern", company: "ClickTech · Portugal", date: "Mar 2024 – Apr 2024" },
+          ].map(({ role, company, date, active }) => (
+            <div key={role} style={expCard}>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.25rem" }}>
+                {active && <span style={activeDot} />}
+                <span style={expRole}>{role}</span>
+              </div>
+              <div style={expCompany}>{company}</div>
+              <div style={expDate}>{date}</div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* DISCOVER */}
-      <section>
-        <h2 style={sectionTitle}>Discover more about me</h2>
+      <section style={blockSection}>
+        <SectionHeader cmd="ls ./certifications" title="Certifications" />
+        <div style={{ display: "flex", gap: "1px", flexWrap: "wrap" }}>
+          {[
+            { href: "https://www.credly.com/badges/200565ce-c8ba-46f8-9ea8-06b69085aff2/linked_in_profile", label: "Excel Associate", icon: "XLS" },
+            { href: "https://www.credly.com/badges/a2049f18-c4ce-473d-ad92-3fe67f517de3/linked_in_profile", label: "SAP BTP", icon: "SAP" },
+            { href: "/excel-championship.png", label: "Excel Championship · 3rd", icon: "#03" },
+          ].map(({ href, label, icon }) => (
+            <a key={label} href={href} target="_blank" rel="noreferrer" style={certCard}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = "var(--accent)";
+                e.currentTarget.style.color = "var(--text)";
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = "var(--border)";
+                e.currentTarget.style.color = "var(--text-muted)";
+              }}
+            >
+              <span style={certIcon}>{icon}</span>
+              <span style={{ fontSize: "12px", letterSpacing: "0.04em" }}>{label}</span>
+              <span style={certArrow}>↗</span>
+            </a>
+          ))}
+        </div>
+      </section>
 
-        <div style={row}>
-          {/* INSTAGRAM */}
-          <a
-            href="https://www.instagram.com/yesa.exe/"
-            target="_blank"
-            style={{
-              ...linkBtn,
-              background:
-              "linear-gradient(to right, #ec4899 0%, #ec4899 100%)"
-            }}
-            onMouseEnter={(e) => {
-              const el = e.currentTarget;
-              el.style.backgroundPosition = "left";
-              el.style.borderColor = "#ec4899";
-              el.style.transform = "translateY(-2px)";
-              el.style.boxShadow =
-                "0 6px 20px rgba(236,72,153,0.25)";
-            }}
-            onMouseLeave={(e) => {
-              const el = e.currentTarget;
-              el.style.backgroundPosition = "right";
-              el.style.borderColor = "#1e293b";
-              el.style.transform = "translateY(0)";
-              el.style.boxShadow = "none";
-            }}
-          >
-            Instagram
-          </a>
-
-          {/* LINKEDIN */}
-          <a
-            href="https://www.linkedin.com/in/yuna-espejo-santana/"
-            target="_blank"
-            style={{
-              ...linkBtn,
-              background:
-                "linear-gradient(to right, #0a66c2 0%, #0a66c2 100%, transparent 50%)",
-            }}
-            onMouseEnter={(e) => {
-              const el = e.currentTarget;
-              el.style.backgroundPosition = "left";
-              el.style.borderColor = "#0a66c2";
-              el.style.transform = "translateY(-2px)";
-              el.style.boxShadow =
-                "0 6px 20px rgba(10,102,194,0.25)";
-            }}
-            onMouseLeave={(e) => {
-              const el = e.currentTarget;
-              el.style.backgroundPosition = "right";
-              el.style.borderColor = "#1e293b";
-              el.style.transform = "translateY(0)";
-              el.style.boxShadow = "none";
-            }}
-          >
-            LinkedIn
-          </a>
-
-          {/* GITHUB */}
-          <a
-            href="https://github.com/yuna-espejo"
-            target="_blank"
-            style={{
-              ...linkBtn,
-              background:
-                "linear-gradient(to right, #64748b 0%, #64748b 100%)",
-            }}
-            onMouseEnter={(e) => {
-              const el = e.currentTarget;
-              el.style.backgroundPosition = "left";
-              el.style.borderColor = "#64748b";
-              el.style.transform = "translateY(-2px)";
-              el.style.boxShadow =
-                "0 6px 20px rgba(100,116,139,0.25)";
-            }}
-            onMouseLeave={(e) => {
-              const el = e.currentTarget;
-              el.style.backgroundPosition = "right";
-              el.style.borderColor = "#1e293b";
-              el.style.transform = "translateY(0)";
-              el.style.boxShadow = "none";
-            }}
-          >
-            GitHub
-          </a>
+      <section style={blockSection}>
+        <SectionHeader cmd="open ./links" title="Find me online" />
+        <div style={{ display: "flex", gap: "1px", flexWrap: "wrap" }}>
+          {[
+            { href: "https://www.instagram.com/yesa.exe/", label: "Instagram", accent: "#ec4899" },
+            { href: "https://www.linkedin.com/in/yuna-espejo-santana/", label: "LinkedIn", accent: "#0a66c2" },
+            { href: "https://github.com/yuna-espejo", label: "GitHub", accent: "var(--accent)" },
+          ].map(({ href, label, accent }) => (
+            <a key={label} href={href} target="_blank" rel="noreferrer" style={linkCard}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = accent;
+                e.currentTarget.style.color = accent;
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = "var(--border)";
+                e.currentTarget.style.color = "var(--text-muted)";
+              }}
+            >
+              ./{label.toLowerCase()} ↗
+            </a>
+          ))}
         </div>
       </section>
     </main>
   );
 }
 
-//////////////////////////////////////
-// 🎨 STYLES
-//////////////////////////////////////
+function SectionHeader({ cmd, title }: { cmd: string; title: string }) {
+  return (
+    <div style={{ marginBottom: "1.25rem" }}>
+      <div style={{ fontSize: "11px", color: "var(--text-dim)", letterSpacing: "0.06em", marginBottom: "0.3rem" }}>
+        <span style={{ color: "var(--accent)" }}>$</span> {cmd}
+      </div>
+      <h2 style={{ fontSize: "18px", fontWeight: 500, color: "var(--text)", margin: 0, fontFamily: "var(--font-montserrat), sans-serif" }}>
+        {title}
+      </h2>
+    </div>
+  );
+}
 
 const container: React.CSSProperties = {
-  padding: "120px 60px",
-  color: "white",
-  maxWidth: "1100px",
+  padding: "7rem 3rem 5rem",
+  maxWidth: "900px",
   margin: "0 auto",
+  fontFamily: "var(--font-jetbrains), monospace",
+  color: "var(--text)",
 };
 
 const profileSection: React.CSSProperties = {
   display: "flex",
-  gap: "50px",
-  alignItems: "center",
-  marginBottom: "100px",
+  gap: "3rem",
+  alignItems: "flex-start",
+  marginBottom: "5rem",
   flexWrap: "wrap",
+};
+
+const imgWrapper: React.CSSProperties = {
+  position: "relative",
+  flexShrink: 0,
 };
 
 const profileImg: React.CSSProperties = {
-  width: "180px",
-  height: "180px",
-  borderRadius: "50%",
+  width: "160px",
+  height: "160px",
   objectFit: "cover",
-  border: "2px solid #1e293b",
+  display: "block",
+  filter: "grayscale(15%)",
 };
 
-const subtitle: React.CSSProperties = {
-  fontSize: "22px",
-  opacity: 0.9,
-  marginBottom: "12px",
-};
-
-const muted: React.CSSProperties = {
-  opacity: 0.6,
-};
-
-const section: React.CSSProperties = {
-  marginBottom: "80px",
-};
-
-const sectionTitle: React.CSSProperties = {
-  marginBottom: "20px",
-  fontSize: "22px",
-};
-
-const column: React.CSSProperties = {
-  display: "flex",
-  flexDirection: "column",
-  gap: "20px",
-};
-
-const row: React.CSSProperties = {
-  display: "flex",
-  gap: "16px",
-  flexWrap: "wrap",
-};
-
-const card: React.CSSProperties = {
-  border: "1px solid #334155",
-  borderRadius: "10px",
-  padding: "16px",
-  background: "#111827",
-};
-
-const date: React.CSSProperties = {
+const imgBorder: React.CSSProperties = {
+  position: "absolute",
+  inset: 0,
+  border: "1px solid var(--accent)",
+  transform: "translate(6px, 6px)",
+  pointerEvents: "none",
   opacity: 0.4,
-  fontSize: "13px",
 };
 
-//////////////////////////////////////
-// 🔥 BOTONES
-//////////////////////////////////////
+const termLine: React.CSSProperties = {
+  fontSize: "12px",
+  letterSpacing: "0.04em",
+  marginBottom: "1rem",
+  display: "flex",
+  gap: "1px",
+};
 
-const linkBtn: React.CSSProperties = {
-  padding: "10px 18px",
-  borderRadius: "8px",
-  border: "1px solid #1e293b",
+const pageTitle: React.CSSProperties = {
+  fontFamily: "var(--font-montserrat), sans-serif",
+  fontSize: "clamp(28px, 4vw, 42px)",
+  fontWeight: 900,
+  color: "var(--text)",
+  margin: "0 0 0.25rem",
+  letterSpacing: "-0.02em",
+};
+
+const pageSubtitle: React.CSSProperties = {
+  fontSize: "13px",
+  color: "var(--text-dim)",
+  fontWeight: 400,
+  margin: "0 0 1rem",
+  letterSpacing: "0.04em",
+};
+
+const mutedText: React.CSSProperties = {
+  fontSize: "13px",
+  color: "var(--text-muted)",
+  lineHeight: 1.8,
+  margin: 0,
+};
+
+const dlBtn: React.CSSProperties = {
+  display: "inline-block",
+  background: "var(--accent)",
+  color: "var(--accent-dark)",
+  fontFamily: "var(--font-jetbrains), monospace",
+  fontSize: "12px",
+  fontWeight: 700,
+  letterSpacing: "0.08em",
+  textTransform: "uppercase",
+  padding: "0.65rem 1.25rem",
   textDecoration: "none",
-  color: "white",
-  backgroundSize: "200% 100%",
-  backgroundPosition: "right",
-  transition: "all 0.5s ease",
+};
+
+const blockSection: React.CSSProperties = { marginBottom: "4rem" };
+
+const expCard: React.CSSProperties = {
+  padding: "1rem 1.25rem",
+  background: "var(--bg-card)",
+  border: "1px solid var(--border)",
+};
+
+const activeDot: React.CSSProperties = {
+  width: "6px",
+  height: "6px",
+  borderRadius: "50%",
+  background: "var(--accent)",
+  flexShrink: 0,
+  animation: "pulse 2s ease-in-out infinite",
+};
+
+const expRole: React.CSSProperties = {
+  fontSize: "14px",
+  color: "var(--text)",
+  fontWeight: 500,
+};
+
+const expCompany: React.CSSProperties = {
+  fontSize: "12px",
+  color: "var(--text-muted)",
+  marginBottom: "0.2rem",
+};
+
+const expDate: React.CSSProperties = {
+  fontSize: "11px",
+  color: "var(--text-dim)",
+  letterSpacing: "0.06em",
+};
+
+const certCard: React.CSSProperties = {
+  display: "flex",
+  alignItems: "center",
+  gap: "0.75rem",
+  padding: "0.85rem 1.25rem",
+  background: "var(--bg-card)",
+  border: "1px solid var(--border)",
+  color: "var(--text-muted)",
+  textDecoration: "none",
+  transition: "all 0.2s",
+  minWidth: "200px",
+};
+
+const certIcon: React.CSSProperties = {
+  fontSize: "10px",
+  background: "var(--bg-card)",
+  color: "var(--accent)",
+  padding: "3px 6px",
+  letterSpacing: "0.05em",
+  border: "1px solid var(--border)",
+};
+
+const certArrow: React.CSSProperties = {
+  marginLeft: "auto",
+  fontSize: "12px",
+  color: "var(--text-dim)",
+};
+
+const linkCard: React.CSSProperties = {
+  display: "inline-block",
+  padding: "0.75rem 1.5rem",
+  background: "var(--bg-card)",
+  border: "1px solid var(--border)",
+  color: "var(--text-muted)",
+  textDecoration: "none",
+  fontSize: "12px",
+  letterSpacing: "0.08em",
+  transition: "all 0.2s",
 };

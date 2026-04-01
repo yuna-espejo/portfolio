@@ -1,185 +1,63 @@
 "use client";
-
 import Circuit from "@/app/components/Circuit";
 
 export default function CircuitProjectPage() {
   return (
-    <main
-      style={{
-        paddingTop: "100px",
-        color: "white",
-      }}
-    >
-      {/* 🏁 HERO (CIRCUIT CENTRADO) */}
-      <section
-        style={{
-          padding: "40px 20px",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <div style={{ maxWidth: "1000px", width: "100%" }}>
-          <Circuit />
-        </div>
+    <main style={{ paddingTop: "80px", color: "white", fontFamily: "var(--font-jetbrains), monospace" }}>
+
+      {/* CIRCUIT */}
+      <section style={{
+        padding: "2rem 3rem 0",
+        maxWidth: "960px",
+        margin: "0 auto",
+      }}>
+        <Circuit />
       </section>
 
-      {/* 📄 CONTENT */}
-      <section
-        style={{
-          maxWidth: "800px",
-          margin: "0 auto",
-          padding: "60px 20px",
-        }}
-      >
-        {/* HEADER */}
-        <div style={{ marginBottom: "60px", textAlign: "center" }}>
-          <h1 style={{ fontSize: "42px", marginBottom: "10px" }}>
-            Real-Time Circuit Simulation
-          </h1>
+      {/* CONTENT */}
+      <section style={{ maxWidth: "720px", margin: "0 auto", padding: "4rem 3rem" }}>
 
-          <p style={muted}>
-            A system that renders a car moving along a circuit using{" "}
-            <strong>path interpolation</strong> and{" "}
-            <strong>canvas-based animation</strong>.
+        <div style={{ marginBottom: "3rem" }}>
+          <div style={termLine}>
+            <span style={{ color: "#7fff7f" }}>$</span>
+            <span style={{ color: "rgba(255,255,255,0.35)" }}> cat circuit-simulation/README.md</span>
+          </div>
+          <h1 style={pageTitle}>Real-Time Circuit Simulation</h1>
+          <p style={pageDesc}>
+            Path interpolation + Canvas API. A car that follows the track based on real curvature data.
           </p>
         </div>
 
-        {/* CONTEXT */}
-        <Section title="Context">
-          This project started as a way to represent an F1 circuit in a more{" "}
-          <strong>visual and interactive</strong> way.
-          <br />
-          Instead of a static image, I wanted something with{" "}
-          <strong>movement</strong> and more depth.
-        </Section>
+        {[
+          { title: "Context", body: "Started as a way to represent an F1 circuit visually — not a static image, but something with real movement and physics." },
+          { title: "Problem", body: "Make the car follow the track smoothly, with speed that varies based on actual corner geometry — not just a fixed rate." },
+          { title: "Solution", body: "A system of centerline points with distance-based interpolation. Speed is computed from local curvature: tight corners slow the car, straights speed it up." },
+          { title: "Real-world reference", body: "Lap time is calibrated to the actual circuit record — 1:14.637, Michael Schumacher, Ferrari, 2006.", accent: true },
+          { title: "What I learned", body: "Canvas animation loops, geometry for trajectory systems, and real-time rendering performance in the browser." },
+        ].map(({ title, body, accent }) => (
+          <div key={title} style={block}>
+            <h2 style={blockTitle}>{title}</h2>
+            <p style={{ ...blockBody, color: accent ? "#7fff7f" : "rgba(255,255,255,0.5)" }}>{body}</p>
+          </div>
+        ))}
 
-        {/* PROBLEM */}
-        <Section title="Problem">
-          A basic animation wasn’t enough. The goal was to make the car follow
-          the track in a <strong>smooth and continuous</strong> way, without
-          jumps or unnatural movement.
-        </Section>
-
-        {/* SOLUTION */}
-        <Section title="Solution">
-          I built a system based on <strong>points</strong> representing the
-          center of the track.
-          <br />
-          Positions are interpolated between segments to create{" "}
-          <strong>smooth movement</strong>.
-        </Section>
-
-        {/* REAL */}
-        <Section title="Real-world reference">
-          The car speed is calibrated so that a full lap matches the real track
-          record:
-          <p style={highlight}>
-            1:14.637 — Michael Schumacher (Ferrari, 2006)
-          </p>
-        </Section>
-
-        {/* HOW */}
-        <Section title="How it works">
-          <ul style={list}>
-            <li>
-              Track defined as a <strong>set of points</strong>
-            </li>
-            <li>
-              Total distance calculated across segments
-            </li>
-            <li>
-              Movement via <strong>distance-based interpolation</strong>
-            </li>
-            <li>
-              Animation with <strong>requestAnimationFrame</strong>
-            </li>
-            <li>
-              Rendering using <strong>Canvas API</strong>
-            </li>
-          </ul>
-        </Section>
-
-        {/* CHALLENGES */}
-        <Section title="Challenges">
-          Achieving <strong>fully smooth motion</strong> across the track.
-          <br />
-          Avoiding <strong>visible jumps between segments</strong>.
-        </Section>
-
-        {/* LEARNINGS */}
-        <Section title="What I learned">
-          Better understanding of <strong>canvas animations</strong> and{" "}
-          <strong>trajectory-based systems</strong>.
-          <br />
-          Reinforced concepts in <strong>geometry</strong> and{" "}
-          <strong>real-time rendering</strong>.
-        </Section>
-
-        {/* TECH */}
-        <Section title="Technologies">
-          <div style={tags}>
-            {[
-              "JavaScript",
-              "TypeScript",
-              "Canvas API",
-              "requestAnimationFrame",
-            ].map((t) => (
-              <span key={t} style={tag}>
-                {t}
-              </span>
+        <div style={block}>
+          <h2 style={blockTitle}>Technologies</h2>
+          <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginTop: "0.5rem" }}>
+            {["JavaScript", "TypeScript", "Canvas API", "requestAnimationFrame"].map(t => (
+              <span key={t} style={tag}>{t}</span>
             ))}
           </div>
-        </Section>
+        </div>
       </section>
     </main>
   );
 }
 
-/* 🔧 SECTION COMPONENT */
-function Section({ title, children }: any) {
-  return (
-    <div style={{ marginBottom: "50px" }}>
-      <h2 style={{ marginBottom: "10px", fontSize: "22px" }}>{title}</h2>
-      <div style={text}>{children}</div>
-    </div>
-  );
-}
-
-/* 🎨 STYLES */
-
-const text: React.CSSProperties = {
-  opacity: 0.75,
-  lineHeight: "1.6",
-};
-
-const muted: React.CSSProperties = {
-  opacity: 0.7,
-  maxWidth: "600px",
-  margin: "0 auto",
-};
-
-const highlight: React.CSSProperties = {
-  marginTop: "10px",
-  fontWeight: "600",
-  color: "#e11d48",
-};
-
-const list: React.CSSProperties = {
-  paddingLeft: "20px",
-  lineHeight: "1.6",
-  opacity: 0.75,
-};
-
-const tags: React.CSSProperties = {
-  display: "flex",
-  gap: "10px",
-  flexWrap: "wrap",
-  justifyContent: "center",
-};
-
-const tag: React.CSSProperties = {
-  padding: "6px 12px",
-  borderRadius: "999px",
-  background: "#1e293b",
-  fontSize: "12px",
-};
+const termLine: React.CSSProperties = { fontSize: "12px", letterSpacing: "0.04em", marginBottom: "1rem", display: "flex", gap: "6px" };
+const pageTitle: React.CSSProperties = { fontFamily: "var(--font-montserrat), sans-serif", fontSize: "clamp(28px, 4vw, 40px)", fontWeight: 900, color: "#fff", margin: "0 0 0.75rem", letterSpacing: "-0.02em" };
+const pageDesc: React.CSSProperties = { fontSize: "13px", color: "rgba(255,255,255,0.4)", lineHeight: 1.8, margin: 0 };
+const block: React.CSSProperties = { marginBottom: "2.5rem", paddingLeft: "1.25rem", borderLeft: "1px solid rgba(255,255,255,0.08)" };
+const blockTitle: React.CSSProperties = { fontSize: "13px", color: "rgba(255,255,255,0.4)", letterSpacing: "0.08em", textTransform: "uppercase", margin: "0 0 0.5rem", fontWeight: 400 };
+const blockBody: React.CSSProperties = { fontSize: "14px", lineHeight: 1.8, margin: 0 };
+const tag: React.CSSProperties = { fontSize: "10px", padding: "4px 10px", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.35)", letterSpacing: "0.06em" };
