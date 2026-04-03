@@ -5,6 +5,18 @@
   50% { opacity: 0.2; }
 }
 
+@media (max-width: 640px) {
+  .nav-desktop { display: none !important; }
+  .nav-mobile-btn { display: block !important; }
+}
+
+@media (min-width: 768px) {
+  .hero-layout {
+    grid-template-columns: 1fr 260px !important;
+    padding: "6rem 3rem 5rem" !important;
+  }
+}
+
 :root {
   --bg: #020617;
   --bg-soft: rgba(2,6,23,0.85);

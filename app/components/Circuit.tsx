@@ -15,8 +15,22 @@ export default function Circuit() {
   const trailRef2 = useRef<{ x: number; y: number; age: number }[]>([]);
   const lastLapRef = useRef(false);
   const lastLapRef2 = useRef(false);
+  const [isLight, setIsLight] = useState(false);
+  const isLightRef = useRef(false);
 
   useEffect(() => { carColorRef.current = carColor; }, [carColor]);
+
+  useEffect(() => {
+    const check = () => {
+      const light = document.documentElement.classList.contains("light");
+      setIsLight(light);
+      isLightRef.current = light;
+    };
+    check();
+    const observer = new MutationObserver(check);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
 
   const exterior = "M 20,190 L 21,205 L 31,220 L 97,257 L 91,300 L 97,314 L 110,323 L 815,337 L 843,327 L 860,298 L 851,246 L 834,230 L 806,220 L 790,172 L 778,158 L 685,127 L 668,128 L 653,137 L 649,147 L 653,167 L 671,181 L 723,201 L 749,240 L 751,255 L 461,120 L 434,121 L 408,134 L 332,212 L 321,247 L 306,258 L 208,249 L 134,193 L 139,189 L 143,196 L 150,194 L 145,187 L 150,184 L 267,186 L 293,178 L 318,161 L 329,141 L 325,120 L 308,108 L 136,103 L 115,107 L 53,139 L 31,163 Z";
   const interior = "M 43,184 L 52,164 L 71,144 L 119,120 L 297,121 L 308,129 L 309,142 L 283,164 L 255,170 L 139,169 L 117,184 L 112,202 L 147,235 L 195,267 L 237,276 L 309,277 L 336,261 L 350,220 L 422,144 L 438,136 L 457,135 L 740,273 L 767,272 L 775,260 L 774,248 L 740,195 L 670,160 L 670,147 L 683,141 L 765,166 L 792,231 L 830,247 L 837,289 L 831,302 L 811,317 L 125,301 L 116,296 L 120,247 L 107,233 L 50,205 Z";
@@ -78,6 +92,7 @@ export default function Circuit() {
     const sx = W / VW, sy = H / VH;
     const tx = (x: number) => (x - VX) * sx;
     const ty = (y: number) => (y - VY) * sy;
+    const light = isLightRef.current;
 
     ctx.clearRect(0, 0, W, H);
 
@@ -90,30 +105,37 @@ export default function Circuit() {
       ctx.restore();
     };
 
-    drawSVGPath(exterior, "#0a0f1e");
-    drawSVGPath(interior, "#020617");
-    drawSVGPath(exterior, undefined, "rgba(127,255,127,0.12)", 2);
-    drawSVGPath(interior, undefined, "rgba(255,255,255,0.06)", 1.5);
+    // En light: asfalto gris medio, interior más claro
+    drawSVGPath(exterior, light ? "#8a9a8a" : "#0a0f1e");
+    drawSVGPath(interior, light ? "#b8c4b0" : "#020617");
+    // Bordes: verde oscuro en light, verde neón en dark
+    drawSVGPath(exterior, undefined, light ? "rgba(30,80,30,0.7)" : "rgba(127,255,127,0.12)", 2);
+    drawSVGPath(interior, undefined, light ? "rgba(30,80,30,0.4)" : "rgba(255,255,255,0.06)", 1.5);
 
     ctx.save();
     ctx.setLineDash([tx(6) - tx(0), tx(18) - tx(0)]);
     drawSVGPath(
       "M 32,172 L 35,209 L 96,241 L 110,256 L 106,304 L 114,310 L 822,325 L 842,311 L 848,298 L 841,237 L 803,219 L 780,159 L 693,129 L 660,135 L 658,166 L 668,176 L 729,202 L 762,253 L 754,260 L 468,122 L 432,122 L 411,132 L 340,208 L 326,249 L 298,264 L 238,262 L 201,253 L 127,195 L 150,178 L 266,179 L 293,173 L 309,164 L 320,147 L 320,121 L 308,109 L 109,108 L 61,132 L 42,152 Z",
-      undefined, "rgba(255,255,255,0.04)", 1
+      undefined,
+      light ? "rgba(30,80,30,0.2)" : "rgba(255,255,255,0.04)",
+      1
     );
     ctx.restore();
 
+    // Start/Finish
     const sfX = tx(540), sfY1 = ty(308), sfY2 = ty(338);
-    ctx.fillStyle = "rgba(127,255,127,0.9)";
+    ctx.fillStyle = light ? "rgba(30,100,30,0.9)" : "rgba(127,255,127,0.9)";
     ctx.fillRect(sfX, sfY1, tx(3) - tx(0), sfY2 - sfY1);
-    ctx.fillStyle = "rgba(255,255,255,0.3)";
+    ctx.fillStyle = light ? "rgba(255,255,255,0.6)" : "rgba(255,255,255,0.3)";
     ctx.fillRect(sfX + tx(9) - tx(0), sfY1, tx(3) - tx(0), sfY2 - sfY1);
 
     if (finishGlowRef.current > 0) {
       const progress = finishGlowRef.current / 20;
-      ctx.shadowColor = "#7fff7f";
+      ctx.shadowColor = light ? "#1e641e" : "#7fff7f";
       ctx.shadowBlur = 16 * progress;
-      ctx.fillStyle = `rgba(127,255,127,${0.6 * progress})`;
+      ctx.fillStyle = light
+        ? `rgba(30,100,30,${0.6 * progress})`
+        : `rgba(127,255,127,${0.6 * progress})`;
       ctx.fillRect(sfX, sfY1, tx(3) - tx(0), sfY2 - sfY1);
       ctx.shadowBlur = 0;
       finishGlowRef.current--;
@@ -225,17 +247,19 @@ export default function Circuit() {
 
   return (
     <section style={{
-      color: "white",
+      color: "var(--text)",
       fontFamily: "var(--font-jetbrains), monospace",
       width: "100%",
-      padding: "4rem 3rem",  // ← añade padding vertical y horizontal
-      boxSizing: "border-box",  // ← añade esto
+      maxWidth: "900px",
+      margin: "0 auto",
+      padding: "2rem 1.5rem",
+      boxSizing: "border-box",
     }}>
 
       <div style={{ marginBottom: "2rem", width: "100%" }}>
         <div style={termLine}>
-          <span style={{ color: "#7fff7f" }}>$</span>
-          <span style={{ color: "rgba(255,255,255,0.3)" }}> render --circuit barcelona-catalunya</span>
+          <span style={{ color: "var(--accent)" }}>$</span>
+          <span style={{ color: "var(--text-muted)" }}> render --circuit barcelona-catalunya</span>
         </div>
         <div style={{ display: "flex", alignItems: "baseline", gap: "1.5rem", flexWrap: "wrap" }}>
           <h2 style={circuitTitle}>Circuit de Barcelona-Catalunya</h2>
@@ -243,13 +267,7 @@ export default function Circuit() {
         </div>
       </div>
 
-      <div style={{
-        display: "flex",
-        gap: "1px",
-        alignItems: "stretch",
-        flexWrap: "wrap",
-        width: "100%",
-      }}>
+      <div style={{ display: "flex", gap: "1px", alignItems: "stretch", flexWrap: "wrap", width: "100%" }}>
         <div style={infoPanel}>
           <div style={infoBlock}>
             <div style={infoLabel}>livery</div>
@@ -260,10 +278,10 @@ export default function Circuit() {
                   height: "18px",
                   borderRadius: "50%",
                   backgroundColor: c,
-                  border: carColor === c ? "2px solid #fff" : "2px solid transparent",
+                  border: carColor === c ? "2px solid var(--text)" : "2px solid transparent",
                   cursor: "pointer",
                   padding: 0,
-                  outline: carColor === c ? "1px solid rgba(255,255,255,0.3)" : "none",
+                  outline: carColor === c ? "1px solid var(--border)" : "none",
                   outlineOffset: "2px",
                 }} />
               ))}
@@ -277,7 +295,7 @@ export default function Circuit() {
 
           <div style={infoBlock}>
             <div style={infoLabel}>lap record</div>
-            <div style={{ ...infoValue, color: "#7fff7f" }}>1:14.637</div>
+            <div style={{ ...infoValue, color: "var(--accent)" }}>1:14.637</div>
             <div style={infoSub}>M. Schumacher · Ferrari · 2006</div>
           </div>
 
@@ -301,19 +319,16 @@ export default function Circuit() {
               height: "44px",
               objectFit: "cover",
               filter: "grayscale(30%)",
-              border: "1px solid rgba(255,255,255,0.1)",
+              border: "1px solid var(--border)",
             }} />
           </div>
         </div>
 
         <div style={{
           flex: "1 1 400px",
-          border: "1px solid rgba(255,255,255,0.07)",
-          background: "#020617",
+          border: "1px solid var(--border)",
+          background: isLight ? "#6b7a6b" : "#020617",
           minWidth: 0,
-          display: "flex",              // 👈 añadir
-          alignItems: "center",         // 👈 centra vertical
-          justifyContent: "center",  
         }}>
           <canvas
             ref={canvasRef}
@@ -328,7 +343,9 @@ export default function Circuit() {
       </div>
 
       <div style={{ ...bottomBar, width: "100%" }}>
-        <span style={bottomText}><span style={{ color: "#7fff7f" }}>■</span> simulation running</span>
+        <span style={bottomText}>
+          <span style={{ color: "var(--accent)" }}>■</span> simulation running
+        </span>
         <span style={bottomText}>curvature-based speed · canvas api · requestAnimationFrame</span>
         <span style={bottomText}>S/F line at 540m</span>
       </div>
@@ -339,7 +356,7 @@ export default function Circuit() {
 const termLine: React.CSSProperties = { fontSize: "12px", letterSpacing: "0.04em", marginBottom: "0.75rem", display: "flex", gap: "6px" };
 const circuitTitle: React.CSSProperties = { fontFamily: "var(--font-montserrat), sans-serif", fontSize: "clamp(16px, 2vw, 22px)", fontWeight: 900, color: "var(--text)", margin: 0, letterSpacing: "-0.01em" };
 const circuitMeta: React.CSSProperties = { fontSize: "11px", color: "var(--text-dim)", letterSpacing: "0.08em", textTransform: "uppercase" };
-const infoPanel: React.CSSProperties = { display: "flex", flexDirection: "column", minWidth: "150px", maxWidth: "165px", border: "1px solid var(--border)", background: "var(--bg-card)" };
+const infoPanel: React.CSSProperties = { display: "flex", flexDirection: "column", minWidth: "150px", width: "100%", maxWidth: "165px", border: "1px solid var(--border)", background: "var(--bg-card)" };
 const infoBlock: React.CSSProperties = { padding: "0.65rem 1rem", borderBottom: "1px solid var(--border-soft)" };
 const infoLabel: React.CSSProperties = { fontSize: "10px", color: "var(--text-dim)", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.5rem" };
 const infoValue: React.CSSProperties = { fontSize: "15px", fontWeight: 500, color: "var(--text)", fontFamily: "var(--font-montserrat), monospace" };

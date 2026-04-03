@@ -120,7 +120,7 @@ function SectionHeader({ cmd, title }: { cmd: string; title: string }) {
 }
 
 const container: React.CSSProperties = {
-  padding: "7rem 3rem 5rem",
+  padding: "5rem 1.5rem 3rem",
   maxWidth: "900px",
   margin: "0 auto",
   fontFamily: "var(--font-jetbrains), monospace",

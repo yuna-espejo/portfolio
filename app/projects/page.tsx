@@ -97,7 +97,11 @@ export default function ProjectsPage() {
   );
 }
 
-const container: React.CSSProperties = { padding: "7rem 3rem 5rem", color: "var(--text)", fontFamily: "var(--font-jetbrains), monospace" };
+const container: React.CSSProperties = {
+  padding: "5rem 1.5rem 3rem",
+  color: "var(--text)",
+  fontFamily: "var(--font-jetbrains), monospace",
+};
 const termLine: React.CSSProperties = { fontSize: "12px", letterSpacing: "0.04em", marginBottom: "1rem", display: "flex", gap: "4px" };
 const pageTitle: React.CSSProperties = { fontFamily: "var(--font-montserrat), sans-serif", fontSize: "clamp(32px, 5vw, 52px)", fontWeight: 900, color: "var(--text)", margin: "0 0 0.5rem", letterSpacing: "-0.02em" };
 const pageDesc: React.CSSProperties = { fontSize: "13px", color: "var(--text-muted)", margin: 0 };
