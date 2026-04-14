@@ -70,7 +70,18 @@
   "projectsData": {
     "circuit-simulation": {
       "title": "Interactive Circuit Simulation",
-      "description": "Real-time circuit simulation with curvature-based speed control"
+      "description": "Real-time circuit simulation with curvature-based speed control",
+      "pageTitle": "Real-Time Circuit Simulation",
+      "pageDesc": "Path interpolation + Canvas API. A car that follows the track based on real curvature data.",
+      "readmeCmd": "cat circuit-simulation/README.md",
+      "sections": [
+        { "title": "Context", "body": "Started as a way to represent an F1 circuit visually — not a static image, but something with real movement and physics." },
+        { "title": "Problem", "body": "Make the car follow the track smoothly, with speed that varies based on actual corner geometry — not just a fixed rate." },
+        { "title": "Solution", "body": "A system of centerline points with distance-based interpolation. Speed is computed from local curvature: tight corners slow the car, straights speed it up." },
+        { "title": "Real-world reference", "body": "Lap time is calibrated to the actual circuit record — 1:14.637, Michael Schumacher, Ferrari, 2006.", "accent": true },
+        { "title": "What I learned", "body": "Canvas animation loops, geometry for trajectory systems, and real-time rendering performance in the browser." }
+      ],
+      "technologiesTitle": "Technologies"
     }
   },
   "contact": {

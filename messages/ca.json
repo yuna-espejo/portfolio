@@ -70,7 +70,18 @@
   "projectsData": {
     "circuit-simulation": {
       "title": "Simulació de Circuit Interactiu",
-      "description": "Simulació de circuit en temps real amb control de velocitat basat en curvatura"
+      "description": "Simulació de circuit en temps real amb control de velocitat basat en curvatura",
+      "pageTitle": "Simulació de Circuit en Temps Real",
+      "pageDesc": "Interpolació de trajectòria + Canvas API. Un cotxe que segueix el circuit basant-se en dades reals de curvatura.",
+      "readmeCmd": "cat circuit-simulation/README.md",
+      "sections": [
+        { "title": "Context", "body": "Va començar com una manera de representar un circuit de F1 visualment — no una imatge estàtica, sinó alguna cosa amb moviment i física real." },
+        { "title": "Problema", "body": "Fer que el cotxe segueixi el circuit suaument, amb velocitat que varia segons la geometria real de cada corba — no a un ritme fix." },
+        { "title": "Solució", "body": "Un sistema de punts de línia central amb interpolació per distància. La velocitat es calcula a partir de la curvatura local: les corbes tancades frenen el cotxe, les rectes l'acceleren." },
+        { "title": "Referència real", "body": "El temps de volta està calibrat amb el rècord real del circuit — 1:14.637, Michael Schumacher, Ferrari, 2006.", "accent": true },
+        { "title": "El que vaig aprendre", "body": "Bucles d'animació en Canvas, geometria per a sistemes de trajectòria i rendiment de renderitzat en temps real al navegador." }
+      ],
+      "technologiesTitle": "Tecnologies"
     }
   },
   "contact": {
