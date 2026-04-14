@@ -89,9 +89,19 @@ export default function Circuit() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     const W = canvas.width, H = canvas.height;
-    const sx = W / VW, sy = H / VH;
-    const tx = (x: number) => (x - VX) * sx;
-    const ty = (y: number) => (y - VY) * sy;
+    const scale = Math.min(W / VW, H / VH);
+
+    // tamaño real del circuito escalado
+    const scaledW = VW * scale;
+    const scaledH = VH * scale;
+
+    // offsets para centrar
+    const offsetX = (W - scaledW) / 2;
+    const offsetY = (H - scaledH) / 2;
+
+    // nuevas funciones
+    const tx = (x: number) => (x - VX) * scale + offsetX;
+    const ty = (y: number) => (y - VY) * scale + offsetY;
     const light = isLightRef.current;
 
     ctx.clearRect(0, 0, W, H);
@@ -99,9 +109,16 @@ export default function Circuit() {
     const drawSVGPath = (d: string, fill?: string, stroke?: string, lw = 1) => {
       const p = new Path2D(d);
       ctx.save();
-      ctx.setTransform(sx, 0, 0, sy, -VX * sx, -VY * sy);
+      ctx.setTransform(
+        scale,
+        0,
+        0,
+        scale,
+        offsetX - VX * scale,
+        offsetY - VY * scale
+      );
       if (fill) { ctx.fillStyle = fill; ctx.fill(p); }
-      if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = lw / sx; ctx.stroke(p); }
+      if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = lw / scale;ctx.stroke(p); }
       ctx.restore();
     };
 
