@@ -63,7 +63,9 @@
     "results": "results found",
     "result": "result found",
     "open": "./open ——",
-    "filterAll": "All"
+    "filterAll": "All",
+    "featuredTitle": "Featured Projects",
+    "featuredCmd": "ls ./projects --featured"
   },
   "contact": {
     "title": "Contact",

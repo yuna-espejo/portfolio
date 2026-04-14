@@ -63,7 +63,9 @@
     "results": "resultados encontrados",
     "result": "resultado encontrado",
     "open": "./abrir ——",
-    "filterAll": "Todos"
+    "filterAll": "Todos",
+    "featuredTitle": "Proyectos Destacados",
+    "featuredCmd": "ls ./proyectos --destacados"
   },
   "contact": {
     "title": "Contacto",

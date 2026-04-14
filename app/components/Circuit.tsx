@@ -248,8 +248,9 @@ export default function Circuit() {
     if (!canvas) return;
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width * window.devicePixelRatio;
-      canvas.height = rect.height * window.devicePixelRatio;
+      const dpr = window.devicePixelRatio;
+      canvas.width = Math.round(rect.width * dpr);
+      canvas.height = Math.round(rect.width * (VH / VW) * dpr);
     };
     resize();
     window.addEventListener("resize", resize);

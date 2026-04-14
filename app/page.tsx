@@ -10,9 +10,7 @@ export default function Home() {
       <Hero />
       <StatsCounter />
       <TechCarousel />
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <Circuit />
-      </div>
+      <Circuit />
       <Projects />
     </main>
   );
