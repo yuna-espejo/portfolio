@@ -7,7 +7,7 @@
   "hero": {
     "available": "disponible per a oportunitats",
     "desc1": "Junior Consultant @ Timestamp Group.",
-    "desc2": "Estudiant Informàtica @ UOC · Graduada en ASIX.",
+    "desc2": "Acabant ASIX · Començant Informàtica @ UOC al setembre.",
     "desc3": "Construint eines de dades i visualitzacions motorsport.",
     "projects": "./projectes",
     "cv": "cat cv.pdf",
@@ -32,15 +32,15 @@
       { "year": "2024 mar–abr", "title": "Pràctiques ERASMUS+ · ClickTech", "desc": "Portugal — pràctiques de desenvolupament frontend" },
       { "year": "2025 mar", "title": "SAP Integration Trainee", "desc": "Timestamp Group — integracions de dades i SAP BTP" },
       { "year": "2025 nov", "title": "Consultora Tecnològica Junior", "desc": "Timestamp Group — sistemes backend i automatització" },
-      { "year": "2025 →", "title": "Enginyeria Informàtica · UOC", "desc": "Enginyeria Informàtica — actualment matriculada", "active": true }
+      { "year": "2025 set →", "title": "Enginyeria Informàtica · UOC", "desc": "Enginyeria Informàtica — inici setembre 2025", "active": true }
     ]
   },
   "about": {
     "cmd": "cat about.md",
-    "subtitle": "Consultora Junior · Estudiant d'Informàtica",
+    "subtitle": "Consultora Junior · Futura Enginyera de Software",
     "bio1": "Treballant en integracions de dades, automatització i sistemes backend a",
-    "bio2": "Estudiant Enginyeria Informàtica a",
-    "bio3": "Graduada en ASIX.",
+    "bio2": "Acabant ASIX · Començant Informàtica a",
+    "bio3": "aquest setembre.",
     "cv": "cat cv.pdf",
     "experience": {
       "title": "Experiència",

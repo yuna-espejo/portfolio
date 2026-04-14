@@ -7,7 +7,7 @@
   "hero": {
     "available": "available for opportunities",
     "desc1": "Junior Consultant @ Timestamp Group.",
-    "desc2": "Studying CS @ UOC · ASIX graduate.",
+    "desc2": "Finishing ASIX · Starting CS @ UOC in September.",
     "desc3": "Building data tools and motorsport visualizations.",
     "projects": "./projects",
     "cv": "cat cv.pdf",
@@ -32,15 +32,15 @@
       { "year": "2024 mar–apr", "title": "ERASMUS+ Intern · ClickTech", "desc": "Portugal — frontend development internship" },
       { "year": "2025 mar", "title": "SAP Integration Trainee", "desc": "Timestamp Group — data integrations and SAP BTP" },
       { "year": "2025 nov", "title": "Junior Technology Consultant", "desc": "Timestamp Group — backend systems and automation" },
-      { "year": "2025 →", "title": "CS Degree · UOC", "desc": "Computer Science Engineering — currently enrolled", "active": true }
+      { "year": "2025 sept →", "title": "CS Degree · UOC", "desc": "Computer Science Engineering — starting September 2025", "active": true }
     ]
   },
   "about": {
     "cmd": "cat about.md",
-    "subtitle": "Junior Consultant · CS Student",
+    "subtitle": "Junior Consultant · Future Software Engineer",
     "bio1": "Working on data integrations, automation and backend systems at",
-    "bio2": "Studying Computer Science at",
-    "bio3": "ASIX graduate.",
+    "bio2": "Finishing ASIX · Starting CS at",
+    "bio3": "this September.",
     "cv": "cat cv.pdf",
     "experience": {
       "title": "Experience",
