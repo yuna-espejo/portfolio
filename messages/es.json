@@ -7,7 +7,7 @@
   "hero": {
     "available": "disponible para oportunidades",
     "desc1": "Junior Consultant @ Timestamp Group.",
-    "desc2": "Terminando ASIX · Empezando Informática @ UOC este septiembre.",
+    "desc2": "Estudiando Informática @ UOC · Graduada en ASIX.",
     "desc3": "Construyendo herramientas de datos y visualizaciones motorsport.",
     "projects": "./proyectos",
     "cv": "cat cv.pdf",
@@ -32,8 +32,38 @@
       { "year": "2024 mar–abr", "title": "Prácticas ERASMUS+ · ClickTech", "desc": "Portugal — prácticas de desarrollo frontend" },
       { "year": "2025 mar", "title": "SAP Integration Trainee", "desc": "Timestamp Group — integraciones de datos y SAP BTP" },
       { "year": "2025 nov", "title": "Consultora Tecnológica Junior", "desc": "Timestamp Group — sistemas backend y automatización" },
-      { "year": "2025 sept →", "title": "Ingeniería Informática · UOC", "desc": "Ingeniería Informática — en curso", "active": true }
+      { "year": "2025 →", "title": "Ingeniería Informática · UOC", "desc": "Ingeniería Informática — actualmente matriculada", "active": true }
     ]
+  },
+  "about": {
+    "cmd": "cat about.md",
+    "subtitle": "Consultora Junior · Estudiante de Informática",
+    "bio1": "Trabajando en integraciones de datos, automatización y sistemas backend en",
+    "bio2": "Estudiando Ingeniería Informática en",
+    "bio3": "Graduada en ASIX.",
+    "cv": "cat cv.pdf",
+    "experience": {
+      "title": "Experiencia",
+      "cmd": "cat experiencia.log"
+    },
+    "certifications": {
+      "title": "Certificaciones",
+      "cmd": "ls ./certificaciones"
+    },
+    "links": {
+      "title": "Encuéntrame online",
+      "cmd": "open ./links"
+    }
+  },
+  "projects": {
+    "title": "Proyectos",
+    "cmd": "ls ./proyectos",
+    "desc": "Herramientas de datos, sistemas de telemetría e ingeniería de rendimiento.",
+    "searchPlaceholder": "buscar proyectos...",
+    "results": "resultados encontrados",
+    "result": "resultado encontrado",
+    "open": "./abrir ——",
+    "filterAll": "Todos"
   },
   "contact": {
     "title": "Contacto",

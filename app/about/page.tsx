@@ -4,6 +4,7 @@ import { useLang } from "@/context/LanguageContext";
 
 export default function AboutPage() {
   const { t } = useLang();
+
   return (
     <main style={container}>
 
@@ -18,20 +19,21 @@ export default function AboutPage() {
             <span style={{ color: "var(--text-dim)" }}>:</span>
             <span style={{ color: "var(--path)" }}>~</span>
             <span style={{ color: "var(--text-dim)" }}>$</span>
-            <span style={{ color: "var(--text-muted)" }}> cat about.md</span>
+            <span style={{ color: "var(--text-muted)" }}> {t.about.cmd}</span>
           </div>
           <h1 style={pageTitle}>Yuna Espejo</h1>
-          <h2 style={pageSubtitle}>Junior Consultant · Future Software Engineer</h2>
+          <h2 style={pageSubtitle}>{t.about.subtitle}</h2>
           <p style={mutedText}>
-            Working on data integrations, automation and backend systems at{" "}
+            {t.about.bio1}{" "}
             <span style={{ color: "var(--text)" }}>Timestamp Group.</span>
           </p>
           <p style={{ ...mutedText, marginTop: "0.5rem" }}>
-            Finishing <span style={{ color: "var(--text)" }}>ASIX</span> · Starting CS @{" "}
-            <span style={{ color: "var(--text)" }}>UOC</span> this September.
+            {t.about.bio2}{" "}
+            <span style={{ color: "var(--text)" }}>UOC.</span>{" "}
+            {t.about.bio3}
           </p>
           <div style={{ marginTop: "1.75rem" }}>
-            <a href="/cv.pdf" download style={dlBtn}>cat cv.pdf</a>
+            <a href="/cv.pdf" download style={dlBtn}>{t.about.cv}</a>
           </div>
         </div>
       </section>
@@ -42,7 +44,7 @@ export default function AboutPage() {
       </section>
 
       <section style={blockSection}>
-        <SectionHeader cmd="cat experience.log" title="Experience" />
+        <SectionHeader cmd={t.about.experience.cmd} title={t.about.experience.title} />
         <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
           {[
             { role: "Junior Technology Consultant", company: "Timestamp Group", date: "Nov 2025 – Present", active: true },
@@ -62,7 +64,7 @@ export default function AboutPage() {
       </section>
 
       <section style={blockSection}>
-        <SectionHeader cmd="ls ./certifications" title="Certifications" />
+        <SectionHeader cmd={t.about.certifications.cmd} title={t.about.certifications.title} />
         <div style={{ display: "flex", gap: "1px", flexWrap: "wrap" }}>
           {[
             { href: "https://www.credly.com/badges/200565ce-c8ba-46f8-9ea8-06b69085aff2/linked_in_profile", label: "Excel Associate", icon: "XLS" },
@@ -88,7 +90,7 @@ export default function AboutPage() {
       </section>
 
       <section style={blockSection}>
-        <SectionHeader cmd="open ./links" title="Find me online" />
+        <SectionHeader cmd={t.about.links.cmd} title={t.about.links.title} />
         <div style={{ display: "flex", gap: "1px", flexWrap: "wrap" }}>
           {[
             { href: "https://www.instagram.com/yesa.exe/", label: "Instagram", accent: "#ec4899" },

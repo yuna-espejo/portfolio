@@ -7,7 +7,7 @@
   "hero": {
     "available": "disponible per a oportunitats",
     "desc1": "Junior Consultant @ Timestamp Group.",
-    "desc2": "Acabant ASIX · Començant Informàtica @ UOC aquest setembre.",
+    "desc2": "Estudiant Informàtica @ UOC · Graduada en ASIX.",
     "desc3": "Construint eines de dades i visualitzacions motorsport.",
     "projects": "./projectes",
     "cv": "cat cv.pdf",
@@ -32,8 +32,38 @@
       { "year": "2024 mar–abr", "title": "Pràctiques ERASMUS+ · ClickTech", "desc": "Portugal — pràctiques de desenvolupament frontend" },
       { "year": "2025 mar", "title": "SAP Integration Trainee", "desc": "Timestamp Group — integracions de dades i SAP BTP" },
       { "year": "2025 nov", "title": "Consultora Tecnològica Junior", "desc": "Timestamp Group — sistemes backend i automatització" },
-      { "year": "2025 set →", "title": "Enginyeria Informàtica · UOC", "desc": "Enginyeria Informàtica — en curs", "active": true }
+      { "year": "2025 →", "title": "Enginyeria Informàtica · UOC", "desc": "Enginyeria Informàtica — actualment matriculada", "active": true }
     ]
+  },
+  "about": {
+    "cmd": "cat about.md",
+    "subtitle": "Consultora Junior · Estudiant d'Informàtica",
+    "bio1": "Treballant en integracions de dades, automatització i sistemes backend a",
+    "bio2": "Estudiant Enginyeria Informàtica a",
+    "bio3": "Graduada en ASIX.",
+    "cv": "cat cv.pdf",
+    "experience": {
+      "title": "Experiència",
+      "cmd": "cat experiencia.log"
+    },
+    "certifications": {
+      "title": "Certificacions",
+      "cmd": "ls ./certificacions"
+    },
+    "links": {
+      "title": "Troba'm online",
+      "cmd": "open ./links"
+    }
+  },
+  "projects": {
+    "title": "Projectes",
+    "cmd": "ls ./projectes",
+    "desc": "Eines de dades, sistemes de telemetria i enginyeria de rendiment.",
+    "searchPlaceholder": "cerca projectes...",
+    "results": "resultats trobats",
+    "result": "resultat trobat",
+    "open": "./obrir ——",
+    "filterAll": "Tots"
   },
   "contact": {
     "title": "Contacte",

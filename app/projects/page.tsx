@@ -2,17 +2,19 @@
 import { useState } from "react";
 import { projects } from "../data/projects";
 import Link from "next/link";
+import { useLang } from "@/context/LanguageContext";
 
 export default function ProjectsPage() {
   const [search, setSearch] = useState("");
-  const [tech, setTech] = useState("All");
+  const [tech, setTech] = useState("all");
+  const { t } = useLang();
 
   const allTechs = ["All", "JavaScript", "React", "Python", "Docker", "PostgreSQL", "NumPy", "Canvas"];
 
   const filtered = projects.filter(p => {
     const matchesSearch = (p.title + p.description + p.tags.join(" "))
       .toLowerCase().includes(search.toLowerCase());
-    const matchesTech = tech === "All" || p.tags.includes(tech);
+    const matchesTech = tech === "all" || p.tags.includes(tech);
     return matchesSearch && matchesTech;
   });
 
@@ -22,17 +24,17 @@ export default function ProjectsPage() {
         <div style={termLine}>
           <span style={{ color: "var(--accent)" }}>yuna@dev</span>
           <span style={{ color: "var(--text-dim)" }}>:~$</span>
-          <span style={{ color: "var(--text-muted)" }}> ls ./projects</span>
+          <span style={{ color: "var(--text-muted)" }}> {t.projects.cmd}</span>
         </div>
-        <h1 style={pageTitle}>Projects</h1>
-        <p style={pageDesc}>Data tools, telemetry systems and performance engineering.</p>
+        <h1 style={pageTitle}>{t.projects.title}</h1>
+        <p style={pageDesc}>{t.projects.desc}</p>
       </div>
 
       <div style={{ display: "flex", gap: "1rem", marginBottom: "1.25rem", flexWrap: "wrap", alignItems: "center" }}>
         <div style={searchWrapper}>
           <span style={searchPrefix}>grep</span>
           <input
-            placeholder="search projects..."
+            placeholder={t.projects.searchPlaceholder}
             value={search}
             onChange={e => setSearch(e.target.value)}
             style={searchInput}
@@ -41,20 +43,28 @@ export default function ProjectsPage() {
       </div>
 
       <div style={{ display: "flex", gap: "1px", marginBottom: "2.5rem", flexWrap: "wrap" }}>
-        {allTechs.map(t => (
-          <button key={t} onClick={() => setTech(t)} style={{
+        <button onClick={() => setTech("all")} style={{
+          ...filterBtn,
+          background: tech === "all" ? "var(--accent)" : "var(--bg-card)",
+          color: tech === "all" ? "var(--accent-dark)" : "var(--text-muted)",
+          borderColor: tech === "all" ? "var(--accent)" : "var(--border)",
+        }}>
+          {t.projects.filterAll}
+        </button>
+        {allTechs.slice(1).map(tag => (
+          <button key={tag} onClick={() => setTech(tag)} style={{
             ...filterBtn,
-            background: tech === t ? "var(--accent)" : "var(--bg-card)",
-            color: tech === t ? "var(--accent-dark)" : "var(--text-muted)",
-            borderColor: tech === t ? "var(--accent)" : "var(--border)",
+            background: tech === tag ? "var(--accent)" : "var(--bg-card)",
+            color: tech === tag ? "var(--accent-dark)" : "var(--text-muted)",
+            borderColor: tech === tag ? "var(--accent)" : "var(--border)",
           }}>
-            {t}
+            {tag}
           </button>
         ))}
       </div>
 
       <div style={{ fontSize: "11px", color: "var(--text-dim)", letterSpacing: "0.06em", marginBottom: "1rem" }}>
-        {filtered.length} result{filtered.length !== 1 ? "s" : ""} found
+        {filtered.length} {filtered.length !== 1 ? t.projects.results : t.projects.result}
       </div>
 
       <div style={grid}>
@@ -85,7 +95,7 @@ export default function ProjectsPage() {
                 </div>
                 <div style={cardFooter}>
                   <span style={{ color: "var(--accent)", fontSize: "11px", letterSpacing: "0.08em", opacity: 0.7 }}>
-                    ./open ——
+                    {t.projects.open}
                   </span>
                 </div>
               </div>
@@ -111,7 +121,7 @@ const searchInput: React.CSSProperties = { padding: "0.6rem 0.75rem", background
 const filterBtn: React.CSSProperties = { padding: "6px 14px", border: "1px solid", cursor: "pointer", fontSize: "11px", letterSpacing: "0.06em", fontFamily: "var(--font-jetbrains), monospace", transition: "all 0.15s" };
 const grid: React.CSSProperties = { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 340px))", gap: "1px" };
 const card: React.CSSProperties = { background: "var(--bg-card)", border: "1px solid var(--border)", overflow: "hidden", transition: "all 0.2s", cursor: "pointer" };
-const cardImg: React.CSSProperties = { width: "100%", height: "160px", objectFit: "cover", display: "block"};
+const cardImg: React.CSSProperties = { width: "100%", height: "160px", objectFit: "cover", display: "block" };
 const imgOverlay: React.CSSProperties = { position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 50%, var(--bg) 100%)", opacity: 0 };
 const cardMeta: React.CSSProperties = { fontSize: "10px", color: "var(--text-dim)", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.4rem", display: "flex", alignItems: "center", gap: "6px" };
 const cardTitle: React.CSSProperties = { fontSize: "15px", fontWeight: 500, color: "var(--text)", margin: "0 0 0.4rem", letterSpacing: "-0.01em" };
