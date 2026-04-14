@@ -1,0 +1,50 @@
+{
+  "nav": {
+    "projects": "proyectos",
+    "about": "sobre mí",
+    "contact": "contacto"
+  },
+  "hero": {
+    "available": "disponible para oportunidades",
+    "desc1": "Junior Consultant @ Timestamp Group.",
+    "desc2": "Terminando ASIX · Empezando Informática @ UOC este septiembre.",
+    "desc3": "Construyendo herramientas de datos y visualizaciones motorsport.",
+    "projects": "./proyectos",
+    "cv": "cat cv.pdf",
+    "scroll": "desplaza para explorar ——",
+    "coords": "41.3851° N, 2.1734° E — Barcelona"
+  },
+  "stats": {
+    "months": "meses de experiencia",
+    "projects": "proyectos completados",
+    "certifications": "certificaciones",
+    "countries": "países trabajados"
+  },
+  "tech": {
+    "title": "Stack Tecnológico",
+    "cmd": "ls ./stack"
+  },
+  "journey": {
+    "title": "Trayectoria",
+    "cmd": "cat trayectoria.log",
+    "items": [
+      { "year": "2023", "title": "ASIX", "desc": "Ciclo Superior de Desarrollo de Aplicaciones Multiplataforma" },
+      { "year": "2024 mar–abr", "title": "Prácticas ERASMUS+ · ClickTech", "desc": "Portugal — prácticas de desarrollo frontend" },
+      { "year": "2025 mar", "title": "SAP Integration Trainee", "desc": "Timestamp Group — integraciones de datos y SAP BTP" },
+      { "year": "2025 nov", "title": "Consultora Tecnológica Junior", "desc": "Timestamp Group — sistemas backend y automatización" },
+      { "year": "2025 sept →", "title": "Ingeniería Informática · UOC", "desc": "Ingeniería Informática — en curso", "active": true }
+    ]
+  },
+  "contact": {
+    "title": "Contacto",
+    "cmd": "curl -X POST /contacto",
+    "name": "nombre",
+    "namePlaceholder": "tu nombre",
+    "email": "email",
+    "emailPlaceholder": "tu@email.com",
+    "message": "mensaje",
+    "messagePlaceholder": "tu mensaje...",
+    "send": "enviar mensaje",
+    "findMe": "encuéntrame online"
+  }
+}

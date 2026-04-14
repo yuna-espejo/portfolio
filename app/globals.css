@@ -5,9 +5,28 @@
   50% { opacity: 0.2; }
 }
 
+@keyframes techScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
 @media (max-width: 640px) {
   .nav-desktop { display: none !important; }
   .nav-mobile-btn { display: block !important; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .contact-grid { grid-template-columns: 1fr !important; }
+}
+
+@media (min-width: 641px) {
+  .nav-mobile-btn { display: none !important; }
+}
+
+input:focus, textarea:focus {
+  border-color: var(--accent) !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--text-dim);
 }
 
 @media (min-width: 768px) {

@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono, Montserrat } from "next/font/google";
 import Navbar from "./components/Navbar";
 import ContactButton from "./components/ContactButton";
 import { Analytics } from "@vercel/analytics/next";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -27,10 +28,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${inter.variable} ${jetbrainsMono.variable} ${montserrat.variable} ${inter.className}`}>
-        <Navbar />
-        <ContactButton />
-        {children}
-        <Analytics />
+        <LanguageProvider>
+          <Navbar />
+          <ContactButton />
+          {children}
+          <Analytics />
+        </LanguageProvider>
       </body>
     </html>
   );

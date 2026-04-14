@@ -1,0 +1,50 @@
+{
+  "nav": {
+    "projects": "projects",
+    "about": "about",
+    "contact": "contact"
+  },
+  "hero": {
+    "available": "available for opportunities",
+    "desc1": "Junior Consultant @ Timestamp Group.",
+    "desc2": "Finishing ASIX · Starting CS @ UOC this September.",
+    "desc3": "Building data tools and motorsport visualizations.",
+    "projects": "./projects",
+    "cv": "cat cv.pdf",
+    "scroll": "scroll to explore ——",
+    "coords": "41.3851° N, 2.1734° E — Barcelona"
+  },
+  "stats": {
+    "months": "months experience",
+    "projects": "projects completed",
+    "certifications": "certifications",
+    "countries": "countries worked"
+  },
+  "tech": {
+    "title": "Tech Stack",
+    "cmd": "ls ./stack"
+  },
+  "journey": {
+    "title": "Journey",
+    "cmd": "cat journey.log",
+    "items": [
+      { "year": "2023", "title": "ASIX", "desc": "Higher Degree in Cross-Platform Application Development" },
+      { "year": "2024 mar–apr", "title": "ERASMUS+ Intern · ClickTech", "desc": "Portugal — frontend development internship" },
+      { "year": "2025 mar", "title": "SAP Integration Trainee", "desc": "Timestamp Group — data integrations and SAP BTP" },
+      { "year": "2025 nov", "title": "Junior Technology Consultant", "desc": "Timestamp Group — backend systems and automation" },
+      { "year": "2025 sept →", "title": "CS Degree · UOC", "desc": "Computer Science Engineering — in progress", "active": true }
+    ]
+  },
+  "contact": {
+    "title": "Contact",
+    "cmd": "curl -X POST /contact",
+    "name": "name",
+    "namePlaceholder": "your name",
+    "email": "email",
+    "emailPlaceholder": "your@email.com",
+    "message": "message",
+    "messagePlaceholder": "your message...",
+    "send": "send message",
+    "findMe": "find me online"
+  }
+}

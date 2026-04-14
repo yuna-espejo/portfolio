@@ -1,9 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useLang } from "@/context/LanguageContext";
 
 export default function Hero() {
   const [tick, setTick] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const { t } = useLang();
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -89,7 +91,7 @@ export default function Hero() {
               display: "inline-block",
             }} />
             <span style={{ fontSize: "11px", color: "var(--accent)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
-              available for opportunities
+              {t.hero.available}
             </span>
           </div>
 
@@ -101,11 +103,9 @@ export default function Hero() {
             margin: "0 0 2rem",
             padding: 0,
           }}>
-            Junior Consultant @{" "}
-            <span style={{ color: "var(--text)" }}>Timestamp Group.</span><br />
-            Finishing <span style={{ color: "var(--text)" }}>ASIX</span> · Starting CS @{" "}
-            <span style={{ color: "var(--text)" }}>UOC</span> this September.<br />
-            Building data tools and motorsport visualizations.
+            {t.hero.desc1}<br />
+            {t.hero.desc2}<br />
+            {t.hero.desc3}
           </p>
 
           <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
@@ -120,7 +120,7 @@ export default function Hero() {
               padding: "0.75rem 1.5rem",
               textDecoration: "none",
               display: "inline-block",
-            }}>./projects</a>
+            }}>{t.hero.projects}</a>
             <a href="/cv.pdf" target="_blank" rel="noreferrer" style={{
               background: "transparent",
               color: "var(--text-muted)",
@@ -132,7 +132,7 @@ export default function Hero() {
               border: "1px solid var(--border)",
               textDecoration: "none",
               display: "inline-block",
-            }}>cat cv.pdf</a>
+            }}>{t.hero.cv}</a>
           </div>
         </div>
 
@@ -184,10 +184,10 @@ export default function Hero() {
         gap: "0.5rem",
       }}>
         <span style={{ fontSize: "11px", color: "var(--text-dim)", letterSpacing: "0.06em" }}>
-          41.3851° N, 2.1734° E — Barcelona
+          {t.hero.coords}
         </span>
         <span style={{ fontSize: "11px", color: "var(--text-dim)", letterSpacing: "0.1em" }}>
-          scroll to explore ——
+          {t.hero.scroll}
         </span>
       </div>
     </section>

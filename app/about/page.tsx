@@ -1,6 +1,9 @@
 "use client";
+import Timeline from "@/app/components/Timeline";
+import { useLang } from "@/context/LanguageContext";
 
 export default function AboutPage() {
+  const { t } = useLang();
   return (
     <main style={container}>
 
@@ -31,6 +34,11 @@ export default function AboutPage() {
             <a href="/cv.pdf" download style={dlBtn}>cat cv.pdf</a>
           </div>
         </div>
+      </section>
+
+      <section style={blockSection}>
+        <SectionHeader cmd={t.journey.cmd} title={t.journey.title} />
+        <Timeline />
       </section>
 
       <section style={blockSection}>
