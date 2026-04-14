@@ -67,6 +67,12 @@
     "featuredTitle": "Featured Projects",
     "featuredCmd": "ls ./projects --featured"
   },
+  "projectsData": {
+    "circuit-simulation": {
+      "title": "Interactive Circuit Simulation",
+      "description": "Real-time circuit simulation with curvature-based speed control"
+    }
+  },
   "contact": {
     "title": "Contact",
     "cmd": "curl -X POST /contact",

@@ -67,6 +67,12 @@
     "featuredTitle": "Proyectos Destacados",
     "featuredCmd": "ls ./proyectos --destacados"
   },
+  "projectsData": {
+    "circuit-simulation": {
+      "title": "Simulación de Circuito Interactivo",
+      "description": "Simulación de circuito en tiempo real con control de velocidad basado en curvatura"
+    }
+  },
   "contact": {
     "title": "Contacto",
     "cmd": "curl -X POST /contacto",

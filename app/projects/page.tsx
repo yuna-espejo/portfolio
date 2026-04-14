@@ -12,7 +12,9 @@ export default function ProjectsPage() {
   const allTechs = ["All", "JavaScript", "React", "Python", "Docker", "PostgreSQL", "NumPy", "Canvas"];
 
   const filtered = projects.filter(p => {
-    const matchesSearch = (p.title + p.description + p.tags.join(" "))
+    const localizedTitle = t.projectsData[p.slug as keyof typeof t.projectsData]?.title ?? p.title;
+    const localizedDesc = t.projectsData[p.slug as keyof typeof t.projectsData]?.description ?? p.description;
+    const matchesSearch = (localizedTitle + localizedDesc + p.tags.join(" "))
       .toLowerCase().includes(search.toLowerCase());
     const matchesTech = tech === "all" || p.tags.includes(tech);
     return matchesSearch && matchesTech;
@@ -88,8 +90,8 @@ export default function ProjectsPage() {
                 <div style={cardMeta}>
                   <span style={{ color: "var(--accent)" }}>■</span> {p.tags[0]}
                 </div>
-                <h3 style={cardTitle}>{p.title}</h3>
-                <p style={cardDesc}>{p.description}</p>
+                <h3 style={cardTitle}>{t.projectsData[p.slug as keyof typeof t.projectsData]?.title ?? p.title}</h3>
+                <p style={cardDesc}>{t.projectsData[p.slug as keyof typeof t.projectsData]?.description ?? p.description}</p>
                 <div style={{ marginTop: "0.75rem", display: "flex", gap: "6px", flexWrap: "wrap" }}>
                   {p.tags.map((tag, i) => <span key={i} style={tagStyle}>{tag}</span>)}
                 </div>
