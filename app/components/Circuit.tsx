@@ -81,7 +81,7 @@ export default function Circuit() {
     return 1.6 - curvature * 1.1;
   }
 
-  const VX = 15, VY = 95, VW = 855, VH = 265;
+  const VX = 12, VY = 88, VW = 855, VH = 265;
 
   const draw = useCallback(() => {
     const canvas = canvasRef.current;
