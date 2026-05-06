@@ -22,6 +22,9 @@ const montserrat = Montserrat({
 export const metadata = {
   title: "Yuna Espejo",
   description: "Software engineer portfolio",
+  other: {
+    "msvalidate.01": "5A14052F7F4EC98C40C83F5",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
