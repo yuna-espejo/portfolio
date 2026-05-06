@@ -82,6 +82,24 @@
         { "title": "What I learned", "body": "Canvas animation loops, geometry for trajectory systems, and real-time rendering performance in the browser." }
       ],
       "technologiesTitle": "Technologies"
+    },
+    "fastf1-analysis": {
+      "title": "F1 Race Analysis",
+      "description": "Real telemetry data analysis using FastF1 — lap times, tyre strategy and pit stop detection from official F1 API data.",
+      "readmeCmd": "cat fastf1-analysis/README.md",
+      "pageTitle": "F1 Race Analysis",
+      "pageDesc": "Real telemetry data analysis using FastF1 — lap times, pit stop detection and tyre strategy from official F1 API data.",
+      "sections": [
+        { "title": "Context", "body": "A self-directed learning project towards F1 software engineering. Using real race data to understand how teams analyze strategy, tyre degradation and driver performance." },
+        { "title": "What it does", "body": "Compares two drivers lap-by-lap with automatic pit stop detection, tyre compound labels and interactive tooltips. Analysis of Piastri vs Antonelli at the 2026 Miami GP revealed Antonelli's undercut attempt on lap 26 vs Piastri's lap 28 stop.", "accent": false },
+        { "title": "Real-world reference", "body": "Data sourced directly from the official F1 timing API via FastF1 — the same data feed used by teams during race weekends.", "accent": true },
+        { "title": "What I learned", "body": "How to work with real telemetry data, detect pit stops programmatically from lap time deltas, and build clear visualizations that tell a story from raw numbers." }
+      ],
+      "technologiesTitle": "Technologies",
+      "roadmapTitle": "Roadmap",
+      "roadmapCompleted": ["Lap time evolution with tyre compound", "Pit stop detection", "Interactive tooltips"],
+      "roadmapPending": ["Speed trace telemetry", "Tyre degradation model", "Undercut detector", "Multi-driver comparison"],
+      "githubBtn": "view on github →"
     }
   },
   "contact": {

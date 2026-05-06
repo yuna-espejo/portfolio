@@ -23,7 +23,7 @@ export default function Projects() {
           </h2>
         </div>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 320px))", gap: "1px" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 320px))", gap: "1.5rem" }}>
         {featured.map(p => <ProjectCard key={p.slug} project={p} />)}
       </div>
     </section>

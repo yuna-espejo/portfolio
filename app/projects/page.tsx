@@ -9,7 +9,7 @@ export default function ProjectsPage() {
   const [tech, setTech] = useState("all");
   const { t } = useLang();
 
-  const allTechs = ["All", "JavaScript", "React", "Python", "Docker", "PostgreSQL", "NumPy", "Canvas"];
+  const allTechs = Array.from(new Set(projects.flatMap(p => p.tags)));
 
   const filtered = projects.filter(p => {
     const localizedTitle = t.projectsData[p.slug as keyof typeof t.projectsData]?.title ?? p.title;
@@ -53,7 +53,7 @@ export default function ProjectsPage() {
         }}>
           {t.projects.filterAll}
         </button>
-        {allTechs.slice(1).map(tag => (
+        {allTechs.map(tag => (
           <button key={tag} onClick={() => setTech(tag)} style={{
             ...filterBtn,
             background: tech === tag ? "var(--accent)" : "var(--bg-card)",
@@ -121,7 +121,7 @@ const searchWrapper: React.CSSProperties = { display: "flex", alignItems: "cente
 const searchPrefix: React.CSSProperties = { padding: "0.6rem 0.75rem", fontSize: "11px", color: "var(--accent)", borderRight: "1px solid var(--border)", letterSpacing: "0.06em" };
 const searchInput: React.CSSProperties = { padding: "0.6rem 0.75rem", background: "transparent", border: "none", outline: "none", color: "var(--text)", fontSize: "12px", fontFamily: "var(--font-jetbrains), monospace", width: "220px" };
 const filterBtn: React.CSSProperties = { padding: "6px 14px", border: "1px solid", cursor: "pointer", fontSize: "11px", letterSpacing: "0.06em", fontFamily: "var(--font-jetbrains), monospace", transition: "all 0.15s" };
-const grid: React.CSSProperties = { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 340px))", gap: "1px" };
+const grid: React.CSSProperties = { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 340px))", gap: "1.5rem" };
 const card: React.CSSProperties = { background: "var(--bg-card)", border: "1px solid var(--border)", overflow: "hidden", transition: "all 0.2s", cursor: "pointer" };
 const cardImg: React.CSSProperties = { width: "100%", height: "160px", objectFit: "cover", display: "block" };
 const imgOverlay: React.CSSProperties = { position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 50%, var(--bg) 100%)", opacity: 0 };

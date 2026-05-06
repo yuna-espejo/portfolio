@@ -33,6 +33,17 @@ export default function ProjectCard({ project }: any) {
             <span style={{ color: "var(--accent)", fontSize: "11px", letterSpacing: "0.08em", opacity: 0.7 }}>
               ./open ——
             </span>
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={e => e.stopPropagation()}
+                style={{ color: "var(--text-dim)", fontSize: "11px", letterSpacing: "0.08em", textDecoration: "none", display: "block", marginTop: "0.3rem" }}
+              >
+                github →
+              </a>
+            )}
           </div>
         </div>
       </div>
