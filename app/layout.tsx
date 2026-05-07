@@ -25,17 +25,26 @@ export const metadata = {
   keywords: ["software engineer", "F1", "motorsport analytics", "data visualization", "Barcelona", "portfolio", "FastF1", "React", "Python", "canvas API"],
   authors: [{ name: "Yuna Espejo" }],
   openGraph: {
-    title: "Yuna Espejo — Software Engineer Portfolio",
-    description: "Data tools, motorsport analytics and F1 visualizations.",
+    title: "Portfolio · Yuna Espejo",
+    description: "Automation & system projects — SAP BTP, GitHub Actions, Linux. Building data tools and motorsport visualizations with Python.",
     url: "https://yunaespejo.com",
     siteName: "Yuna Espejo",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "https://yunaespejo.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Yuna Espejo — Software Engineering · Automation · Motorsport",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yuna Espejo — Software Engineer Portfolio",
-    description: "Data tools, motorsport analytics and F1 visualizations.",
+    title: "Portfolio · Yuna Espejo",
+    description: "Automation & system projects — SAP BTP, GitHub Actions, Linux. Building data tools and motorsport visualizations with Python.",
+    images: ["https://yunaespejo.com/og-image.png"],
   },
   robots: {
     index: true,
