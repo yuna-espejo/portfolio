@@ -20,30 +20,40 @@ const montserrat = Montserrat({
 });
 
 export const metadata = {
-  title: "Yuna Espejo — Software Engineer Portfolio",
-  description: "Junior Software Engineer based in Barcelona. Building data tools, motorsport analytics and F1 visualizations. Starting Computer Science at UOC. Junior Consultant at Timestamp Group.",
-  keywords: ["software engineer", "F1", "motorsport analytics", "data visualization", "Barcelona", "portfolio", "FastF1", "React", "Python", "canvas API"],
+  title: "Yuna Espejo · Junior Developer & Automation Engineer",
+  description: "Junior consultant at Timestamp Group working with SAP BTP, GitHub Actions and Linux automation. ASIX student starting CS at UOC in September. Building data tools and exploring motorsport analytics with Python.",
+  keywords: [
+    "Yuna Espejo",
+    "junior developer",
+    "SAP BTP",
+    "automation engineer",
+    "GitHub Actions",
+    "Linux",
+    "Python",
+    "portfolio",
+    "Barcelona",
+    "UOC",
+    "motorsport analytics",
+    "F1 data",
+  ],
   authors: [{ name: "Yuna Espejo" }],
+  verification: {
+    google: "Dr-xPGaIr0n8v7ouJJhUGzob8NCYkb5eLIOsWHpLbr8",
+    other: {
+      "msvalidate.01": "5A14052F7F4EC98C40C83F5D37BE2EC8",
+    },
+  },
   openGraph: {
-    title: "Portfolio · Yuna Espejo",
-    description: "Automation & system projects — SAP BTP, GitHub Actions, Linux. Building data tools and motorsport visualizations with Python.",
+    title: "Yuna Espejo · Junior Developer & Automation Engineer",
+    description: "Junior consultant working with SAP BTP, GitHub Actions and Linux. Starting CS degree at UOC. Building data tools and motorsport visualizations with Python.",
     url: "https://yunaespejo.com",
-    siteName: "Yuna Espejo",
-    locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: "https://yunaespejo.com/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Yuna Espejo — Software Engineering · Automation · Motorsport",
-      },
-    ],
+    images: [{ url: "https://yunaespejo.com/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Portfolio · Yuna Espejo",
-    description: "Automation & system projects — SAP BTP, GitHub Actions, Linux. Building data tools and motorsport visualizations with Python.",
+    title: "Yuna Espejo · Junior Developer & Automation Engineer",
+    description: "Junior consultant working with SAP BTP, GitHub Actions and Linux. Starting CS degree at UOC. Building data tools and motorsport visualizations with Python.",
     images: ["https://yunaespejo.com/og-image.png"],
   },
   robots: {
