@@ -84,10 +84,10 @@
       "technologiesTitle": "Technologies"
     },
     "fastf1-analysis": {
-      "title": "F1 Race Analysis",
+      "title": "F1 Telemetry Analysis Tool",
       "description": "Real telemetry data analysis using FastF1 — lap times, tyre strategy and pit stop detection from official F1 API data.",
       "readmeCmd": "cat fastf1-analysis/README.md",
-      "pageTitle": "F1 Race Analysis",
+      "pageTitle": "F1 Telemetry Analysis Tool",
       "pageDesc": "Interactive F1 telemetry analysis tool — compare any two drivers from the full grid with lap time evolution, speed trace and pit stop strategy from real race data.",
       "sections": [
         { "title": "Context", "body": "A self-directed learning project towards F1 software engineering. Using real race data to understand how teams analyze strategy, tyre degradation and driver performance." },

@@ -19,7 +19,7 @@ export const projects: Project[] = [
 },
 {
   slug: "fastf1-analysis",
-  title: "F1 Race Analysis",
+  title: "F1 Telemetry Analysis Tool",
   description: "Interactive F1 telemetry analysis — lap times, speed trace, pit stop detection and driver comparison using real race data from the official F1 API.",
   tags: ["Python", "FastF1", "pandas", "matplotlib"],
   image: "/projects/f1-analysis.png",
