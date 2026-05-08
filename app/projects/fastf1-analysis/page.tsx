@@ -25,6 +25,19 @@ export default function FastF1ProjectPage() {
           <p style={pageDesc}>{data.pageDesc}</p>
         </div>
 
+        <div style={{ marginBottom: "3rem", display: "flex", flexDirection: "column", gap: "12px" }}>
+          <img
+            src="https://raw.githubusercontent.com/yuna-espejo/fastf1-analysis/main/assets/miami2026_selector.png"
+            alt="Interactive driver selector — F1 2026 Miami GP"
+            style={{ width: "100%", border: "1px solid var(--border)" }}
+          />
+          <img
+            src="https://raw.githubusercontent.com/yuna-espejo/fastf1-analysis/main/assets/miami2026_pia_ant.png"
+            alt="Piastri vs Antonelli lap time chart — F1 2026 Miami GP"
+            style={{ width: "100%", border: "1px solid var(--border)" }}
+          />
+        </div>
+
         {data.sections.map(({ title, body, accent }) => (
           <div key={title} style={block}>
             <h2 style={blockTitle}>{title}</h2>

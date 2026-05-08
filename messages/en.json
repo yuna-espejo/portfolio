@@ -88,10 +88,10 @@
       "description": "Real telemetry data analysis using FastF1 — lap times, tyre strategy and pit stop detection from official F1 API data.",
       "readmeCmd": "cat fastf1-analysis/README.md",
       "pageTitle": "F1 Race Analysis",
-      "pageDesc": "Real telemetry data analysis using FastF1 — lap times, pit stop detection and tyre strategy from official F1 API data.",
+      "pageDesc": "Interactive F1 telemetry analysis tool — compare any two drivers from the full grid with lap time evolution, speed trace and pit stop strategy from real race data.",
       "sections": [
         { "title": "Context", "body": "A self-directed learning project towards F1 software engineering. Using real race data to understand how teams analyze strategy, tyre degradation and driver performance." },
-        { "title": "What it does", "body": "Compares two drivers lap-by-lap with automatic pit stop detection, tyre compound labels and interactive tooltips. Analysis of Piastri vs Antonelli at the 2026 Miami GP revealed Antonelli's undercut attempt on lap 26 vs Piastri's lap 28 stop.", "accent": false },
+        { "title": "What it does", "body": "Features an interactive driver selector with the full 2026 grid. Select any two drivers and instantly compare their lap time evolution and speed trace side by side. Includes automatic pit stop detection, tyre compound labels per stint, team colors and hover tooltips showing exact lap times. Analysis of the 2026 Miami GP.", "accent": false },
         { "title": "Real-world reference", "body": "Data sourced directly from the official F1 timing API via FastF1 — the same data feed used by teams during race weekends.", "accent": true },
         { "title": "What I learned", "body": "How to work with real telemetry data, detect pit stops programmatically from lap time deltas, and build clear visualizations that tell a story from raw numbers." }
       ],

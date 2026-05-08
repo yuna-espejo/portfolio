@@ -88,10 +88,10 @@
       "description": "Análisis de datos de telemetría real con FastF1 — tiempos de vuelta, estrategia de neumáticos y detección de paradas en boxes desde la API oficial de F1.",
       "readmeCmd": "cat fastf1-analysis/README.md",
       "pageTitle": "Análisis de Carrera F1",
-      "pageDesc": "Análisis de datos de telemetría real con FastF1 — tiempos de vuelta, detección de paradas en boxes y estrategia de neumáticos desde la API oficial de F1.",
+      "pageDesc": "Interactive F1 telemetry analysis tool — compare any two drivers from the full grid with lap time evolution, speed trace and pit stop strategy from real race data.",
       "sections": [
         { "title": "Contexto", "body": "Un proyecto de aprendizaje autodidacta orientado a la ingeniería de software en F1. Usando datos reales de carrera para entender cómo los equipos analizan estrategia, degradación de neumáticos y rendimiento de los pilotos." },
-        { "title": "Qué hace", "body": "Compara dos pilotos vuelta a vuelta con detección automática de paradas en boxes, etiquetas de compuesto de neumático y tooltips interactivos. El análisis de Piastri vs Antonelli en el GP de Miami 2026 reveló el intento de undercut de Antonelli en la vuelta 26 frente a la parada de Piastri en la vuelta 28.", "accent": false },
+        { "title": "Qué hace", "body": "Features an interactive driver selector with the full 2026 grid. Select any two drivers and instantly compare their lap time evolution and speed trace side by side. Includes automatic pit stop detection, tyre compound labels per stint, team colors and hover tooltips showing exact lap times. Analysis of the 2026 Miami GP.", "accent": false },
         { "title": "Referencia real", "body": "Datos extraídos directamente de la API de timing oficial de F1 a través de FastF1 — el mismo feed de datos que usan los equipos durante los fines de semana de carrera.", "accent": true },
         { "title": "Lo que aprendí", "body": "Cómo trabajar con datos de telemetría reales, detectar paradas en boxes programáticamente a partir de deltas de tiempo de vuelta, y construir visualizaciones claras que cuenten una historia a partir de números brutos." }
       ],
