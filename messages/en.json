@@ -97,8 +97,8 @@
       ],
       "technologiesTitle": "Technologies",
       "roadmapTitle": "Roadmap",
-      "roadmapCompleted": ["Lap time evolution with tyre compound", "Pit stop detection", "Interactive tooltips"],
-      "roadmapPending": ["Speed trace telemetry", "Tyre degradation model", "Undercut detector", "Multi-driver comparison"],
+      "roadmapCompleted": ["Lap time evolution with tyre compound labels", "Pit stop detection and visualization", "Interactive tooltips (lap number + exact time)", "Speed trace — fastest lap telemetry comparison", "Interactive driver selector — full grid, any combination", "Automatic team colors per driver"],
+      "roadmapPending": ["Tyre degradation model (regression per compound)", "Undercut detector — automated strategy analysis", "Multi-GP comparison — same circuit across seasons", "Sector time breakdown (S1, S2, S3)"],
       "githubBtn": "view on github →"
     }
   },

@@ -97,8 +97,8 @@
       ],
       "technologiesTitle": "Tecnologies",
       "roadmapTitle": "Full de ruta",
-      "roadmapCompleted": ["Evolució de temps de volta amb compost", "Detecció de parades als boxes", "Tooltips interactius"],
-      "roadmapPending": ["Traça de velocitat per telemetria", "Model de degradació de pneumàtics", "Detector d'undercut", "Comparació multi-pilot"],
+      "roadmapCompleted": ["Lap time evolution with tyre compound labels", "Pit stop detection and visualization", "Interactive tooltips (lap number + exact time)", "Speed trace — fastest lap telemetry comparison", "Interactive driver selector — full grid, any combination", "Automatic team colors per driver"],
+      "roadmapPending": ["Tyre degradation model (regression per compound)", "Undercut detector — automated strategy analysis", "Multi-GP comparison — same circuit across seasons", "Sector time breakdown (S1, S2, S3)"],
       "githubBtn": "veure a github →"
     }
   },
