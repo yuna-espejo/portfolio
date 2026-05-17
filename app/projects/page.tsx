@@ -82,10 +82,18 @@ export default function ProjectsPage() {
                 e.currentTarget.style.transform = "translateY(0)";
               }}
             >
-              <div style={{ position: "relative" }}>
-                <img src={p.image} style={cardImg} />
-                <div style={imgOverlay} />
-              </div>
+              {p.image ? (
+                <div style={{ position: "relative" }}>
+                  <img src={p.image} style={cardImg} />
+                  <div style={imgOverlay} />
+                  {p.status === "wip" && <span style={wipBadge}>WIP</span>}
+                </div>
+              ) : (
+                <div style={cardImgPlaceholder}>
+                  {p.status === "wip" && <span style={wipBadgeInline}>WIP</span>}
+                  <span style={{ fontSize: "10px", color: "var(--text-dim)", letterSpacing: "0.1em", opacity: 0.4 }}>no preview</span>
+                </div>
+              )}
               <div style={{ padding: "1rem 1.25rem 1.25rem" }}>
                 <div style={cardMeta}>
                   <span style={{ color: "var(--accent)" }}>■</span> {p.tags[0]}
@@ -124,7 +132,10 @@ const filterBtn: React.CSSProperties = { padding: "6px 14px", border: "1px solid
 const grid: React.CSSProperties = { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 340px))", gap: "1.5rem" };
 const card: React.CSSProperties = { background: "var(--bg-card)", border: "1px solid var(--border)", overflow: "hidden", transition: "all 0.2s", cursor: "pointer" };
 const cardImg: React.CSSProperties = { width: "100%", height: "160px", objectFit: "cover", display: "block" };
+const cardImgPlaceholder: React.CSSProperties = { width: "100%", height: "160px", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: "8px", background: "var(--bg)", borderBottom: "1px solid var(--border)", position: "relative" };
 const imgOverlay: React.CSSProperties = { position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 50%, var(--bg) 100%)", opacity: 0 };
+const wipBadge: React.CSSProperties = { position: "absolute", top: "10px", right: "10px", fontSize: "9px", letterSpacing: "0.12em", padding: "3px 8px", border: "1px solid #f59e0b", color: "#f59e0b", background: "rgba(245,158,11,0.08)", fontFamily: "var(--font-jetbrains), monospace" };
+const wipBadgeInline: React.CSSProperties = { fontSize: "9px", letterSpacing: "0.12em", padding: "3px 8px", border: "1px solid #f59e0b", color: "#f59e0b", background: "rgba(245,158,11,0.08)", fontFamily: "var(--font-jetbrains), monospace" };
 const cardMeta: React.CSSProperties = { fontSize: "10px", color: "var(--text-dim)", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.4rem", display: "flex", alignItems: "center", gap: "6px" };
 const cardTitle: React.CSSProperties = { fontSize: "15px", fontWeight: 500, color: "var(--text)", margin: "0 0 0.4rem", letterSpacing: "-0.01em" };
 const cardDesc: React.CSSProperties = { fontSize: "12px", color: "var(--text-muted)", lineHeight: 1.7, margin: 0 };

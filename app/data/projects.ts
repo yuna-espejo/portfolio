@@ -3,9 +3,10 @@ export type Project = {
   title: string;
   description: string;
   tags: string[];
-  image: string;
+  image?: string;
   featured: boolean;
   github?: string;
+  status?: "wip";
 };
 
 export const projects: Project[] = [
@@ -25,5 +26,15 @@ export const projects: Project[] = [
   image: "/projects/f1-analysis.png",
   featured: true,
   github: "https://github.com/yuna-espejo/fastf1-analysis",
+},
+{
+  slug: "netclone",
+  title: "NetClone",
+  description: "Local tool that automatically detects your router's IP and clones its configuration (SSID + password) to a new router, so all connected devices stay online without manual reconfiguration.",
+  tags: ["Python", "Flask", "Playwright"],
+  image: "/projects/netclone.png",
+  featured: true,
+  github: "https://github.com/yuna-espejo/NetClone",
+  status: "wip",
 },
 ];

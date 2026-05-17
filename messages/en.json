@@ -100,6 +100,21 @@
       "roadmapCompleted": ["Lap time evolution with tyre compound labels", "Pit stop detection and visualization", "Interactive tooltips (lap number + exact time)", "Speed trace — fastest lap telemetry comparison", "Interactive driver selector — full grid, any combination", "Automatic team colors per driver"],
       "roadmapPending": ["Tyre degradation model (regression per compound)", "Undercut detector — automated strategy analysis", "Multi-GP comparison — same circuit across seasons", "Sector time breakdown (S1, S2, S3)"],
       "githubBtn": "view on github →"
+    },
+    "netclone": {
+      "title": "NetClone",
+      "description": "Local tool that automatically detects your router's IP and clones its configuration (SSID + password) to a new router, so all connected devices stay online without manual reconfiguration.",
+      "readmeCmd": "cat netclone/README.md",
+      "pageTitle": "NetClone",
+      "pageDesc": "A local tool that automatically detects your router's IP and clones its full configuration — SSID and password — to a new router, so every connected device stays online without any manual reconfiguration.",
+      "sections": [
+        { "title": "Context", "body": "Replacing a home router usually means reconfiguring every device on the network. This tool eliminates that friction entirely." },
+        { "title": "What it does", "body": "Detects your current router's IP automatically, logs in via Playwright to extract the wireless configuration, then pushes the same SSID and password to the new router through its admin interface." },
+        { "title": "Why local", "body": "Router admin panels are only accessible from the local network — no cloud, no relay. Everything runs on your machine.", "accent": true },
+        { "title": "Status", "body": "Work in progress. Core detection and cloning flow is functional. Testing across different router models and admin UI layouts." }
+      ],
+      "technologiesTitle": "Technologies",
+      "githubBtn": "view on github →"
     }
   },
   "contact": {

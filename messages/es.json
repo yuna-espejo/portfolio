@@ -100,6 +100,21 @@
       "roadmapCompleted": ["Lap time evolution with tyre compound labels", "Pit stop detection and visualization", "Interactive tooltips (lap number + exact time)", "Speed trace — fastest lap telemetry comparison", "Interactive driver selector — full grid, any combination", "Automatic team colors per driver"],
       "roadmapPending": ["Tyre degradation model (regression per compound)", "Undercut detector — automated strategy analysis", "Multi-GP comparison — same circuit across seasons", "Sector time breakdown (S1, S2, S3)"],
       "githubBtn": "ver en github →"
+    },
+    "netclone": {
+      "title": "NetClone",
+      "description": "Herramienta local que detecta automáticamente la IP de tu router y clona su configuración (SSID + contraseña) a uno nuevo — sin reconfiguración manual.",
+      "readmeCmd": "cat netclone/README.md",
+      "pageTitle": "NetClone",
+      "pageDesc": "Una herramienta local que detecta automáticamente la IP de tu router y clona toda su configuración — SSID y contraseña — a un router nuevo, para que todos los dispositivos conectados sigan online sin reconfiguración manual.",
+      "sections": [
+        { "title": "Contexto", "body": "Cambiar un router doméstico normalmente implica reconfigurar cada dispositivo de la red. Esta herramienta elimina completamente ese problema." },
+        { "title": "Qué hace", "body": "Detecta automáticamente la IP de tu router actual, accede al panel de administración con Playwright para extraer la configuración inalámbrica, y luego aplica el mismo SSID y contraseña al router nuevo." },
+        { "title": "Por qué local", "body": "Los paneles de administración de los routers solo son accesibles desde la red local — sin cloud, sin relay. Todo se ejecuta en tu máquina.", "accent": true },
+        { "title": "Estado", "body": "En desarrollo. El flujo principal de detección y clonado funciona. Se está probando con distintos modelos de router e interfaces de administración." }
+      ],
+      "technologiesTitle": "Tecnologías",
+      "githubBtn": "ver en github →"
     }
   },
   "contact": {

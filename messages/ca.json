@@ -100,6 +100,21 @@
       "roadmapCompleted": ["Lap time evolution with tyre compound labels", "Pit stop detection and visualization", "Interactive tooltips (lap number + exact time)", "Speed trace — fastest lap telemetry comparison", "Interactive driver selector — full grid, any combination", "Automatic team colors per driver"],
       "roadmapPending": ["Tyre degradation model (regression per compound)", "Undercut detector — automated strategy analysis", "Multi-GP comparison — same circuit across seasons", "Sector time breakdown (S1, S2, S3)"],
       "githubBtn": "veure a github →"
+    },
+    "netclone": {
+      "title": "NetClone",
+      "description": "Eina local que detecta automàticament la IP del teu router i clona la seva configuració (SSID + contrasenya) a un de nou — sense reconfiguració manual.",
+      "readmeCmd": "cat netclone/README.md",
+      "pageTitle": "NetClone",
+      "pageDesc": "Una eina local que detecta automàticament la IP del teu router i clona tota la seva configuració — SSID i contrasenya — a un router nou, perquè tots els dispositius connectats continuïn en línia sense cap reconfiguració manual.",
+      "sections": [
+        { "title": "Context", "body": "Canviar un router domèstic normalment implica reconfigurar cada dispositiu de la xarxa. Aquesta eina elimina completament aquest problema." },
+        { "title": "Què fa", "body": "Detecta automàticament la IP del teu router actual, accedeix al tauler d'administració amb Playwright per extreure la configuració sense fils, i aplica el mateix SSID i contrasenya al router nou." },
+        { "title": "Per què local", "body": "Els panells d'administració dels routers només són accessibles des de la xarxa local — sense cloud, sense relay. Tot s'executa a la teva màquina.", "accent": true },
+        { "title": "Estat", "body": "En desenvolupament. El flux principal de detecció i clonació funciona. S'està provant amb diferents models de router i interfícies d'administració." }
+      ],
+      "technologiesTitle": "Tecnologies",
+      "githubBtn": "veure a github →"
     }
   },
   "contact": {
