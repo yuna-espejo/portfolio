@@ -30,7 +30,7 @@ export const projects: Project[] = [
 {
   slug: "netclone",
   title: "NetClone",
-  description: "Local tool that automatically detects your router's IP and clones its configuration (SSID + password) to a new router, so all connected devices stay online without manual reconfiguration.",
+  description: "Automates new router setup when switching ISP — detects the router's IP, opens its admin panel via Playwright, and applies your existing SSID and password so every device reconnects automatically.",
   tags: ["Python", "Flask", "Playwright"],
   image: "/projects/netclone.png",
   featured: true,

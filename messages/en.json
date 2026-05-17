@@ -103,15 +103,15 @@
     },
     "netclone": {
       "title": "NetClone",
-      "description": "Local tool that automatically detects your router's IP and clones its configuration (SSID + password) to a new router, so all connected devices stay online without manual reconfiguration.",
+      "description": "Automates new router setup when switching ISP — detects the router's IP, opens its admin panel via Playwright, and applies your existing SSID and password so every device reconnects automatically.",
       "readmeCmd": "cat netclone/README.md",
       "pageTitle": "NetClone",
-      "pageDesc": "A local tool that automatically detects your router's IP and clones its full configuration — SSID and password — to a new router, so every connected device stays online without any manual reconfiguration.",
+      "pageDesc": "Automates the first thing you do when switching internet provider: configuring the new router with your existing SSID and password, so every connected device reconnects automatically — no manual reconfiguration on any of them.",
       "sections": [
-        { "title": "Context", "body": "Replacing a home router usually means reconfiguring every device on the network. This tool eliminates that friction entirely." },
-        { "title": "What it does", "body": "Detects your current router's IP automatically, logs in via Playwright to extract the wireless configuration, then pushes the same SSID and password to the new router through its admin interface." },
+        { "title": "Context", "body": "When you switch ISP, you get a new router. Every device on your network loses its connection. The fix is simple: give the new router the same SSID and password your devices already know. NetClone automates exactly that." },
+        { "title": "What it does", "body": "You provide your SSID and password — the credentials your devices already use. NetClone detects the new router's IP from the system routing table, opens its admin panel via Playwright, and applies your credentials using a recipe file specific to that router model." },
         { "title": "Why local", "body": "Router admin panels are only accessible from the local network — no cloud, no relay. Everything runs on your machine.", "accent": true },
-        { "title": "Status", "body": "Work in progress. Core detection and cloning flow is functional. Testing across different router models and admin UI layouts." }
+        { "title": "Status", "body": "Work in progress. Network detection is functional. Router automation and recipe system for common ISP routers in progress." }
       ],
       "technologiesTitle": "Technologies",
       "githubBtn": "view on github →"

@@ -103,15 +103,15 @@
     },
     "netclone": {
       "title": "NetClone",
-      "description": "Eina local que detecta automàticament la IP del teu router i clona la seva configuració (SSID + contrasenya) a un de nou — sense reconfiguració manual.",
+      "description": "Automatitza la configuració del router nou en canviar d'operador — detecta la seva IP, obre el tauler d'administració amb Playwright i aplica el teu SSID i contrasenya perquè tots els dispositius es reconnectin sols.",
       "readmeCmd": "cat netclone/README.md",
       "pageTitle": "NetClone",
-      "pageDesc": "Una eina local que detecta automàticament la IP del teu router i clona tota la seva configuració — SSID i contrasenya — a un router nou, perquè tots els dispositius connectats continuïn en línia sense cap reconfiguració manual.",
+      "pageDesc": "Automatitza el primer que fas en canviar d'operador: configurar el router nou amb el teu SSID i contrasenya existents, perquè tots els dispositius connectats es reconnectin sols — sense reconfiguració manual en cap d'ells.",
       "sections": [
-        { "title": "Context", "body": "Canviar un router domèstic normalment implica reconfigurar cada dispositiu de la xarxa. Aquesta eina elimina completament aquest problema." },
-        { "title": "Què fa", "body": "Detecta automàticament la IP del teu router actual, accedeix al tauler d'administració amb Playwright per extreure la configuració sense fils, i aplica el mateix SSID i contrasenya al router nou." },
-        { "title": "Per què local", "body": "Els panells d'administració dels routers només són accessibles des de la xarxa local — sense cloud, sense relay. Tot s'executa a la teva màquina.", "accent": true },
-        { "title": "Estat", "body": "En desenvolupament. El flux principal de detecció i clonació funciona. S'està provant amb diferents models de router i interfícies d'administració." }
+        { "title": "Context", "body": "Quan canvies d'operador, et donen un router nou. Tots els dispositius de la teva xarxa perden la connexió. La solució és simple: dona al router nou el mateix SSID i contrasenya que els teus dispositius ja coneixen. NetClone automatitza exactament això." },
+        { "title": "Què fa", "body": "Tu introdueixes el teu SSID i contrasenya — les credencials que els teus dispositius ja fan servir. NetClone detecta la IP del router nou des de la taula de rutes del sistema, obre el seu tauler d'administració amb Playwright i aplica les teves credencials usant un fitxer de configuració específic per a aquell model de router." },
+        { "title": "Per què local", "body": "Els taulers d'administració dels routers només són accessibles des de la xarxa local — sense cloud, sense relay. Tot s'executa a la teva màquina.", "accent": true },
+        { "title": "Estat", "body": "En desenvolupament. La detecció de xarxa funciona. L'automatització del router i el sistema de receptes per a routers d'operadors comuns està en curs." }
       ],
       "technologiesTitle": "Tecnologies",
       "githubBtn": "veure a github →"

@@ -103,15 +103,15 @@
     },
     "netclone": {
       "title": "NetClone",
-      "description": "Herramienta local que detecta automáticamente la IP de tu router y clona su configuración (SSID + contraseña) a uno nuevo — sin reconfiguración manual.",
+      "description": "Automatiza la configuración del router nuevo al cambiar de operador — detecta su IP, abre el panel de administración con Playwright y aplica tu SSID y contraseña para que todos los dispositivos se reconecten solos.",
       "readmeCmd": "cat netclone/README.md",
       "pageTitle": "NetClone",
-      "pageDesc": "Una herramienta local que detecta automáticamente la IP de tu router y clona toda su configuración — SSID y contraseña — a un router nuevo, para que todos los dispositivos conectados sigan online sin reconfiguración manual.",
+      "pageDesc": "Automatiza lo primero que haces al cambiar de operador: configurar el router nuevo con tu SSID y contraseña existentes, para que todos los dispositivos conectados se reconecten solos — sin reconfiguración manual en ninguno de ellos.",
       "sections": [
-        { "title": "Contexto", "body": "Cambiar un router doméstico normalmente implica reconfigurar cada dispositivo de la red. Esta herramienta elimina completamente ese problema." },
-        { "title": "Qué hace", "body": "Detecta automáticamente la IP de tu router actual, accede al panel de administración con Playwright para extraer la configuración inalámbrica, y luego aplica el mismo SSID y contraseña al router nuevo." },
+        { "title": "Contexto", "body": "Cuando cambias de operador, te dan un router nuevo. Todos los dispositivos de tu red pierden la conexión. La solución es simple: dale al router nuevo el mismo SSID y contraseña que tus dispositivos ya conocen. NetClone automatiza exactamente eso." },
+        { "title": "Qué hace", "body": "Tú introduces tu SSID y contraseña — las credenciales que tus dispositivos ya usan. NetClone detecta la IP del router nuevo desde la tabla de rutas del sistema, abre su panel de administración con Playwright y aplica tus credenciales usando un archivo de configuración específico para ese modelo de router." },
         { "title": "Por qué local", "body": "Los paneles de administración de los routers solo son accesibles desde la red local — sin cloud, sin relay. Todo se ejecuta en tu máquina.", "accent": true },
-        { "title": "Estado", "body": "En desarrollo. El flujo principal de detección y clonado funciona. Se está probando con distintos modelos de router e interfaces de administración." }
+        { "title": "Estado", "body": "En desarrollo. La detección de red funciona. La automatización del router y el sistema de recetas para routers de operadores comunes está en progreso." }
       ],
       "technologiesTitle": "Tecnologías",
       "githubBtn": "ver en github →"
