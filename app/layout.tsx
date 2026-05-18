@@ -20,7 +20,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata = {
-  title: "Yuna Espejo · Junior Developer & Automation Engineer",
+  title: "Yuna Espejo - Software Developer",
   description: "Junior consultant at Timestamp Group working with SAP BTP, GitHub Actions and Linux automation. ASIX student starting CS at UOC in September. Building data tools and exploring motorsport analytics with Python.",
   keywords: [
     "Yuna Espejo",
@@ -44,7 +44,7 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: "Yuna Espejo · Junior Developer & Automation Engineer",
+    title: "Yuna Espejo - Software Developer",
     description: "Junior consultant working with SAP BTP, GitHub Actions and Linux. Starting CS degree at UOC. Building data tools and motorsport visualizations with Python.",
     url: "https://yunaespejo.com",
     type: "website",
@@ -52,7 +52,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yuna Espejo · Junior Developer & Automation Engineer",
+    title: "Yuna Espejo - Software Developer",
     description: "Junior consultant working with SAP BTP, GitHub Actions and Linux. Starting CS degree at UOC. Building data tools and motorsport visualizations with Python.",
     images: ["https://yunaespejo.com/og-image.png"],
   },
