@@ -101,21 +101,6 @@
       "roadmapPending": ["Tyre degradation model (regression per compound)", "Undercut detector — automated strategy analysis", "Multi-GP comparison — same circuit across seasons", "Sector time breakdown (S1, S2, S3)"],
       "githubBtn": "view on github →"
     },
-    "netclone": {
-      "title": "NetClone",
-      "description": "Automates new router setup when switching ISP — detects the router's IP, opens its admin panel via Playwright, and applies your existing SSID and password so every device reconnects automatically.",
-      "readmeCmd": "cat netclone/README.md",
-      "pageTitle": "NetClone",
-      "pageDesc": "Automates the first thing you do when switching internet provider: configuring the new router with your existing SSID and password, so every connected device reconnects automatically — no manual reconfiguration on any of them.",
-      "sections": [
-        { "title": "Context", "body": "When you switch ISP, you get a new router. Every device on your network loses its connection. The fix is simple: give the new router the same SSID and password your devices already know. NetClone automates exactly that." },
-        { "title": "What it does", "body": "You provide your SSID and password — the credentials your devices already use. NetClone detects the new router's IP from the system routing table, opens its admin panel via Playwright, and applies your credentials using a recipe file specific to that router model." },
-        { "title": "Why local", "body": "Router admin panels are only accessible from the local network — no cloud, no relay. Everything runs on your machine.", "accent": true },
-        { "title": "Status", "body": "Work in progress. Network detection is functional. Router automation and recipe system for common ISP routers in progress." }
-      ],
-      "technologiesTitle": "Technologies",
-      "githubBtn": "view on github →"
-    }
   },
   "contact": {
     "title": "Contact",

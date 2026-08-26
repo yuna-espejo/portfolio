@@ -27,14 +27,4 @@ export const projects: Project[] = [
   featured: true,
   github: "https://github.com/yuna-espejo/fastf1-analysis",
 },
-{
-  slug: "netclone",
-  title: "NetClone",
-  description: "Automates new router setup when switching ISP — detects the router's IP, opens its admin panel via Playwright, and applies your existing SSID and password so every device reconnects automatically.",
-  tags: ["Python", "Flask", "Playwright"],
-  image: "/projects/netclone.png",
-  featured: true,
-  github: "https://github.com/yuna-espejo/NetClone",
-  status: "wip",
-},
 ];

@@ -101,21 +101,6 @@
       "roadmapPending": ["Tyre degradation model (regression per compound)", "Undercut detector — automated strategy analysis", "Multi-GP comparison — same circuit across seasons", "Sector time breakdown (S1, S2, S3)"],
       "githubBtn": "ver en github →"
     },
-    "netclone": {
-      "title": "NetClone",
-      "description": "Automatiza la configuración del router nuevo al cambiar de operador — detecta su IP, abre el panel de administración con Playwright y aplica tu SSID y contraseña para que todos los dispositivos se reconecten solos.",
-      "readmeCmd": "cat netclone/README.md",
-      "pageTitle": "NetClone",
-      "pageDesc": "Automatiza lo primero que haces al cambiar de operador: configurar el router nuevo con tu SSID y contraseña existentes, para que todos los dispositivos conectados se reconecten solos — sin reconfiguración manual en ninguno de ellos.",
-      "sections": [
-        { "title": "Contexto", "body": "Cuando cambias de operador, te dan un router nuevo. Todos los dispositivos de tu red pierden la conexión. La solución es simple: dale al router nuevo el mismo SSID y contraseña que tus dispositivos ya conocen. NetClone automatiza exactamente eso." },
-        { "title": "Qué hace", "body": "Tú introduces tu SSID y contraseña — las credenciales que tus dispositivos ya usan. NetClone detecta la IP del router nuevo desde la tabla de rutas del sistema, abre su panel de administración con Playwright y aplica tus credenciales usando un archivo de configuración específico para ese modelo de router." },
-        { "title": "Por qué local", "body": "Los paneles de administración de los routers solo son accesibles desde la red local — sin cloud, sin relay. Todo se ejecuta en tu máquina.", "accent": true },
-        { "title": "Estado", "body": "En desarrollo. La detección de red funciona. La automatización del router y el sistema de recetas para routers de operadores comunes está en progreso." }
-      ],
-      "technologiesTitle": "Tecnologías",
-      "githubBtn": "ver en github →"
-    }
   },
   "contact": {
     "title": "Contacto",
