@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
 import { useTranslations, getLangFromUrl, type Lang } from '../i18n/utils';
 
 interface Props {
@@ -48,6 +50,8 @@ const canonicalURL = Astro.site
     </script>
   </head>
   <body>
+    <Nav />
     <slot />
+    <Footer />
   </body>
 </html>
