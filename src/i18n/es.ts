@@ -18,6 +18,52 @@ export const es = {
     ctaLinkedIn: 'LinkedIn',
     ctaGitHub: 'GitHub',
     ctaEmail: 'Escríbeme',
+    educationHeading: 'Formación y certificaciones',
+    educationSubheading: 'Formación',
+    certsSubheading: 'Certificaciones',
+    statusInProgress: 'En curso',
+    statusCompleted: 'Completado',
+    education: [
+      {
+        degree: 'Grado en Ingeniería Informática',
+        spec: 'Itinerario de Ingeniería del Software',
+        school: 'UOC',
+        period: 'sep. 2026 – actualidad',
+        inProgress: true,
+      },
+      {
+        degree: 'CFGS Administración de Sistemas Informáticos en Red',
+        spec: 'Linux/Windows Server, Docker, scripting, redes, BBDD',
+        school: 'IES Sa Palomera',
+        period: '2024',
+        inProgress: false,
+      },
+      {
+        degree: 'CFGM Sistemas Microinformáticos y Redes',
+        spec: '',
+        school: 'IES Sa Palomera',
+        period: '2021 – 2024',
+        inProgress: false,
+      },
+    ],
+    certifications: [
+      {
+        name: 'Discovering SAP Business Technology Platform',
+        issuer: 'SAP · Record of Achievement',
+        year: '2025',
+      },
+      {
+        name: '3.er puesto — Campeonato Nacional de Excel',
+        issuer: 'PUE Academy',
+        year: 'jun. 2025',
+      },
+      {
+        name: 'Microsoft Office Specialist',
+        detail: 'Excel Associate · Word Expert',
+        issuer: 'Microsoft',
+        year: '',
+      },
+    ],
     stackHeading: 'Stack real',
     stackCategories: {
       integration: 'Integración',

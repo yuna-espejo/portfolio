@@ -20,6 +20,52 @@ export const ca: Translations = {
     ctaLinkedIn: 'LinkedIn',
     ctaGitHub: 'GitHub',
     ctaEmail: 'Escriu-me',
+    educationHeading: 'Formació i certificacions',
+    educationSubheading: 'Formació',
+    certsSubheading: 'Certificacions',
+    statusInProgress: 'En curs',
+    statusCompleted: 'Completat',
+    education: [
+      {
+        degree: 'Grau en Enginyeria Informàtica',
+        spec: 'Itinerari d\'Enginyeria del Software',
+        school: 'UOC',
+        period: 'set. 2026 – actualitat',
+        inProgress: true,
+      },
+      {
+        degree: 'CFGS Administració de Sistemes Informàtics en Xarxa',
+        spec: 'Linux/Windows Server, Docker, scripting, xarxes, BBDD',
+        school: 'IES Sa Palomera',
+        period: '2024',
+        inProgress: false,
+      },
+      {
+        degree: 'CFGM Sistemes Microinformàtics i Xarxes',
+        spec: '',
+        school: 'IES Sa Palomera',
+        period: '2021 – 2024',
+        inProgress: false,
+      },
+    ],
+    certifications: [
+      {
+        name: 'Discovering SAP Business Technology Platform',
+        issuer: 'SAP · Record of Achievement',
+        year: '2025',
+      },
+      {
+        name: '3r lloc — Campionat Nacional d\'Excel',
+        issuer: 'PUE Academy',
+        year: 'jun. 2025',
+      },
+      {
+        name: 'Microsoft Office Specialist',
+        detail: 'Excel Associate · Word Expert',
+        issuer: 'Microsoft',
+        year: '',
+      },
+    ],
     stackHeading: 'Stack real',
     stackCategories: {
       integration: 'Integració',

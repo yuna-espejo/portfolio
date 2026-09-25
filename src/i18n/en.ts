@@ -20,6 +20,52 @@ export const en: Translations = {
     ctaLinkedIn: 'LinkedIn',
     ctaGitHub: 'GitHub',
     ctaEmail: 'Email me',
+    educationHeading: 'Education & certifications',
+    educationSubheading: 'Education',
+    certsSubheading: 'Certifications',
+    statusInProgress: 'In progress',
+    statusCompleted: 'Completed',
+    education: [
+      {
+        degree: "Bachelor's in Computer Engineering",
+        spec: 'Software Engineering track',
+        school: 'UOC',
+        period: 'Sep. 2026 – present',
+        inProgress: true,
+      },
+      {
+        degree: 'Higher Technician in Network Systems Administration',
+        spec: 'Linux/Windows Server, Docker, scripting, networking, databases',
+        school: 'IES Sa Palomera',
+        period: '2024',
+        inProgress: false,
+      },
+      {
+        degree: 'Technician in Microcomputer Systems and Networks',
+        spec: '',
+        school: 'IES Sa Palomera',
+        period: '2021 – 2024',
+        inProgress: false,
+      },
+    ],
+    certifications: [
+      {
+        name: 'Discovering SAP Business Technology Platform',
+        issuer: 'SAP · Record of Achievement',
+        year: '2025',
+      },
+      {
+        name: '3rd place — National Excel Championship',
+        issuer: 'PUE Academy',
+        year: 'Jun. 2025',
+      },
+      {
+        name: 'Microsoft Office Specialist',
+        detail: 'Excel Associate · Word Expert',
+        issuer: 'Microsoft',
+        year: '',
+      },
+    ],
     stackHeading: 'Real stack',
     stackCategories: {
       integration: 'Integration',
