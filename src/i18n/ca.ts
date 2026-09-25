@@ -20,6 +20,26 @@ export const ca: Translations = {
     ctaLinkedIn: 'LinkedIn',
     ctaGitHub: 'GitHub',
     ctaEmail: 'Escriu-me',
+    outsideHeading: 'Fora del codi',
+    outsideItems: [
+      {
+        label: 'Fórmula 1',
+        text: "Em fascina com la telemetria i els temps guien cada decisió estratègica en carrera. El software que hi ha darrere és el que més m'interessa.",
+      },
+      {
+        label: '@yesa.exe',
+        text: "Creo contingut tech a Instagram: curiositats, aprenentatges i coses del dia a dia de la indústria.",
+        href: 'https://www.instagram.com/yesa.exe/',
+      },
+      {
+        label: 'Lectures',
+        text: "Estoicisme, principalment. Marc Aureli i Epicteto són lectures fixes. També assaig tècnic quan alguna cosa em crida l'atenció.",
+      },
+    ],
+    contactHeading: 'Parlem',
+    contactTagline: 'Oberta a conversar sobre integracions, backend i dades.',
+    contactEmail: "Escriu-me un correu",
+    contactForm: 'Formulari de contacte',
     educationHeading: 'Formació i certificacions',
     educationSubheading: 'Formació',
     certsSubheading: 'Certificacions',

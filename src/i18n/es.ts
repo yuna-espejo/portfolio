@@ -18,6 +18,26 @@ export const es = {
     ctaLinkedIn: 'LinkedIn',
     ctaGitHub: 'GitHub',
     ctaEmail: 'Escríbeme',
+    outsideHeading: 'Fuera del código',
+    outsideItems: [
+      {
+        label: 'Fórmula 1',
+        text: 'Me fascina cómo la telemetría y los tiempos guían cada decisión estratégica en carrera. El software detrás de todo eso es lo que más me interesa.',
+      },
+      {
+        label: '@yesa.exe',
+        text: 'Creo contenido tech en Instagram: curiosidades, aprendizajes y cosas del día a día en la industria.',
+        href: 'https://www.instagram.com/yesa.exe/',
+      },
+      {
+        label: 'Lecturas',
+        text: 'Estoicismo, principalmente. Marco Aurelio y Epicteto son lecturas fijas. También ensayo técnico cuando algo me llama la atención.',
+      },
+    ],
+    contactHeading: 'Hablamos',
+    contactTagline: 'Abierta a conversar sobre integraciones, backend y datos.',
+    contactEmail: 'Escríbeme un email',
+    contactForm: 'Formulario de contacto',
     educationHeading: 'Formación y certificaciones',
     educationSubheading: 'Formación',
     certsSubheading: 'Certificaciones',

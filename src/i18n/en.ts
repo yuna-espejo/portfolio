@@ -20,6 +20,26 @@ export const en: Translations = {
     ctaLinkedIn: 'LinkedIn',
     ctaGitHub: 'GitHub',
     ctaEmail: 'Email me',
+    outsideHeading: 'Outside the code',
+    outsideItems: [
+      {
+        label: 'Formula 1',
+        text: "I'm fascinated by how telemetry and lap times drive every strategic call during a race. The software behind all of it is what interests me most.",
+      },
+      {
+        label: '@yesa.exe',
+        text: 'I create tech content on Instagram: curiosities, learnings and day-to-day things from the industry.',
+        href: 'https://www.instagram.com/yesa.exe/',
+      },
+      {
+        label: 'Reading',
+        text: 'Stoicism, mostly. Marcus Aurelius and Epictetus are regulars. Also technical essays when something catches my eye.',
+      },
+    ],
+    contactHeading: "Let's talk",
+    contactTagline: 'Open to conversations about integrations, backend and data.',
+    contactEmail: 'Send me an email',
+    contactForm: 'Contact form',
     educationHeading: 'Education & certifications',
     educationSubheading: 'Education',
     certsSubheading: 'Certifications',
