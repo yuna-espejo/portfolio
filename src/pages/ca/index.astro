@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import ExperienceHighlights from '../../components/ExperienceHighlights.astro';
+import StackReal from '../../components/StackReal.astro';
 import { useTranslations } from '../../i18n/utils';
 
 const t = useTranslations('ca');
@@ -10,4 +11,5 @@ const t = useTranslations('ca');
 <Base lang="ca" title={t.meta.homeTitle} description={t.meta.homeDescription}>
   <Hero lang="ca" />
   <ExperienceHighlights lang="ca" />
+  <StackReal lang="ca" />
 </Base>
