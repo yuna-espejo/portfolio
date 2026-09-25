@@ -20,6 +20,35 @@ export const en: Translations = {
     ctaLinkedIn: 'LinkedIn',
     ctaGitHub: 'GitHub',
     ctaEmail: 'Email me',
+    experienceHeading: 'Featured experience',
+    experienceCta: 'See full experience',
+    experienceResultLabel: 'Result',
+    cases: [
+      {
+        sector: 'Pharma · International',
+        title: 'Employee delta sync',
+        summary:
+          'Redesigned a daily SuccessFactors integration by implementing three load modes —bulk, delta, and snapshot— to send only what has changed.',
+        result: 'In production with technical documentation maintained through v1.6.',
+        tags: ['SAP CI', 'SuccessFactors', 'Groovy'],
+      },
+      {
+        sector: 'Telecom',
+        title: 'LMS desync investigation',
+        summary:
+          'Analysed the full course sync flow and identified multiple root causes: incorrect incremental window, wrong filter, and schema mismatch.',
+        result: '~2,650 out of 2,667 records with duplicate titles uncovered.',
+        tags: ['SAP CI', 'XSLT', 'SuccessFactors'],
+      },
+      {
+        sector: 'DevOps · Internal',
+        title: 'CI/CD pipelines for SAP integrations',
+        summary:
+          'Built two GitHub Actions workflows: one that automatically checks integration best practices, one that automates environment migration.',
+        result: '2 pipelines in production, used by the team.',
+        tags: ['GitHub Actions', 'SAP BTP', 'CI/CD'],
+      },
+    ],
   },
   footer: {
     madeWith: 'Built with Astro',

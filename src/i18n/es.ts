@@ -18,6 +18,35 @@ export const es = {
     ctaLinkedIn: 'LinkedIn',
     ctaGitHub: 'GitHub',
     ctaEmail: 'Escríbeme',
+    experienceHeading: 'Experiencia destacada',
+    experienceCta: 'Ver experiencia completa',
+    experienceResultLabel: 'Resultado',
+    cases: [
+      {
+        sector: 'Farmacéutica · Internacional',
+        title: 'Sincronización delta de empleados',
+        summary:
+          'Rediseñé una integración diaria de SuccessFactors implementando tres modos de carga —bulk, delta y snapshot— para enviar solo lo que ha cambiado.',
+        result: 'En producción con documentación técnica mantenida hasta la v1.6.',
+        tags: ['SAP CI', 'SuccessFactors', 'Groovy'],
+      },
+      {
+        sector: 'Telecomunicaciones',
+        title: 'Investigación de desincronizaciones en LMS',
+        summary:
+          'Analicé el flujo completo de sincronización de cursos e identifiqué varias causas raíz: ventana incremental incorrecta, filtro erróneo y desajuste de esquema.',
+        result: '~2.650 de 2.667 registros con títulos duplicados descubiertos.',
+        tags: ['SAP CI', 'XSLT', 'SuccessFactors'],
+      },
+      {
+        sector: 'DevOps · Interno',
+        title: 'Pipelines CI/CD para integraciones SAP',
+        summary:
+          'Desarrollé dos workflows de GitHub Actions: uno que verifica buenas prácticas automáticamente y otro que automatiza la migración entre entornos.',
+        result: '2 pipelines en producción usados por el equipo.',
+        tags: ['GitHub Actions', 'SAP BTP', 'CI/CD'],
+      },
+    ],
   },
   footer: {
     madeWith: 'Hecho con Astro',

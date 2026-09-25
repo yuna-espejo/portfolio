@@ -1,0 +1,212 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const t = useTranslations(Astro.props.lang);
+---
+
+<section class="exp">
+  <div class="exp-inner">
+
+    <header class="exp-header">
+      <h2 class="exp-heading">{t.home.experienceHeading}</h2>
+      <a href={`/${Astro.props.lang}/experience`} class="exp-cta-top">
+        {t.home.experienceCta}
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </header>
+
+    <ul class="cases-grid" role="list">
+      {t.home.cases.map((c) => (
+        <li class="case-card">
+          <p class="case-sector">{c.sector}</p>
+          <h3 class="case-title">{c.title}</h3>
+          <p class="case-summary">{c.summary}</p>
+          <p class="case-result">
+            <span class="result-label">{t.home.experienceResultLabel}</span>
+            {c.result}
+          </p>
+          <ul class="case-tags" role="list">
+            {c.tags.map((tag) => (
+              <li class="case-tag">{tag}</li>
+            ))}
+          </ul>
+        </li>
+      ))}
+    </ul>
+
+    <a href={`/${Astro.props.lang}/experience`} class="exp-cta-bottom">
+      {t.home.experienceCta}
+      <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+
+  </div>
+</section>
+
+<style>
+  .exp {
+    padding-block: var(--space-16);
+    border-top: 1px solid var(--line);
+  }
+
+  .exp-inner {
+    max-width: 900px;
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  /* Cabecera */
+  .exp-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-bottom: var(--space-10);
+  }
+
+  .exp-heading {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .exp-cta-top {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--text-sm);
+    color: var(--link);
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .exp-cta-top:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* Grid de tarjetas */
+  .cases-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+
+  /* Tarjeta */
+  .case-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .case-sector {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .case-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+
+  .case-summary {
+    font-size: var(--text-sm);
+    color: var(--muted);
+    line-height: 1.65;
+    flex-grow: 1;
+  }
+
+  .case-result {
+    font-size: var(--text-sm);
+    color: var(--ink);
+    line-height: 1.5;
+    padding-top: var(--space-1);
+    border-top: 1px solid var(--line);
+  }
+
+  .result-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: var(--space-1);
+  }
+
+  /* Tags */
+  .case-tags {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .case-tag {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    padding: 2px var(--space-2);
+    letter-spacing: 0.04em;
+  }
+
+  /* CTA inferior (visible en móvil, oculto en desktop) */
+  .exp-cta-bottom {
+    display: none;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--text-sm);
+    color: var(--link);
+    text-decoration: none;
+    margin-top: var(--space-8);
+  }
+
+  .exp-cta-bottom:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .cases-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .exp-cta-top {
+      display: none;
+    }
+
+    .exp-cta-bottom {
+      display: inline-flex;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 900px) {
+    .cases-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
