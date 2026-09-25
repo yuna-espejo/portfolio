@@ -1,0 +1,186 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const t = useTranslations(Astro.props.lang);
+---
+
+<section class="hero">
+  <div class="hero-inner">
+
+    <div class="hero-photo-wrap">
+      <img
+        src="/me.jpg"
+        alt="Yuna Espejo"
+        class="hero-photo"
+        width="320"
+        height="400"
+        loading="eager"
+        decoding="async"
+      />
+    </div>
+
+    <div class="hero-content">
+      <p class="hero-role">{t.home.role}</p>
+      <h1 class="hero-name">Yuna Espejo</h1>
+      <p class="hero-headline">{t.home.headline}</p>
+
+      <div class="hero-ctas">
+        <a
+          href="https://linkedin.com/in/yuna-espejo-santana"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="cta cta-primary"
+        >
+          {t.home.ctaLinkedIn}
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+        <a
+          href="https://github.com/yuna-espejo"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="cta cta-secondary"
+        >
+          {t.home.ctaGitHub}
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+        <a
+          href="mailto:y.espejo.santana@gmail.com"
+          class="cta cta-secondary"
+        >
+          {t.home.ctaEmail}
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: var(--space-16) var(--space-12);
+  }
+
+  .hero-inner {
+    max-width: 900px;
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  /* Foto */
+  .hero-photo-wrap {
+    position: sticky;
+    top: 80px;
+  }
+
+  .hero-photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center top;
+    border: 1px solid var(--line);
+    display: block;
+  }
+
+  /* Contenido */
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding-top: var(--space-2);
+  }
+
+  .hero-role {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.6;
+  }
+
+  .hero-name {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--text-3xl), 5vw, 3rem);
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .hero-headline {
+    font-size: var(--text-lg);
+    color: var(--muted);
+    line-height: 1.65;
+    max-width: 52ch;
+  }
+
+  /* CTAs */
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-2);
+  }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    text-decoration: none;
+    transition: background var(--transition), color var(--transition), border-color var(--transition);
+    white-space: nowrap;
+  }
+
+  .cta-primary {
+    background: var(--olive);
+    color: var(--bg);
+    border: 1px solid transparent;
+  }
+
+  .cta-primary:hover {
+    background: var(--ink);
+    color: var(--bg);
+  }
+
+  .cta-secondary {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--line);
+  }
+
+  .cta-secondary:hover {
+    border-color: var(--muted);
+    background: var(--surface);
+    color: var(--ink);
+  }
+
+  /* Móvil */
+  @media (max-width: 640px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    .hero-photo-wrap {
+      position: static;
+      max-width: 160px;
+    }
+
+    .hero {
+      padding-block: var(--space-8);
+    }
+  }
+</style>
