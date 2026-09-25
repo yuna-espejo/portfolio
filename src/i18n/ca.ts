@@ -9,6 +9,17 @@ export const ca: Translations = {
     experienceTitle: 'Experiència — Yuna Espejo',
     experienceDescription:
       "Casos d'integració reals: SuccessFactors, SAP Cloud Integration, GitHub Actions. Junior Consultant a Timestamp Spain.",
+    aboutTitle: 'Sobre mi — Yuna Espejo',
+    aboutDescription:
+      "Junior Consultant en integracions SAP. Constant, documentadora i apassionada per la F1 i el backend.",
+    cvTitle: 'CV — Yuna Espejo',
+    cvDescription:
+      'Currículum de Yuna Espejo: Junior Consultant en Digital Integrations, Timestamp Spain.',
+    contactTitle: 'Contacte — Yuna Espejo',
+    contactDescription:
+      "Escriu-me un missatge o contacta per correu o LinkedIn.",
+    projectsTitle: 'Projectes — Yuna Espejo',
+    projectsDescription: 'Projectes personals de Yuna Espejo. Properament.',
   },
   experience: {
     heading: 'Experiència',
@@ -52,7 +63,7 @@ export const ca: Translations = {
       {
         index: '03',
         sector: 'Òptica · Retail',
-        title: 'Disseny d\'integració en 7 fluxos SAP–CRM',
+        title: "Disseny d'integració en 7 fluxos SAP–CRM",
         context:
           "Connectar l'ERP d'un client del sector òptic amb el seu CRM. La integració havia de sincronitzar el catàleg complet de productes, clients, comandes i factures entre dos sistemes amb models de dades molt diferents.",
         problem:
@@ -87,6 +98,125 @@ export const ca: Translations = {
       "Automatització de notificacions de reconeixement per antiguitat (5, 10, 15, 20+ anys) per a personal i direcció.",
     ],
   },
+  about: {
+    heading: 'Sobre mi',
+    role: 'Junior Consultant · Digital Integrations',
+    company: 'Timestamp Spain',
+    companyPeriod: 'nov. 2025 – actualitat · mitja jornada · Barcelona / remot',
+    bio: "Desenvolupo integracions per a processos de recursos humans amb SAP Cloud Integration. Vaig començar com a becària en pràctiques sense conèixer SAP ni Groovy, i en acabar em van oferir un contracte perquè havia assimilat els conceptes ràpidament. Això resumeix bastant bé com treballo.",
+    whatSetsApartHeading: 'El que em diferencia',
+    traits: [
+      {
+        label: 'Constant',
+        text: "Quan em centro en alguna cosa no paro fins que estigui ben feta, provada i documentada per a la persona següent.",
+      },
+      {
+        label: 'Documentadora',
+        text: "M'agrada deixar les coses ordenades. No per perfeccionisme, sinó perquè sé el que costa trobar alguna cosa que no està ben documentada.",
+      },
+      {
+        label: 'Aprenc ràpid',
+        text: "Vaig arribar a les meves pràctiques sense conèixer SAP Cloud Integration, Groovy ni SuccessFactors. En pocs mesos ja portava els meus propis projectes.",
+      },
+      {
+        label: 'Genero bon ambient',
+        text: "No em costa preguntar ni proposar les meves pròpies teories. Les persones que han treballat amb mi diuen que mantinc el focus sense perdre l'humor.",
+      },
+    ],
+    whyHeading: 'Per què backend i integracions',
+    why: "Sempre m'ha interessat com funcionen les coses per dins, no només saber que funcionen. La fiabilitat és especialment important quan treballes amb dades sensibles com les dels empleats: un error no només trenca la integració, pot afectar persones reals.",
+    f1Heading: 'Per què la F1',
+    f1: "Em fascina com analitzen la telemetria i els temps per decidir una estratègia de pneumàtics o quan fer una parada. No és només velocitat: és prendre decisions sota pressió amb dades incompletes. M'interessa especialment el programari que fa possible veure i usar aquesta telemetria en temps real.",
+    communityHeading: 'Comunitat',
+    community: [
+      {
+        label: 'Rewrite the Code',
+        text: 'Membre d\'aquesta comunitat de dones en tecnologia.',
+      },
+      {
+        label: '@yesa.exe',
+        text: "Creo contingut tech a Instagram: curiositats, aprenentatges i coses del dia a dia de la indústria.",
+        href: 'https://www.instagram.com/yesa.exe/',
+      },
+    ],
+  },
+  cv: {
+    heading: 'CV',
+    downloadLabel: 'Descarregar PDF',
+    downloadNote: 'PDF actualitzat properament',
+    experienceHeading: 'Experiència',
+    educationHeading: 'Formació',
+    certsHeading: 'Certificacions',
+    languagesHeading: 'Idiomes',
+    skillsHeading: 'Stack',
+    jobs: [
+      {
+        title: 'Junior Consultant',
+        company: 'Timestamp Spain (Timestamp Group)',
+        period: 'nov. 2025 – actualitat',
+        type: 'Mitja jornada · Barcelona / remot',
+        bullets: [
+          'Desenvolupament i manteniment d\'integracions per a RRHH amb SAP Cloud Integration.',
+          'Anàlisi de requisits, desenvolupament, proves, desplegament i documentació.',
+          'Tecnologies principals: SAP BTP, SuccessFactors, Groovy, REST, SFTP.',
+        ],
+      },
+      {
+        title: 'SAP Integration Trainee',
+        company: 'Timestamp Spain',
+        period: 'mar. – oct. 2025',
+        type: 'Pràctiques',
+        bullets: [
+          'Primera exposició a SAP Cloud Integration, Groovy i SuccessFactors.',
+          'Desenvolupament de workflows de GitHub Actions per a CI/CD d\'integracions SAP.',
+          'Participació en projectes reals des del primer mes.',
+        ],
+      },
+      {
+        title: 'IT Technician Intern',
+        company: 'ClickTech (Erasmus+)',
+        period: 'mar. – abr. 2024',
+        type: 'Pràctiques Erasmus+ · Amarante, Portugal',
+        bullets: [
+          'Suport tècnic, manteniment d\'equips i tasques d\'administració de sistemes.',
+        ],
+      },
+      {
+        title: 'Marketing & Social Media Intern',
+        company: 'Grupo Actialia',
+        period: 'oct. 2023 – gen. 2024',
+        type: 'Pràctiques',
+        bullets: [
+          'Gestió de xarxes socials i creació de contingut per a clients.',
+        ],
+      },
+    ],
+    languages: [
+      { lang: 'Espanyol', level: 'Natiu' },
+      { lang: 'Anglès', level: 'Intermedi (en millora)' },
+      { lang: 'Portuguès', level: 'Bàsic' },
+    ],
+  },
+  contact: {
+    heading: 'Parlem',
+    intro: "Oberta a conversar sobre integracions, backend i dades. Sense pressió.",
+    emailLabel: 'Correu directe',
+    formHeading: "O escriu-me aquí",
+    namePlaceholder: 'El teu nom',
+    emailPlaceholder: 'El teu correu',
+    messagePlaceholder: 'El teu missatge',
+    submitLabel: 'Enviar missatge',
+    successMessage: "Missatge rebut. Et responc tan aviat com pugui.",
+    errorMessage:
+      "Alguna cosa ha anat malament. Prova d'escriure'm directament a y.espejo.santana@gmail.com",
+    nameLabel: 'Nom',
+    emailFieldLabel: 'Correu',
+    messageLabel: 'Missatge',
+  },
+  projects: {
+    heading: 'Projectes',
+    empty: "Res publicat encara. Només es publiquen projectes acabats.",
+  },
   nav: {
     experience: 'Experiència',
     about: 'Sobre mi',
@@ -94,9 +224,9 @@ export const ca: Translations = {
     contact: 'Contacte',
   },
   home: {
-    role: 'Junior Consultant · Digital Integrations — Estudiant d\'Enginyeria Informàtica (UOC)',
+    role: "Junior Consultant · Digital Integrations — Estudiant d'Enginyeria Informàtica (UOC)",
     headline:
-      'Connecto sistemes perquè les dades arribin d\'un lloc a un altre completes, correctes i a temps. El que m\'enganxa és veure com es transformen pel camí.',
+      "Connecto sistemes perquè les dades arribin d'un lloc a un altre completes, correctes i a temps. El que m'enganxa és veure com es transformen pel camí.",
     ctaLinkedIn: 'LinkedIn',
     ctaGitHub: 'GitHub',
     ctaEmail: 'Escriu-me',
@@ -128,7 +258,7 @@ export const ca: Translations = {
     education: [
       {
         degree: 'Grau en Enginyeria Informàtica',
-        spec: 'Itinerari d\'Enginyeria del Software',
+        spec: "Itinerari d'Enginyeria del Software",
         school: 'UOC',
         period: 'set. 2026 – actualitat',
         inProgress: true,
@@ -155,7 +285,7 @@ export const ca: Translations = {
         year: '2025',
       },
       {
-        name: '3r lloc — Campionat Nacional d\'Excel',
+        name: "3r lloc — Campionat Nacional d'Excel",
         issuer: 'PUE Academy',
         year: 'jun. 2025',
       },
@@ -180,7 +310,7 @@ export const ca: Translations = {
     cases: [
       {
         sector: 'Farmacèutica · Internacional',
-        title: 'Sincronització delta d\'empleats',
+        title: "Sincronització delta d'empleats",
         summary:
           'Vaig redissenyar una integració diària de SuccessFactors implementant tres modes de càrrega —bulk, delta i snapshot— per enviar només el que ha canviat.',
         result: 'En producció amb documentació tècnica mantinguda fins a la v1.6.',
@@ -190,7 +320,7 @@ export const ca: Translations = {
         sector: 'Telecomunicacions',
         title: 'Investigació de dessincronitzacions al LMS',
         summary:
-          'Vaig analitzar el flux complet de sincronització de cursos i vaig identificar diverses causes arrel: finestra incremental incorrecta, filtre erroni i desajust d\'esquema.',
+          "Vaig analitzar el flux complet de sincronització de cursos i vaig identificar diverses causes arrel: finestra incremental incorrecta, filtre erroni i desajust d'esquema.",
         result: '~2.650 de 2.667 registres amb títols duplicats descoberts.',
         tags: ['SAP CI', 'XSLT', 'SuccessFactors'],
       },
@@ -198,8 +328,8 @@ export const ca: Translations = {
         sector: 'DevOps · Intern',
         title: 'Pipelines CI/CD per a integracions SAP',
         summary:
-          'Vaig desenvolupar dos workflows de GitHub Actions: un que verifica bones pràctiques automàticament i un altre que automatitza la migració entre entorns.',
-        result: '2 pipelines en producció usats per l\'equip.',
+          "Vaig desenvolupar dos workflows de GitHub Actions: un que verifica bones pràctiques automàticament i un altre que automatitza la migració entre entorns.",
+        result: "2 pipelines en producció usats per l'equip.",
         tags: ['GitHub Actions', 'SAP BTP', 'CI/CD'],
       },
     ],

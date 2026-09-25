@@ -7,6 +7,17 @@ export const es = {
     experienceTitle: 'Experiencia — Yuna Espejo',
     experienceDescription:
       'Casos de integración reales: SuccessFactors, SAP Cloud Integration, GitHub Actions. Junior Consultant en Timestamp Spain.',
+    aboutTitle: 'Sobre mí — Yuna Espejo',
+    aboutDescription:
+      'Junior Consultant en integraciones SAP. Constante, documentadora y apasionada por la F1 y el backend.',
+    cvTitle: 'CV — Yuna Espejo',
+    cvDescription:
+      'Currículum de Yuna Espejo: Junior Consultant en Digital Integrations, Timestamp Spain.',
+    contactTitle: 'Contacto — Yuna Espejo',
+    contactDescription:
+      'Escríbeme un mensaje o contacta por email o LinkedIn.',
+    projectsTitle: 'Proyectos — Yuna Espejo',
+    projectsDescription: 'Proyectos personales de Yuna Espejo. Próximamente.',
   },
   experience: {
     heading: 'Experiencia',
@@ -84,6 +95,125 @@ export const es = {
       'Servicio en Node.js / SAP CAP que extrae documentos de SuccessFactors, los comprime, los cifra con PGP y los entrega por SFTP.',
       'Automatización de notificaciones de reconocimiento por antigüedad (5, 10, 15, 20+ años) para empleados y dirección.',
     ],
+  },
+  about: {
+    heading: 'Sobre mí',
+    role: 'Junior Consultant · Digital Integrations',
+    company: 'Timestamp Spain',
+    companyPeriod: 'nov. 2025 – actualidad · media jornada · Barcelona / remoto',
+    bio: 'Desarrollo integraciones para procesos de recursos humanos con SAP Cloud Integration. Empecé como becaria en prácticas sin conocer SAP ni Groovy, y al acabar me ofrecieron un contrato porque había asimilado los conceptos rápido. Eso resume bastante bien cómo trabajo.',
+    whatSetsApartHeading: 'Lo que me diferencia',
+    traits: [
+      {
+        label: 'Constante',
+        text: 'Cuando me centro en algo no paro hasta tenerlo bien hecho, probado y documentado para la siguiente persona.',
+      },
+      {
+        label: 'Documentadora',
+        text: 'Me gusta dejar las cosas ordenadas. No por perfeccionismo, sino porque sé lo que cuesta encontrar algo que no está bien documentado.',
+      },
+      {
+        label: 'Aprendo rápido',
+        text: 'Llegué a mis prácticas sin conocer SAP Cloud Integration, Groovy ni SuccessFactors. En pocos meses estaba llevando mis propios proyectos.',
+      },
+      {
+        label: 'Genero buen ambiente',
+        text: 'No me cuesta preguntar ni proponer mis propias teorías. Quienes han trabajado conmigo dicen que mantengo el foco sin perder el humor.',
+      },
+    ],
+    whyHeading: 'Por qué backend e integraciones',
+    why: 'Siempre me ha interesado cómo funcionan las cosas por dentro, no solo saber que funcionan. La fiabilidad es especialmente importante cuando trabajas con datos sensibles como los de empleados: un error no solo rompe la integración, puede afectar a personas reales.',
+    f1Heading: 'Por qué la F1',
+    f1: 'Me fascina cómo analizan la telemetría y los tiempos para decidir una estrategia de neumáticos o cuándo hacer una parada. No es solo velocidad: es tomar decisiones bajo presión con datos incompletos. Me interesa especialmente el software que hace posible ver y usar esa telemetría en tiempo real.',
+    communityHeading: 'Comunidad',
+    community: [
+      {
+        label: 'Rewrite the Code',
+        text: 'Miembro de esta comunidad de mujeres en tecnología.',
+      },
+      {
+        label: '@yesa.exe',
+        text: 'Creo contenido tech en Instagram: curiosidades, aprendizajes y cosas del día a día en la industria.',
+        href: 'https://www.instagram.com/yesa.exe/',
+      },
+    ],
+  },
+  cv: {
+    heading: 'CV',
+    downloadLabel: 'Descargar PDF',
+    downloadNote: 'PDF actualizado próximamente',
+    experienceHeading: 'Experiencia',
+    educationHeading: 'Formación',
+    certsHeading: 'Certificaciones',
+    languagesHeading: 'Idiomas',
+    skillsHeading: 'Stack',
+    jobs: [
+      {
+        title: 'Junior Consultant',
+        company: 'Timestamp Spain (Timestamp Group)',
+        period: 'nov. 2025 – actualidad',
+        type: 'Media jornada · Barcelona / remoto',
+        bullets: [
+          'Desarrollo y mantenimiento de integraciones para RRHH con SAP Cloud Integration.',
+          'Análisis de requisitos, desarrollo, pruebas, despliegue y documentación.',
+          'Tecnologías principales: SAP BTP, SuccessFactors, Groovy, REST, SFTP.',
+        ],
+      },
+      {
+        title: 'SAP Integration Trainee',
+        company: 'Timestamp Spain',
+        period: 'mar. – oct. 2025',
+        type: 'Prácticas',
+        bullets: [
+          'Primera exposición a SAP Cloud Integration, Groovy y SuccessFactors.',
+          'Desarrollo de workflows de GitHub Actions para CI/CD de integraciones SAP.',
+          'Participación en proyectos reales desde el primer mes.',
+        ],
+      },
+      {
+        title: 'IT Technician Intern',
+        company: 'ClickTech (Erasmus+)',
+        period: 'mar. – abr. 2024',
+        type: 'Prácticas Erasmus+ · Amarante, Portugal',
+        bullets: [
+          'Soporte técnico, mantenimiento de equipos y tareas de administración de sistemas.',
+        ],
+      },
+      {
+        title: 'Marketing & Social Media Intern',
+        company: 'Grupo Actialia',
+        period: 'oct. 2023 – ene. 2024',
+        type: 'Prácticas',
+        bullets: [
+          'Gestión de redes sociales y creación de contenido para clientes.',
+        ],
+      },
+    ],
+    languages: [
+      { lang: 'Español', level: 'Nativo' },
+      { lang: 'Inglés', level: 'Intermedio (en mejora)' },
+      { lang: 'Portugués', level: 'Básico' },
+    ],
+  },
+  contact: {
+    heading: 'Hablamos',
+    intro: 'Abierta a conversar sobre integraciones, backend y datos. Sin presión.',
+    emailLabel: 'Email directo',
+    formHeading: 'O escríbeme aquí',
+    namePlaceholder: 'Tu nombre',
+    emailPlaceholder: 'Tu email',
+    messagePlaceholder: 'Tu mensaje',
+    submitLabel: 'Enviar mensaje',
+    successMessage: 'Mensaje recibido. Te respondo en cuanto pueda.',
+    errorMessage:
+      'Algo ha ido mal. Prueba a escribirme directamente a y.espejo.santana@gmail.com',
+    nameLabel: 'Nombre',
+    emailFieldLabel: 'Email',
+    messageLabel: 'Mensaje',
+  },
+  projects: {
+    heading: 'Proyectos',
+    empty: 'Nada publicado aún. Solo se publican proyectos terminados.',
   },
   nav: {
     experience: 'Experiencia',
