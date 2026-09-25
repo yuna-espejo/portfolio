@@ -8,7 +8,23 @@
       "Bash(git push:*)",
       "Bash(python3:*)",
       "Bash(vercel --version)",
-      "Bash(vercel --prod)"
+      "Bash(vercel --prod)",
+      "Skill(browse)",
+      "Bash(npm --version)",
+      "Bash(git checkout:*)",
+      "Bash(mkdir -p /c/Dev/Proyectos/yuna-portfolio/_ref)",
+      "Bash(cp /c/Dev/Proyectos/yuna-portfolio/app/components/Circuit.tsx /c/Dev/Proyectos/yuna-portfolio/_ref/Circuit.tsx)",
+      "Bash(npm create:*)",
+      "Bash(mv -- '--typescript/src' .)",
+      "Bash(mv -- '--typescript/astro.config.mjs' .)",
+      "Bash(mv -- '--typescript/package.json' .)",
+      "Bash(mv -- '--typescript/package-lock.json' .)",
+      "Bash(mv -- '--typescript/tsconfig.json' .)",
+      "Bash(npx astro:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(npm show:*)",
+      "Bash(npm uninstall:*)"
     ]
   }
 }
