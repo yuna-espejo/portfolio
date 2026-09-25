@@ -6,6 +6,86 @@ export const en: Translations = {
     homeTitle: 'Yuna Espejo — Software Developer',
     homeDescription:
       'Junior Consultant in Digital Integrations. I connect systems so data gets from one place to another complete, correct and on time.',
+    experienceTitle: 'Experience — Yuna Espejo',
+    experienceDescription:
+      'Real integration case studies: SuccessFactors, SAP Cloud Integration, GitHub Actions. Junior Consultant at Timestamp Spain.',
+  },
+  experience: {
+    heading: 'Experience',
+    intro:
+      'I work as a Junior Consultant on the Digital Integrations team at Timestamp Spain. I build integrations for HR processes using SAP Cloud Integration: I pull data from SuccessFactors, transform and validate it, and deliver it to the target system. I take part in the full cycle: analysis, development, testing, deployment and documentation.',
+    contextLabel: 'Context',
+    problemLabel: 'Problem',
+    whatLabel: 'What I did',
+    resultLabel: 'Result',
+    tagsLabel: 'Stack',
+    otherWorksHeading: 'Other work',
+    cases: [
+      {
+        index: '01',
+        sector: 'Pharma · International',
+        title: 'Employee delta sync',
+        context:
+          'Integration that syncs employee data from SuccessFactors to a client internal system. The daily full load was consuming too many API calls and did not scale.',
+        problem:
+          'The full-load architecture sent every record every day regardless of what had changed, creating unnecessary load and making monitoring difficult.',
+        what:
+          'I debugged the integration thoroughly and designed a three-mode architecture: full load (bulk) for the initial run, incremental (delta) for the day-to-day sending only changes, and snapshot to validate the full state without overloading. I maintained the technical documentation through version 1.6.',
+        result:
+          'In production with significantly fewer daily API calls. The integration is now lighter, easier to monitor, and documented so that anyone on the team can maintain it.',
+        tags: ['SAP Cloud Integration', 'SuccessFactors', 'Groovy', 'SFTP'],
+      },
+      {
+        index: '02',
+        sector: 'Telecom',
+        title: 'LMS desync investigation',
+        context:
+          'Course sync between a learning platform and SuccessFactors. Courses were not appearing or updating correctly in the target platform.',
+        problem:
+          'The team could not reproduce the failures consistently. The flow included complex XSLT transformations and several chained filters that made isolating the cause difficult.',
+        what:
+          'I analysed the full flow and identified three root causes: a 7-day incremental window that left records out of range, a bug in the completed-courses filter, and a schema mismatch in the unassignment flow. I extended the integration to reuse existing identifiers instead of creating duplicates.',
+        result:
+          'Schema problem fixed and affected cases corrected. As a side finding, I uncovered a data quality issue in the catalogue: ~2,650 out of 2,667 items had duplicate titles.',
+        tags: ['SAP Cloud Integration', 'XSLT', 'SuccessFactors', 'Groovy'],
+      },
+      {
+        index: '03',
+        sector: 'Optical · Retail',
+        title: '7-flow SAP–CRM integration design',
+        context:
+          'Connecting a client ERP in the optical retail sector to their CRM. The integration needed to sync the full product catalogue, customers, orders and invoices between two systems with very different data models.',
+        problem:
+          "The target API had strict limitations: upserts by external identifier capped at 30 characters and batches of at most 200 records. Entities also had dependencies that required a specific insertion order.",
+        what:
+          'I mapped the entity dependencies and designed the integration as 7 chained flows: auth → customers → shipping addresses → product families → products → orders → invoices. I documented the API constraints and planned execution to ensure each flow had the data it needed available.',
+        result:
+          'A ~60-day integration plan with clear dependencies and no ambiguity from day one. The team could start development without having to rethink the architecture.',
+        tags: ['SAP Cloud Integration', 'REST', 'JSON', 'Groovy'],
+      },
+      {
+        index: '04',
+        sector: 'DevOps · Internal',
+        title: 'CI/CD pipelines for SAP integrations',
+        context:
+          'During my internship, the team needed to control integration quality and move builds between environments reliably, without manual error-prone steps.',
+        problem:
+          'Environment deployments were manual and there was no automated process to verify that integrations followed team conventions before going to production.',
+        what:
+          'I built two GitHub Actions workflows: one that automatically checks integration best practices (naming, configuration, artefacts) and one that automates migration of integrations between SAP BTP environments.',
+        result:
+          '2 pipelines in production used by the team. Deployments are now reproducible and best-practice review happens before code reaches production.',
+        tags: ['GitHub Actions', 'SAP BTP', 'SAP Cloud Integration', 'CI/CD'],
+      },
+    ],
+    otherWorks: [
+      'Full platform migration from SAP Neo to Cloud Foundry: credentials, environment setup, import, functional verification and SFTP reconfiguration.',
+      'Employee lifecycle integrations for an insurance company: onboarding, offboarding, data changes and absences.',
+      'Automated generation of CSV files (standard and PGP-encrypted) with employee data, run daily via crontab and versioned in Bitbucket.',
+      'Employee and agreement sync between SuccessFactors and a shift management platform, running every 5 minutes.',
+      'Node.js / SAP CAP service that extracts documents from SuccessFactors, compresses them, encrypts them with PGP and delivers them via SFTP.',
+      'Automated seniority recognition notifications (5, 10, 15, 20+ years) for employees and management.',
+    ],
   },
   nav: {
     experience: 'Experience',
