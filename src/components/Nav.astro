@@ -13,16 +13,16 @@ const links = [
   { href: `/${lang}/contact`,    label: t.nav.contact },
 ];
 
-// Compara el inicio de la ruta para marcar activo (sin trailing slash)
 const currentPath = Astro.url.pathname.replace(/\/$/, '');
 ---
 
-<header class="site-header">
+<header class="site-header" id="site-header">
   <div class="header-inner">
     <a href={`/${lang}/`} class="logo" aria-label="Yuna Espejo — inicio">
       YE
     </a>
 
+    <!-- Desktop nav -->
     <nav class="main-nav" aria-label="Navegación principal">
       {links.map(({ href, label }) => {
         const isActive = currentPath === href.replace(/\/$/, '');
@@ -38,7 +38,44 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '');
       })}
     </nav>
 
+    <!-- Desktop controls -->
     <div class="header-controls">
+      <LanguageSwitcher />
+      <ThemeToggle />
+    </div>
+
+    <!-- Hamburger (móvil) -->
+    <button
+      class="menu-toggle"
+      id="menu-toggle"
+      type="button"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <nav class="mobile-nav" aria-label="Navegación móvil">
+      {links.map(({ href, label }) => {
+        const isActive = currentPath === href.replace(/\/$/, '');
+        return (
+          <a
+            href={href}
+            class:list={['mobile-nav-link', { active: isActive }]}
+            aria-current={isActive ? 'page' : undefined}
+          >
+            {label}
+          </a>
+        );
+      })}
+    </nav>
+    <div class="mobile-controls">
       <LanguageSwitcher />
       <ThemeToggle />
     </div>
@@ -75,10 +112,9 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '');
     flex-shrink: 0;
   }
 
-  .logo:hover {
-    color: var(--accent);
-  }
+  .logo:hover { color: var(--ink); }
 
+  /* Desktop nav */
   .main-nav {
     display: flex;
     align-items: center;
@@ -96,16 +132,10 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '');
     white-space: nowrap;
   }
 
-  .nav-link:hover {
-    color: var(--ink);
-    background: var(--surface);
-  }
+  .nav-link:hover { color: var(--ink); background: var(--surface); }
+  .nav-link.active { color: var(--ink); font-weight: 500; }
 
-  .nav-link.active {
-    color: var(--ink);
-    font-weight: 500;
-  }
-
+  /* Desktop controls */
   .header-controls {
     display: flex;
     align-items: center;
@@ -114,14 +144,111 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '');
     flex-shrink: 0;
   }
 
-  /* Móvil: ocultar texto de nav, mantener controles */
-  @media (max-width: 600px) {
-    .main-nav {
+  /* Hamburger button */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    padding: 0 8px;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
+  .bar {
+    display: block;
+    width: 100%;
+    height: 1.5px;
+    background: var(--ink);
+    transition: transform 250ms ease, opacity 150ms ease;
+    transform-origin: center;
+  }
+
+  /* X cuando está abierto */
+  .menu-toggle[aria-expanded="true"] .bar:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+  .menu-toggle[aria-expanded="true"] .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle[aria-expanded="true"] .bar:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+
+  /* Mobile menu panel */
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    gap: var(--space-6);
+    padding: var(--space-6);
+    border-top: 1px solid var(--line);
+    background: var(--bg);
+  }
+
+  .mobile-menu[aria-hidden="false"] {
+    display: flex;
+  }
+
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .mobile-nav-link {
+    font-size: var(--text-base);
+    color: var(--muted);
+    text-decoration: none;
+    padding: var(--space-3) var(--space-2);
+    border-radius: var(--radius-sm);
+    transition: color var(--transition), background var(--transition);
+  }
+
+  .mobile-nav-link:hover { color: var(--ink); background: var(--surface); }
+  .mobile-nav-link.active { color: var(--ink); font-weight: 500; }
+
+  .mobile-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--line);
+  }
+
+  /* Responsive: móvil */
+  @media (max-width: 639px) {
+    .main-nav,
+    .header-controls {
       display: none;
     }
 
-    .header-inner {
-      gap: var(--space-4);
+    .menu-toggle {
+      display: flex;
     }
   }
 </style>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.getAttribute('aria-hidden') === 'false';
+    menu?.setAttribute('aria-hidden', isOpen ? 'true' : 'false');
+    toggle.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+  });
+
+  // Cerrar al navegar
+  menu?.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => {
+      menu.setAttribute('aria-hidden', 'true');
+      toggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>

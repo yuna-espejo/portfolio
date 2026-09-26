@@ -1,0 +1,214 @@
+[00:00:02.224] Server  LOG     ✓ Ready in 1860ms
+[00:00:38.391] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:38.517] Browser ERROR   In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <a> a 
+
+  ...
+    <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>
+      <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
+        <RedirectBoundary>
+          <RedirectErrorBoundary router={{...}}>
+            <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
+              <SegmentViewNode type="page" pagePath="page.tsx">
+                <SegmentTrieNode>
+                <Home>
+                  <main>
+                    <Hero>
+                    <StatsCounter>
+                    <TechCarousel>
+                    <Circuit>
+                    <Projects>
+                      <section style={{padding:"5...", ...}}>
+                        <div>
+                        <div style={{display:"grid", ...}}>
+                          <ProjectCard>
+                          <ProjectCard project={{slug:"fast...", ...}}>
+                            <LinkComponent href="/projects/..." style={{...}}>
+>                             <a
+>                               style={{textDecoration:"none",color:"inherit"}}
+>                               ref={function}
+>                               onClick={function onClick}
+>                               onMouseEnter={function onMouseEnter}
+>                               onTouchStart={function onTouchStart}
+>                               href="/projects/fastf1-analysis"
+>                             >
+                                <div style={{...}} onMouseEnter={function onMouseEnter} ...>
+                                  <div>
+                                  <div style={{padding:"1..."}}>
+                                    <div>
+                                    <h3>
+                                    <p>
+                                    <div>
+                                    <div style={{...}}>
+                                      <span>
+>                                     <a
+>                                       href="https://github.com/yuna-espejo/fastf1-analysis"
+>                                       target="_blank"
+>                                       rel="noopener noreferrer"
+>                                       onClick={function onClick}
+>                                       style={{color:"var(--text...",fontSize:"11px",letterSpacing:"0.08em",textDecoration:"none", ...}}
+>                                     >
+              ...
+            ...
+
+[00:00:38.517] Browser ERROR   <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. a <a>
+[00:00:38.517] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
+      <RedirectBoundary>
+        <RedirectErrorBoundary router={{...}}>
+          <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
+            <SegmentViewNode type="page" pagePath="page.tsx">
+              <SegmentTrieNode>
+              <Home>
+                <main>
+                  <Hero>
+                  <StatsCounter>
+                  <TechCarousel>
+                  <Circuit>
+                  <Projects>
+                    <section style={{padding:"5...", ...}}>
+                      <div>
+                      <div style={{display:"grid", ...}}>
+                        <ProjectCard>
+                        <ProjectCard project={{slug:"fast...", ...}}>
+                          <LinkComponent href="/projects/..." style={{...}}>
+                            <a style={{...}} ref={function} onClick={function onClick} ...>
++                             <div
++                               style={{background:"var(--bg-c...",border:"1px solid ...",overflow:"hidden",transition:"all 0.25s", ...}}
++                               onMouseEnter={function onMouseEnter}
++                               onMouseLeave={function onMouseLeave}
++                             >
+            ...
+          ...
+
+[00:00:38.690] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:00:38.690] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:00:38.690] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:00:38.690] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"2.0.1","sv":"0.1.3","ts":1778061417615} /_vercel/insights/view
+[00:00:38.690] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"2.0.1","sv":"0.1.3","ts":1778061417615} /_vercel/insights/view
+[00:00:51.195] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/projects/fastf1-analysis color: rgb(120, 120, 120) color: inherit {"dp":"/projects/fastf1-analysis","o":"http://localhost:3000/projects/fastf1-analysis","sdkn":"@vercel/analytics/next","sdkv":"2.0.1","sv":"0.1.3","ts":1778061430126} /_vercel/insights/view
+[00:03:34.978] Server  LOG     ✓ Compiled in 24ms
+[00:03:42.637] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:03:42.745] Server  LOG     ✓ Compiled in 21ms
+[00:03:43.069] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:43.868] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:03:43.868] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/projects/fastf1-analysis","route":"/projects/fastf1-analysis"}
+[00:03:43.868] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/projects/fastf1-analysis color: rgb(120, 120, 120) color: inherit {"dp":"/projects/fastf1-analysis","o":"http://localhost:3000/projects/fastf1-analysis","r":"","sdkn":"@vercel/analytics/next","sdkv":"2.0.1","sv":"0.1.3","ts":1778061602199} /_vercel/insights/view
+[00:03:49.162] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/es.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:03:49.252] Server  LOG     ✓ Compiled in 18ms
+[00:03:49.549] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:50.380] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:03:50.380] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/projects/fastf1-analysis","route":"/projects/fastf1-analysis"}
+[00:03:50.380] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/projects/fastf1-analysis color: rgb(120, 120, 120) color: inherit {"dp":"/projects/fastf1-analysis","o":"http://localhost:3000/projects/fastf1-analysis","r":"","sdkn":"@vercel/analytics/next","sdkv":"2.0.1","sv":"0.1.3","ts":1778061608654} /_vercel/insights/view
+[00:03:55.508] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/ca.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:03:55.606] Server  LOG     ✓ Compiled in 22ms
+[00:03:55.909] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:56.748] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:03:56.748] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/projects/fastf1-analysis","route":"/projects/fastf1-analysis"}
+[00:03:56.748] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/projects/fastf1-analysis color: rgb(120, 120, 120) color: inherit {"dp":"/projects/fastf1-analysis","o":"http://localhost:3000/projects/fastf1-analysis","r":"","sdkn":"@vercel/analytics/next","sdkv":"2.0.1","sv":"0.1.3","ts":1778061615006} /_vercel/insights/view
+[00:04:19.639] Server  LOG     ✓ Compiled in 21ms
+[00:05:44.264] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:44.399] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:05:44.399] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/projects/fastf1-analysis","route":"/projects/fastf1-analysis"}
+[00:05:44.399] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/projects/fastf1-analysis color: rgb(120, 120, 120) color: inherit {"dp":"/projects/fastf1-analysis","o":"http://localhost:3000/projects/fastf1-analysis","r":"","sdkn":"@vercel/analytics/next","sdkv":"2.0.1","sv":"0.1.3","ts":1778061723333} /_vercel/insights/view
+[00:06:57.522] Browser ERROR   In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <a> a 
+
+  ...
+    <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>
+      <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
+        <RedirectBoundary>
+          <RedirectErrorBoundary router={{...}}>
+            <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:<Fragment>, ...}} segmentPath={[...]} ...>
+              <SegmentViewNode type="page" pagePath="page.tsx">
+                <SegmentTrieNode>
+                <Home>
+                  <main>
+                    <Hero>
+                    <StatsCounter>
+                    <TechCarousel>
+                    <Circuit>
+                    <Projects>
+                      <section style={{padding:"5...", ...}}>
+                        <div>
+                        <div style={{display:"grid", ...}}>
+                          <ProjectCard>
+                          <ProjectCard project={{slug:"fast...", ...}}>
+                            <LinkComponent href="/projects/..." style={{...}}>
+>                             <a
+>                               style={{textDecoration:"none",color:"inherit"}}
+>                               ref={function}
+>                               onClick={function onClick}
+>                               onMouseEnter={function onMouseEnter}
+>                               onTouchStart={function onTouchStart}
+>                               href="/projects/fastf1-analysis"
+>                             >
+                                <div style={{...}} onMouseEnter={function onMouseEnter} ...>
+                                  <div>
+                                  <div style={{padding:"1..."}}>
+                                    <div>
+                                    <h3>
+                                    <p>
+                                    <div>
+                                    <div style={{...}}>
+                                      <span>
+>                                     <a
+>                                       href="https://github.com/yuna-espejo/fastf1-analysis"
+>                                       target="_blank"
+>                                       rel="noopener noreferrer"
+>                                       onClick={function onClick}
+>                                       style={{color:"var(--text...",fontSize:"11px",letterSpacing:"0.08em",textDecoration:"none", ...}}
+>                                     >
+              ...
+            ...
+
+[00:06:57.522] Browser ERROR   <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. a <a>
+[00:06:57.522] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"2.0.1","sv":"0.1.3","ts":1778061796451} /_vercel/insights/view
+[00:07:05.546] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/projects color: rgb(120, 120, 120) color: inherit {"dp":"/projects","o":"http://localhost:3000/projects","sdkn":"@vercel/analytics/next","sdkv":"2.0.1","sv":"0.1.3","ts":1778061804477} /_vercel/insights/view
+[00:09:44.067] Server  LOG     ✓ Compiled in 183ms
+[00:09:50.466] Server  LOG     ✓ Compiled in 102ms
+[00:09:51.477] Server  LOG     ✓ Compiled in 48ms
+[00:09:52.792] Server  LOG     ✓ Compiled in 53ms
+[00:12:38.870] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/contact color: rgb(120, 120, 120) color: inherit {"dp":"/contact","o":"http://localhost:3000/contact","sdkn":"@vercel/analytics/next","sdkv":"2.0.1","sv":"0.1.3","ts":1778062137801} /_vercel/insights/view
+[00:12:41.033] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/about color: rgb(120, 120, 120) color: inherit {"dp":"/about","o":"http://localhost:3000/about","sdkn":"@vercel/analytics/next","sdkv":"2.0.1","sv":"0.1.3","ts":1778062139961} /_vercel/insights/view
+[00:13:35.750] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/en.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:13:35.824] Server  LOG     ✓ Compiled in 23ms
+[00:13:36.220] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:13:36.991] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:13:36.991] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/about","route":"/about"}
+[00:13:36.991] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/about color: rgb(120, 120, 120) color: inherit {"dp":"/about","o":"http://localhost:3000/about","r":"","sdkn":"@vercel/analytics/next","sdkv":"2.0.1","sv":"0.1.3","ts":1778062195463} /_vercel/insights/view
+[00:13:37.921] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/es.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:13:37.985] Server  LOG     ✓ Compiled in 16ms
+[00:13:38.257] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:13:39.109] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:13:39.109] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/about","route":"/about"}
+[00:13:39.109] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/about color: rgb(120, 120, 120) color: inherit {"dp":"/about","o":"http://localhost:3000/about","r":"","sdkn":"@vercel/analytics/next","sdkv":"2.0.1","sv":"0.1.3","ts":1778062197413} /_vercel/insights/view
+[00:13:39.785] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./messages/ca.json (json) changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:13:39.853] Server  LOG     ✓ Compiled in 16ms
+[00:13:40.184] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:13:41.072] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:13:41.072] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/about","route":"/about"}
+[00:13:41.072] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/about color: rgb(120, 120, 120) color: inherit {"dp":"/about","o":"http://localhost:3000/about","r":"","sdkn":"@vercel/analytics/next","sdkv":"2.0.1","sv":"0.1.3","ts":1778062199447} /_vercel/insights/view
+[00:15:18.476] Browser LOG     %c[Vercel Web Analytics]%c [view] http://localhost:3000/contact color: rgb(120, 120, 120) color: inherit {"dp":"/contact","o":"http://localhost:3000/contact","sdkn":"@vercel/analytics/next","sdkv":"2.0.1","sv":"0.1.3","ts":1778062297406} /_vercel/insights/view
+[02:19:48.044] Server  LOG     ✓ Compiled in 76ms
+[02:20:03.963] Server  LOG     ✓ Compiled in 16ms
+[02:20:26.458] Server  LOG     ✓ Compiled in 26ms
+[02:20:34.641] Server  LOG     ✓ Compiled in 19ms
+[02:20:37.190] Server  LOG     ✓ Compiled in 12ms
+[02:20:42.435] Server  LOG     ✓ Compiled in 12ms
+[02:21:38.763] Server  LOG     ✓ Compiled in 19ms
+[02:33:26.375] Server  LOG     ✓ Compiled in 31ms

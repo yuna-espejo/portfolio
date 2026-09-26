@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/projects/layout,_N_T_/projects/fastf1-analysis/layout,_N_T_/projects/fastf1-analysis/page,_N_T_/projects/fastf1-analysis"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/projects/fastf1-analysis/__PAGE__",
+    "/projects/fastf1-analysis",
+    "/projects",
+    "/_index",
+    "/_head"
+  ]
+}

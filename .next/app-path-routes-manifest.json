@@ -1,0 +1,11 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/about/page": "/about",
+  "/contact/page": "/contact",
+  "/favicon.ico/route": "/favicon.ico",
+  "/page": "/",
+  "/projects/circuit-simulation/page": "/projects/circuit-simulation",
+  "/projects/fastf1-analysis/page": "/projects/fastf1-analysis",
+  "/projects/page": "/projects"
+}
