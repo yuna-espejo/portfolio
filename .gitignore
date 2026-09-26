@@ -4,6 +4,7 @@
 # build output
 /dist
 /.vercel
+/.next
 
 # env files
 .env

@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 18, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Yuna/Desktop/Yuna/Proyectos/yuna-portfolio/app/projects/page.tsx"],"sourcesContent":["export default function ProjectsPage() {\r\n  return (\r\n    <main\r\n      style={{\r\n        padding: \"120px 60px\",\r\n      }}\r\n    >\r\n      <h1>Projects</h1>\r\n\r\n      <p>\r\n        A collection of software projects focused on data, telemetry\r\n        analysis and performance engineering.\r\n      </p>\r\n    </main>\r\n  );\r\n}\r\n\r\n"],"names":[],"mappings":";;;;;;AAAe,SAAS;IACtB,qBACE,8OAAC;QACC,OAAO;YACL,SAAS;QACX;;0BAEA,8OAAC;0BAAG;;;;;;0BAEJ,8OAAC;0BAAE;;;;;;;;;;;;AAMT"}}]
-}
