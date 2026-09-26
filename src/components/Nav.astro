@@ -8,6 +8,7 @@ const t = useTranslations(lang);
 
 const links = [
   { href: `/${lang}/experience`, label: t.nav.experience },
+  { href: `/${lang}/projects`,   label: t.nav.projects },
   { href: `/${lang}/about`,      label: t.nav.about },
   { href: `/${lang}/cv`,         label: t.nav.cv },
   { href: `/${lang}/contact`,    label: t.nav.contact },
@@ -96,9 +97,8 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '');
     display: flex;
     align-items: center;
     gap: var(--space-6);
-    max-width: 900px;
-    margin-inline: auto;
-    padding-inline: var(--space-6);
+    max-width: 1200px;
+    padding-inline: clamp(24px, 5vw, 96px);
     height: 60px;
   }
 
@@ -222,7 +222,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '');
   }
 
   /* Responsive: móvil */
-  @media (max-width: 639px) {
+  @media (max-width: 899px) {
     .main-nav,
     .header-controls {
       display: none;

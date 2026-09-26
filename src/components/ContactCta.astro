@@ -1,5 +1,6 @@
 ---
 import { useTranslations, type Lang } from '../i18n/utils';
+import { site } from '../config/site';
 
 interface Props {
   lang: Lang;
@@ -16,7 +17,7 @@ const t = useTranslations(Astro.props.lang);
 
     <div class="contact-actions">
       <a
-        href="mailto:y.espejo.santana@gmail.com"
+        href={"mailto:" + site.email}
         class="cta cta-primary"
       >
         {t.home.contactEmail}
@@ -40,9 +41,8 @@ const t = useTranslations(Astro.props.lang);
   }
 
   .contact-inner {
-    max-width: 900px;
-    margin-inline: auto;
-    padding-inline: var(--space-6);
+    max-width: 1200px;
+    padding-inline: clamp(24px, 5vw, 96px);
     display: flex;
     flex-direction: column;
     gap: var(--space-5);

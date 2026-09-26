@@ -53,9 +53,8 @@ const t = useTranslations(Astro.props.lang);
   }
 
   .exp-inner {
-    max-width: 900px;
-    margin-inline: auto;
-    padding-inline: var(--space-6);
+    max-width: 1200px;
+    padding-inline: clamp(24px, 5vw, 96px);
   }
 
   /* Cabecera */
@@ -112,7 +111,7 @@ const t = useTranslations(Astro.props.lang);
   }
 
   .case-sector {
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--muted);
   }
 
@@ -126,14 +125,14 @@ const t = useTranslations(Astro.props.lang);
   }
 
   .case-summary {
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     color: var(--muted);
     line-height: 1.65;
     flex-grow: 1;
   }
 
   .case-result {
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     color: var(--ink);
     line-height: 1.5;
     padding-top: var(--space-1);
@@ -142,7 +141,7 @@ const t = useTranslations(Astro.props.lang);
 
   .result-label {
     display: block;
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--ink);
     font-weight: 500;
     margin-bottom: var(--space-1);
@@ -199,7 +198,7 @@ const t = useTranslations(Astro.props.lang);
     }
   }
 
-  @media (min-width: 769px) and (max-width: 900px) {
+  @media (min-width: 769px) and (max-width: 1024px) {
     .cases-grid {
       grid-template-columns: repeat(2, 1fr);
     }

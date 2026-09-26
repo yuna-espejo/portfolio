@@ -32,12 +32,8 @@ const e = t.experience;
             <div class="case-body">
               <h2 class="case-title">{c.title}</h2>
               <dl class="case-dl">
-                <dt>{e.contextLabel}</dt>
-                <dd>{c.context}</dd>
-                <dt>{e.problemLabel}</dt>
-                <dd>{c.problem}</dd>
-                <dt>{e.whatLabel}</dt>
-                <dd>{c.what}</dd>
+                <dt>{e.taskLabel}</dt>
+                <dd>{c.task}</dd>
                 <dt>{e.resultLabel}</dt>
                 <dd class="case-result">{c.result}</dd>
               </dl>
@@ -65,9 +61,8 @@ const e = t.experience;
   }
 
   .exp-page-inner {
-    max-width: 900px;
-    margin-inline: auto;
-    padding-inline: var(--space-6);
+    max-width: 1200px;
+    padding-inline: clamp(24px, 5vw, 96px);
   }
 
   /* Cabecera de página */
@@ -90,7 +85,7 @@ const e = t.experience;
     font-size: var(--text-base);
     color: var(--muted);
     line-height: 1.7;
-    max-width: 60ch;
+    max-width: 70ch;
   }
 
   /* Lista de casos */
@@ -131,7 +126,7 @@ const e = t.experience;
   }
 
   .case-sector {
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--muted);
     line-height: 1.5;
   }
@@ -178,7 +173,7 @@ const e = t.experience;
   }
 
   .case-dl dt {
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--muted);
     padding-top: 2px;
   }
@@ -216,7 +211,7 @@ const e = t.experience;
   }
 
   .other-works-item {
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     color: var(--muted);
     line-height: 1.65;
     padding-block: var(--space-4);

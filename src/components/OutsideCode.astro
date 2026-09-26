@@ -8,13 +8,13 @@ interface Props {
 const t = useTranslations(Astro.props.lang);
 ---
 
-<section class="outside">
+<section class="outside" data-animate="section">
   <div class="outside-inner">
 
     <h2 class="outside-heading">{t.home.outsideHeading}</h2>
 
     <ul class="outside-grid" role="list">
-      {t.home.outsideItems.map((item) => (
+      {t.home.outsideItems.map((item, index) => (
         <li class="outside-item">
           <p class="outside-label">
             {item.href ? (
@@ -24,6 +24,42 @@ const t = useTranslations(Astro.props.lang);
               </a>
             ) : item.label}
           </p>
+
+          {index === 0 && (
+            <svg class="card-icon card-icon--f1" viewBox="0 0 120 54" aria-label="Formula 1" role="img" xmlns="http://www.w3.org/2000/svg">
+              <path
+                class="icon-path"
+                d="M2,4 L64,4 L64,17 L20,17 L20,24 L53,24 L53,35 L20,35 L20,52 L2,52 Z"
+                fill="none" stroke="var(--olive)" stroke-width="2.5" stroke-linejoin="round"
+              />
+              <path
+                class="icon-path"
+                d="M80,52 L110,52 L110,4 L95,4 L80,17 Z"
+                fill="none" stroke="var(--olive)" stroke-width="2.5" stroke-linejoin="round"
+              />
+            </svg>
+          )}
+
+          {index === 1 && (
+            <svg class="card-icon card-icon--sm" viewBox="0 0 60 60" aria-label="Instagram" role="img" xmlns="http://www.w3.org/2000/svg">
+              <rect class="icon-path" x="4" y="4" width="52" height="52" rx="14" fill="none" stroke="var(--olive)" stroke-width="2.5"/>
+              <circle class="icon-path" cx="30" cy="30" r="13" fill="none" stroke="var(--olive)" stroke-width="2.5"/>
+              <circle class="icon-path" cx="44" cy="16" r="3.5" fill="none" stroke="var(--olive)" stroke-width="2.5"/>
+            </svg>
+          )}
+
+          {index === 2 && (
+            <svg class="card-icon card-icon--rtc" viewBox="0 0 84 80" aria-label="Rewriting the Code" role="img" xmlns="http://www.w3.org/2000/svg">
+              <ellipse class="icon-path" cx="42" cy="40" rx="38" ry="35" transform="rotate(-12, 42, 40)" fill="none" stroke="var(--olive)" stroke-width="2.5"/>
+              <path class="icon-path" d="M26,40 L26,20 L46,20 L56,25 L56,34 L46,37 L30,37 L30,40 Z" fill="none" stroke="var(--olive)" stroke-width="2"/>
+              <path class="icon-path" d="M30,20 L30,37" fill="none" stroke="var(--olive)" stroke-width="2"/>
+              <path class="icon-path" d="M44,37 L58,40" fill="none" stroke="var(--olive)" stroke-width="2"/>
+              <path class="icon-path" d="M20,47 L42,47" fill="none" stroke="var(--olive)" stroke-width="2"/>
+              <path class="icon-path" d="M31,47 L31,62" fill="none" stroke="var(--olive)" stroke-width="2"/>
+              <path class="icon-path" d="M58,47 L52,45 L46,50 L46,60 L52,65 L58,63" fill="none" stroke="var(--olive)" stroke-width="2"/>
+            </svg>
+          )}
+
           <p class="outside-text">{item.text}</p>
         </li>
       ))}
@@ -39,9 +75,8 @@ const t = useTranslations(Astro.props.lang);
   }
 
   .outside-inner {
-    max-width: 900px;
-    margin-inline: auto;
-    padding-inline: var(--space-6);
+    max-width: 1200px;
+    padding-inline: clamp(24px, 5vw, 96px);
   }
 
   .outside-heading {
@@ -68,15 +103,28 @@ const t = useTranslations(Astro.props.lang);
     border-right: none;
     display: flex;
     flex-direction: column;
-    gap: var(--space-3);
+    gap: var(--space-4);
+    transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
   }
 
   .outside-item:last-child {
     border-right: 1px solid var(--line);
   }
 
+  .outside-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+    border-color: var(--muted);
+    z-index: 1;
+    position: relative;
+  }
+
+  [data-theme="dark"] .outside-item:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+
   .outside-label {
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--ink);
     font-weight: 500;
   }
@@ -87,6 +135,7 @@ const t = useTranslations(Astro.props.lang);
     display: inline-flex;
     align-items: center;
     gap: var(--space-1);
+    transition: color 150ms ease;
   }
 
   .outside-label-link:hover {
@@ -95,36 +144,70 @@ const t = useTranslations(Astro.props.lang);
   }
 
   .outside-text {
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     color: var(--muted);
     line-height: 1.65;
   }
 
+  /* SVG icons */
+  .card-icon {
+    display: block;
+    opacity: 0.8;
+  }
+
+  .card-icon--f1 {
+    width: 100%;
+    height: auto;
+    max-height: 40px;
+  }
+
+  .card-icon--sm {
+    height: 44px;
+    width: auto;
+  }
+
+  .card-icon--rtc {
+    height: 52px;
+    width: auto;
+  }
+
+  /* Stroke-dashoffset draw animation for geometric paths */
+  .card-icon .icon-path {
+    transition: stroke-dashoffset 1400ms ease;
+  }
+
+  .animate-icon .card-icon .icon-path {
+    stroke-dashoffset: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card-icon .icon-path {
+      stroke-dasharray: none !important;
+      stroke-dashoffset: 0 !important;
+      transition: none !important;
+    }
+    .card-icon .icon-text {
+      opacity: 0.8 !important;
+      transition: none !important;
+    }
+    .outside-item {
+      transition: none !important;
+    }
+  }
+
   /* Responsive */
   @media (max-width: 640px) {
-    .outside-grid {
-      grid-template-columns: 1fr;
-    }
-
+    .outside-grid { grid-template-columns: 1fr; }
     .outside-item {
       border-right: 1px solid var(--line);
       border-top: none;
     }
-
-    .outside-item:first-child {
-      border-top: 1px solid var(--line);
-    }
+    .outside-item:first-child { border-top: 1px solid var(--line); }
   }
 
   @media (min-width: 641px) and (max-width: 800px) {
-    .outside-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .outside-item:nth-child(2) {
-      border-right: 1px solid var(--line);
-    }
-
+    .outside-grid { grid-template-columns: repeat(2, 1fr); }
+    .outside-item:nth-child(2) { border-right: 1px solid var(--line); }
     .outside-item:last-child {
       border-top: none;
       grid-column: 1 / -1;
@@ -132,3 +215,45 @@ const t = useTranslations(Astro.props.lang);
     }
   }
 </style>
+
+<script>
+  (function () {
+    const allSections = document.querySelectorAll('.outside');
+    const section = allSections[allSections.length - 1] as HTMLElement | null;
+    if (!section) return;
+
+    const cards = Array.from(section.querySelectorAll<HTMLElement>('.outside-item'));
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      cards.forEach(card => card.classList.add('animate-icon'));
+      return;
+    }
+
+    // Setup stroke-dasharray for geometric icon-path elements
+    cards.forEach((card, i) => {
+      card.dataset.iconDelay = String(i * 300);
+      card.querySelectorAll<SVGGeometryElement>('.icon-path').forEach(el => {
+        try {
+          const len = Math.ceil(el.getTotalLength()) + 1;
+          el.setAttribute('stroke-dasharray', String(len));
+          el.setAttribute('stroke-dashoffset', String(len));
+        } catch (_) {}
+      });
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const card = entry.target as HTMLElement;
+          const delay = parseInt(card.dataset.iconDelay ?? '0');
+          setTimeout(() => card.classList.add('animate-icon'), delay);
+          observer.unobserve(card);
+        });
+      },
+      { threshold: 0.25 }
+    );
+
+    cards.forEach(card => observer.observe(card));
+  })();
+</script>

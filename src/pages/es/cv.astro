@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { useTranslations } from '../../i18n/utils';
+import { site } from '../../config/site';
 
 const t = useTranslations('es');
 const c = t.cv;
@@ -37,13 +38,12 @@ const stack = [
         <h1 class="cv-name">Yuna Espejo</h1>
         <p class="cv-role">{t.about.role}</p>
         <div class="cv-links">
-          <a href="mailto:y.espejo.santana@gmail.com" class="cv-link">y.espejo.santana@gmail.com</a>
-          <a href="https://linkedin.com/in/yuna-espejo-santana" class="cv-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="https://github.com/yuna-espejo" class="cv-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href={"mailto:" + site.email} class="cv-link">{site.email}</a>
+          <a href={site.linkedin} class="cv-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href={site.github} class="cv-link" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
         <div class="cv-download">
-          <button class="cv-download-btn" disabled>{c.downloadLabel}</button>
-          <span class="cv-download-note">{c.downloadNote}</span>
+          <a class="cv-download-btn" href="/cv/Yuna_Espejo_Santana_CV.pdf" download>{c.downloadLabel}</a>
         </div>
       </header>
 
@@ -138,9 +138,8 @@ const stack = [
   }
 
   .cv-inner {
-    max-width: 780px;
-    margin-inline: auto;
-    padding-inline: var(--space-6);
+    max-width: 1200px;
+    padding-inline: clamp(24px, 5vw, 96px);
   }
 
   /* Header */
@@ -198,8 +197,13 @@ const stack = [
     border: none;
     padding: var(--space-2) var(--space-5);
     border-radius: var(--radius-sm);
-    cursor: not-allowed;
-    opacity: 0.6;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity var(--transition);
+  }
+
+  .cv-download-btn:hover {
+    opacity: 0.85;
   }
 
   .cv-download-note {

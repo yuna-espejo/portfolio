@@ -53,5 +53,45 @@ const canonicalURL = Astro.site
     <Nav />
     <slot />
     <Footer />
+
+    <!-- Animaciones de sección: fade + slide al entrar en pantalla -->
+    <style is:global>
+      .will-animate {
+        opacity: 0;
+        transform: translateY(14px);
+        transition: opacity 700ms ease, transform 700ms ease;
+      }
+      .will-animate.section-visible {
+        opacity: 1;
+        transform: none;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .will-animate {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+    <script>
+      (function () {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        const sections = document.querySelectorAll('section:not(.hero)');
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach(entry => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add('section-visible');
+              io.unobserve(entry.target);
+            });
+          },
+          { threshold: 0.06 }
+        );
+        sections.forEach(el => {
+          el.classList.add('will-animate');
+          io.observe(el);
+        });
+      })();
+    </script>
   </body>
 </html>

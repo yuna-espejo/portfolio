@@ -1,0 +1,153 @@
+---
+import Base from '../../../layouts/Base.astro';
+import CircuitSimulation from '../../../components/CircuitSimulation.astro';
+import { useTranslations } from '../../../i18n/utils';
+
+const t = useTranslations('ca');
+const p = t.projects.circuitSim;
+---
+
+<Base lang="ca" title={`${p.title} — Yuna Espejo`} description={p.description}>
+  <div class="project-page">
+    <div class="project-inner">
+
+      <a href="/ca/projects" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="19" y1="12" x2="5" y2="12"/>
+          <polyline points="12 19 5 12 12 5"/>
+        </svg>
+        {p.backLabel}
+      </a>
+
+      <header class="project-header">
+        <h1 class="project-title">{p.title}</h1>
+        <p class="project-desc">{p.description}</p>
+      </header>
+
+      <div class="project-sim">
+        <CircuitSimulation lang="ca" compact={false} />
+      </div>
+
+      <section class="project-section">
+        <p class="project-tagline">{p.tagline}</p>
+      </section>
+
+      <section class="project-section">
+        <h2 class="project-section-heading">{p.howItWorksHeading}</h2>
+        <p class="project-section-body">{p.howItWorks}</p>
+      </section>
+
+      <section class="project-section">
+        <h2 class="project-section-heading">{p.techHeading}</h2>
+        <ul class="tech-list" role="list">
+          {p.tech.map((item) => (
+            <li class="tech-chip">{item}</li>
+          ))}
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</Base>
+
+<style>
+  .project-page {
+    padding-bottom: var(--space-20);
+  }
+
+  .project-inner {
+    max-width: 900px;
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--muted);
+    text-decoration: none;
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-8);
+    transition: color var(--transition);
+  }
+
+  .back-link:hover {
+    color: var(--ink);
+  }
+
+  .project-header {
+    padding-bottom: var(--space-10);
+    border-bottom: 1px solid var(--line);
+    margin-bottom: var(--space-10);
+  }
+
+  .project-title {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--text-2xl), 4vw, 2.5rem);
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-4);
+  }
+
+  .project-desc {
+    font-size: var(--text-base);
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 60ch;
+  }
+
+  .project-sim {
+    margin-bottom: var(--space-12);
+  }
+
+  .project-section {
+    padding-block: var(--space-8);
+    border-top: 1px solid var(--line);
+  }
+
+  .project-tagline {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    color: var(--ink);
+    line-height: 1.7;
+    max-width: 60ch;
+  }
+
+  .project-section-heading {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-4);
+  }
+
+  .project-section-body {
+    font-size: var(--text-base);
+    color: var(--ink);
+    line-height: 1.75;
+    max-width: 60ch;
+  }
+
+  .tech-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .tech-chip {
+    font-size: var(--text-sm);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+  }
+</style>

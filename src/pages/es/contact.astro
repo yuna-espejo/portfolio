@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { useTranslations } from '../../i18n/utils';
+import { site } from '../../config/site';
 
 const t = useTranslations('es');
 const c = t.contact;
@@ -19,20 +20,14 @@ const c = t.contact;
 
         <aside class="contact-left">
           <div class="contact-left-block">
-            <span class="contact-block-label">{c.emailLabel}</span>
-            <a href="mailto:y.espejo.santana@gmail.com" class="contact-email-link">
-              y.espejo.santana@gmail.com
-            </a>
-          </div>
-          <div class="contact-left-block">
             <span class="contact-block-label">LinkedIn</span>
             <a
-              href="https://linkedin.com/in/yuna-espejo-santana"
+              href={site.linkedin}
               class="contact-social-link"
               target="_blank"
               rel="noopener noreferrer"
             >
-              linkedin.com/in/yuna-espejo-santana
+              {site.linkedin.replace('https://', '')}
             </a>
           </div>
         </aside>
@@ -96,22 +91,34 @@ const c = t.contact;
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
   const successEl = document.getElementById('form-success');
   const errorEl = document.getElementById('form-error');
+  const submitBtn = form?.querySelector<HTMLButtonElement>('.form-submit');
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if (!form || !successEl || !errorEl) return;
+    if (!form || !successEl || !errorEl || !submitBtn) return;
 
     successEl.hidden = true;
     errorEl.hidden = true;
 
+    const originalText = submitBtn.textContent ?? '';
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="form-submit-spinner" aria-hidden="true"></span>';
+
+    // Yield so the browser paints the spinner before the fetch blocks
+    await new Promise(resolve => requestAnimationFrame(resolve));
+
     const data = Object.fromEntries(new FormData(form));
+    const minDelay = new Promise(resolve => setTimeout(resolve, 500));
 
     try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
+      const [res] = await Promise.all([
+        fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        }),
+        minDelay,
+      ]);
       const json = await res.json();
       if (json.ok) {
         successEl.hidden = false;
@@ -120,7 +127,11 @@ const c = t.contact;
         errorEl.hidden = false;
       }
     } catch {
+      await minDelay;
       errorEl.hidden = false;
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
     }
   });
 </script>
@@ -131,9 +142,8 @@ const c = t.contact;
   }
 
   .contact-inner {
-    max-width: 680px;
-    margin-inline: auto;
-    padding-inline: var(--space-6);
+    max-width: 1200px;
+    padding-inline: clamp(24px, 5vw, 96px);
   }
 
   /* Header */
@@ -156,6 +166,7 @@ const c = t.contact;
     font-size: var(--text-base);
     color: var(--muted);
     line-height: 1.7;
+    max-width: 70ch;
   }
 
   /* Body: two-col layout */
@@ -164,6 +175,7 @@ const c = t.contact;
     grid-template-columns: 1fr 1.6fr;
     gap: var(--space-16);
     align-items: start;
+    max-width: 800px;
   }
 
   /* Left */
@@ -180,7 +192,7 @@ const c = t.contact;
   }
 
   .contact-block-label {
-    font-size: 13px;
+    font-size: var(--text-sm);
     color: var(--ink);
     font-weight: 500;
   }
@@ -227,7 +239,7 @@ const c = t.contact;
   }
 
   .form-label {
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     color: var(--ink);
     font-weight: 500;
   }
@@ -235,7 +247,7 @@ const c = t.contact;
   .form-input,
   .form-textarea {
     font-family: var(--font-sans);
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     color: var(--ink);
     background: var(--surface);
     border: 1px solid var(--line);
@@ -253,7 +265,7 @@ const c = t.contact;
   }
 
   .form-submit {
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     color: var(--bg);
     background: var(--olive);
     border: none;
@@ -268,15 +280,42 @@ const c = t.contact;
     opacity: 0.85;
   }
 
+  .form-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .form-submit-spinner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    vertical-align: middle;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .form-submit-spinner {
+      animation: none;
+      opacity: 0.5;
+    }
+  }
+
   .form-success {
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     color: var(--olive);
     line-height: 1.6;
     margin: 0;
   }
 
   .form-error {
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     color: var(--accent);
     line-height: 1.6;
     margin: 0;

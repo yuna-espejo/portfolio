@@ -1,3 +1,4 @@
+import { site } from '../config/site';
 import type { Translations } from './es';
 
 export const en: Translations = {
@@ -25,9 +26,7 @@ export const en: Translations = {
     heading: 'Experience',
     intro:
       'I work as a Junior Consultant on the Digital Integrations team at Timestamp Spain. I build integrations for HR processes using SAP Cloud Integration: I pull data from SuccessFactors, transform and validate it, and deliver it to the target system. I take part in the full cycle: analysis, development, testing, deployment and documentation.',
-    contextLabel: 'Context',
-    problemLabel: 'Problem',
-    whatLabel: 'What I did',
+    taskLabel: 'Task',
     resultLabel: 'Result',
     tagsLabel: 'Stack',
     otherWorksHeading: 'Other work',
@@ -36,56 +35,32 @@ export const en: Translations = {
         index: '01',
         sector: 'Pharma · International',
         title: 'Employee delta sync',
-        context:
-          'Integration that syncs employee data from SuccessFactors to a client internal system. The daily full load was consuming too many API calls and did not scale.',
-        problem:
-          'The full-load architecture sent every record every day regardless of what had changed, creating unnecessary load and making monitoring difficult.',
-        what:
-          'I debugged the integration thoroughly and designed a three-mode architecture: full load (bulk) for the initial run, incremental (delta) for the day-to-day sending only changes, and snapshot to validate the full state without overloading. I maintained the technical documentation through version 1.6.',
-        result:
-          'In production with significantly fewer daily API calls. The integration is now lighter, easier to monitor, and documented so that anyone on the team can maintain it.',
+        task: 'Redesign a daily integration that sent all employee data every day regardless of what had changed.',
+        result: 'New three-mode load (full, incremental and snapshot) so only changes are transferred. Significantly fewer API calls [PENDING: figure], in production and documented.',
         tags: ['SAP Cloud Integration', 'SuccessFactors', 'Groovy', 'SFTP'],
       },
       {
         index: '02',
         sector: 'Telecom',
         title: 'LMS desync investigation',
-        context:
-          'Course sync between a learning platform and SuccessFactors. Courses were not appearing or updating correctly in the target platform.',
-        problem:
-          'The team could not reproduce the failures consistently. The flow included complex XSLT transformations and several chained filters that made isolating the cause difficult.',
-        what:
-          'I analysed the full flow and identified three root causes: a 7-day incremental window that left records out of range, a bug in the completed-courses filter, and a schema mismatch in the unassignment flow. I extended the integration to reuse existing identifiers instead of creating duplicates.',
-        result:
-          'Schema problem fixed and affected cases corrected. As a side finding, I uncovered a data quality issue in the catalogue: ~2,650 out of 2,667 items had duplicate titles.',
+        task: 'Find out why courses were not syncing between a learning platform and SuccessFactors.',
+        result: 'Three root causes identified and fixed (an incorrect incremental window, a faulty filter and a schema mismatch). Also uncovered a data quality issue: 2,650 out of 2,667 titles were duplicates.',
         tags: ['SAP Cloud Integration', 'XSLT', 'SuccessFactors', 'Groovy'],
       },
       {
         index: '03',
-        sector: 'Optical · Retail',
+        sector: 'Optical',
         title: '7-flow SAP–CRM integration design',
-        context:
-          'Connecting a client ERP in the optical retail sector to their CRM. The integration needed to sync the full product catalogue, customers, orders and invoices between two systems with very different data models.',
-        problem:
-          "The target API had strict limitations: upserts by external identifier capped at 30 characters and batches of at most 200 records. Entities also had dependencies that required a specific insertion order.",
-        what:
-          'I mapped the entity dependencies and designed the integration as 7 chained flows: auth → customers → shipping addresses → product families → products → orders → invoices. I documented the API constraints and planned execution to ensure each flow had the data it needed available.',
-        result:
-          'A ~60-day integration plan with clear dependencies and no ambiguity from day one. The team could start development without having to rethink the architecture.',
+        task: "Plan a 7-flow integration between an optical sector client's ERP and CRM, with a heavily constrained target API.",
+        result: 'Execution order defined according to entity dependencies and a ~60-day plan, clear from day one.',
         tags: ['SAP Cloud Integration', 'REST', 'JSON', 'Groovy'],
       },
       {
         index: '04',
         sector: 'DevOps · Internal',
         title: 'CI/CD pipelines for SAP integrations',
-        context:
-          'During my internship, the team needed to control integration quality and move builds between environments reliably, without manual error-prone steps.',
-        problem:
-          'Environment deployments were manual and there was no automated process to verify that integrations followed team conventions before going to production.',
-        what:
-          'I built two GitHub Actions workflows: one that automatically checks integration best practices (naming, configuration, artefacts) and one that automates migration of integrations between SAP BTP environments.',
-        result:
-          '2 pipelines in production used by the team. Deployments are now reproducible and best-practice review happens before code reaches production.',
+        task: 'Automate integration quality checks and migration between environments.',
+        result: 'Two GitHub Actions workflows: one checks best practices, one automates migration. [PENDING: impact]',
         tags: ['GitHub Actions', 'SAP BTP', 'SAP Cloud Integration', 'CI/CD'],
       },
     ],
@@ -102,7 +77,7 @@ export const en: Translations = {
     heading: 'About',
     role: 'Junior Consultant · Digital Integrations',
     company: 'Timestamp Spain',
-    companyPeriod: 'Nov. 2025 – present · part-time · Barcelona / remote',
+    companyPeriod: 'Nov. 2025 – present · full-time · Barcelona / remote',
     bio: 'I build integrations for HR processes using SAP Cloud Integration. I joined as an intern with no prior SAP or Groovy experience and was offered a contract at the end because I had picked up the concepts quickly. That sums up how I work pretty well.',
     whatSetsApartHeading: 'What sets me apart',
     traits: [
@@ -111,12 +86,12 @@ export const en: Translations = {
         text: 'When I focus on something I do not stop until it is done properly, tested and documented for the next person.',
       },
       {
-        label: 'Thorough documenter',
-        text: 'I like to leave things in order. Not out of perfectionism, but because I know how hard it is to find something that is not well documented.',
+        label: 'Organised',
+        text: 'I document what I do and keep things in order. Not out of perfectionism, but because I know how hard it is to find something that is not well explained.',
       },
       {
         label: 'Fast learner',
-        text: 'I arrived at my internship without knowing SAP Cloud Integration, Groovy or SuccessFactors. Within a few months I was running my own projects.',
+        text: 'In a few months I went from not knowing SAP Cloud Integration to running end-to-end integrations for international clients.',
       },
       {
         label: 'Good team presence',
@@ -130,13 +105,14 @@ export const en: Translations = {
     communityHeading: 'Community',
     community: [
       {
-        label: 'Rewrite the Code',
+        label: 'Rewriting the Code',
         text: 'Member of this community of women in technology.',
+        href: site.rewritingTheCode,
       },
       {
         label: '@yesa.exe',
-        text: 'I create tech content on Instagram: curiosities, learnings and day-to-day things from the industry.',
-        href: 'https://www.instagram.com/yesa.exe/',
+        text: 'Turning ideas into projects and sharing the process: data, engineering and learning in public.',
+        href: site.instagram,
       },
     ],
   },
@@ -156,9 +132,10 @@ export const en: Translations = {
         period: 'Nov. 2025 – present',
         type: 'Part-time · Barcelona / remote',
         bullets: [
-          'Development and maintenance of HR integrations with SAP Cloud Integration.',
-          'Requirements analysis, development, testing, deployment and documentation.',
-          'Main technologies: SAP BTP, SuccessFactors, Groovy, REST, SFTP.',
+          'Development and maintenance of enterprise integrations with SAP Cloud Integration for multinational clients.',
+          'Full cycle: design, development in Groovy and JavaScript, testing, documentation and production deployment.',
+          'Full migration of an integration environment from SAP Neo to Cloud Foundry.',
+          'Projects for clients in telecoms, insurance, pharma and workforce management.',
         ],
       },
       {
@@ -167,9 +144,9 @@ export const en: Translations = {
         period: 'Mar. – Oct. 2025',
         type: 'Internship',
         bullets: [
-          'First exposure to SAP Cloud Integration, Groovy and SuccessFactors.',
-          'Development of GitHub Actions workflows for SAP integration CI/CD.',
-          'Involvement in real projects from the first month.',
+          'Built two GitHub Actions workflows: automatic best-practice checks and environment migration automation.',
+          'Employee lifecycle integrations (onboarding and offboarding) with cross-platform sync.',
+          'Integration testing with Postman collections and technical documentation.',
         ],
       },
       {
@@ -178,7 +155,7 @@ export const en: Translations = {
         period: 'Mar. – Apr. 2024',
         type: 'Erasmus+ Internship · Amarante, Portugal',
         bullets: [
-          'Technical support, equipment maintenance and systems administration tasks.',
+          'Equipment, server and network device setup and configuration. Incident resolution and connectivity testing.',
         ],
       },
       {
@@ -187,19 +164,19 @@ export const en: Translations = {
         period: 'Oct. 2023 – Jan. 2024',
         type: 'Internship',
         bullets: [
-          'Social media management and content creation for clients.',
+          'Social media creation and management, and onboarding of new team members.',
         ],
       },
     ],
     languages: [
       { lang: 'Spanish', level: 'Native' },
-      { lang: 'English', level: 'Intermediate (improving)' },
+      { lang: 'English', level: 'A2 certified (Cambridge), actively studying' },
       { lang: 'Portuguese', level: 'Basic' },
     ],
   },
   contact: {
     heading: "Let's talk",
-    intro: 'Open to conversations about integrations, backend and data. No pressure.',
+    intro: 'Open to conversations about integrations, backend and data.',
     emailLabel: 'Direct email',
     formHeading: 'Or write to me here',
     namePlaceholder: 'Your name',
@@ -216,9 +193,20 @@ export const en: Translations = {
   projects: {
     heading: 'Projects',
     empty: 'Nothing published yet. Only finished projects are published.',
+    circuitSim: {
+      title: 'Barcelona-Catalunya Circuit Simulation',
+      description: 'Interactive circuit simulation with curvature-based speed. Canvas API + requestAnimationFrame.',
+      tagline: "[YUNA'S TEXT: why did you build this? One or two sentences in first person.]",
+      howItWorksHeading: 'How the speed is calculated',
+      howItWorks: "[YUNA'S TEXT: explain the curvature algorithm in your own words.]",
+      techHeading: 'Technologies',
+      tech: ['Canvas API', 'requestAnimationFrame', 'IntersectionObserver', 'CSS custom properties', 'Vanilla JavaScript'],
+      backLabel: 'Back to projects',
+    },
   },
   nav: {
     experience: 'Experience',
+    projects: 'Projects',
     about: 'About',
     cv: 'CV',
     contact: 'Contact',
@@ -230,7 +218,7 @@ export const en: Translations = {
     ctaLinkedIn: 'LinkedIn',
     ctaGitHub: 'GitHub',
     ctaEmail: 'Email me',
-    outsideHeading: 'Outside the code',
+    outsideHeading: 'Beyond code',
     outsideItems: [
       {
         label: 'Formula 1',
@@ -238,12 +226,13 @@ export const en: Translations = {
       },
       {
         label: '@yesa.exe',
-        text: 'I create tech content on Instagram: curiosities, learnings and day-to-day things from the industry.',
-        href: 'https://www.instagram.com/yesa.exe/',
+        text: 'Turning ideas into projects and sharing the process: data, engineering and learning in public.',
+        href: site.instagram,
       },
       {
-        label: 'Reading',
-        text: 'Stoicism, mostly. Marcus Aurelius and Epictetus are regulars. Also technical essays when something catches my eye.',
+        label: 'Rewriting the Code',
+        text: 'I am part of Rewriting the Code, a community of women in tech.',
+        href: site.rewritingTheCode,
       },
     ],
     contactHeading: "Let's talk",
@@ -267,7 +256,7 @@ export const en: Translations = {
         degree: 'Higher Technician in Network Systems Administration',
         spec: 'Linux/Windows Server, Docker, scripting, networking, databases',
         school: 'IES Sa Palomera',
-        period: '2024',
+        period: '2024 – 2026',
         inProgress: false,
       },
       {
@@ -304,6 +293,10 @@ export const en: Translations = {
       devops: 'DevOps & tools',
       data: 'Data',
     },
+    featuredProjectHeading: 'Featured project',
+    featuredProjectTitle: 'Barcelona-Catalunya Circuit Simulation',
+    featuredProjectDesc: 'Two cars lap the Montmeló circuit. Speed is calculated in real time from the curvature at each point on the track.',
+    featuredProjectLink: 'View project',
     experienceHeading: 'Featured experience',
     experienceCta: 'See full experience',
     experienceResultLabel: 'Result',
@@ -312,24 +305,24 @@ export const en: Translations = {
         sector: 'Pharma · International',
         title: 'Employee delta sync',
         summary:
-          'Redesigned a daily SuccessFactors integration by implementing three load modes —bulk, delta, and snapshot— to send only what has changed.',
-        result: 'In production with technical documentation maintained through v1.6.',
-        tags: ['SAP CI', 'SuccessFactors', 'Groovy'],
+          'Redesign a daily integration that was sending all employee data every day regardless of what had changed.',
+        result: 'New three-mode load so only changes travel. [PENDING: API figure]. In production and documented.',
+        tags: ['SAP Cloud Integration', 'SuccessFactors', 'Groovy'],
       },
       {
         sector: 'Telecom',
         title: 'LMS desync investigation',
         summary:
-          'Analysed the full course sync flow and identified multiple root causes: incorrect incremental window, wrong filter, and schema mismatch.',
-        result: '~2,650 out of 2,667 records with duplicate titles uncovered.',
-        tags: ['SAP CI', 'XSLT', 'SuccessFactors'],
+          'Find out why courses were not syncing between a learning platform and SuccessFactors.',
+        result: 'Three root causes fixed. A data quality issue uncovered: 2,650 out of 2,667 titles were duplicates.',
+        tags: ['SAP Cloud Integration', 'XSLT', 'SuccessFactors'],
       },
       {
         sector: 'DevOps · Internal',
         title: 'CI/CD pipelines for SAP integrations',
         summary:
-          'Built two GitHub Actions workflows: one that automatically checks integration best practices, one that automates environment migration.',
-        result: '2 pipelines in production, used by the team.',
+          'Automate integration quality checks and migration between environments.',
+        result: 'Two GitHub Actions workflows: one checks best practices, the other automates migration. [PENDING: impact]',
         tags: ['GitHub Actions', 'SAP BTP', 'CI/CD'],
       },
     ],

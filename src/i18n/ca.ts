@@ -1,3 +1,4 @@
+import { site } from '../config/site';
 import type { Translations } from './es';
 
 export const ca: Translations = {
@@ -25,9 +26,7 @@ export const ca: Translations = {
     heading: 'Experiència',
     intro:
       "Treballo com a Junior Consultant a l'equip de Digital Integrations de Timestamp Spain. Desenvolupo integracions per a processos de RRHH amb SAP Cloud Integration: obtinc dades de SuccessFactors, les transformo i valido, i les entrego al sistema destí. Participo en tot el cicle: anàlisi, desenvolupament, proves, desplegament i documentació.",
-    contextLabel: 'Context',
-    problemLabel: 'Problema',
-    whatLabel: 'Què vaig fer',
+    taskLabel: 'Tasca',
     resultLabel: 'Resultat',
     tagsLabel: 'Stack',
     otherWorksHeading: 'Altres treballs',
@@ -36,56 +35,32 @@ export const ca: Translations = {
         index: '01',
         sector: 'Farmacèutica · Internacional',
         title: 'Sincronització delta de personal',
-        context:
-          "Integració que sincronitza dades de personal des de SuccessFactors cap a un sistema intern del client. La càrrega completa diària consumia massa crides a l'API i no escalava.",
-        problem:
-          "L'arquitectura de càrrega completa enviava tots els registres cada dia sense distingir què havia canviat, cosa que generava una càrrega innecessària i dificultava la monitorització.",
-        what:
-          "Vaig depurar la integració a fons i vaig dissenyar una arquitectura en tres modes: càrrega completa (bulk) per a l'arrencada inicial, incremental (delta) per al dia a dia enviant només els canvis, i snapshot per validar l'estat complet sense sobrecarregar. Vaig mantenir la documentació tècnica fins a la versió 1.6.",
-        result:
-          "En producció amb moltes menys crides diàries a l'API. La integració és ara més lleuera, més fàcil de monitoritzar i documentada perquè qualsevol persona de l'equip la pugui mantenir.",
+        task: "Redissenyar una integració diària que enviava totes les dades de personal cada dia, haguessin canviat o no.",
+        result: "Nova càrrega en tres modes (completa, incremental i snapshot) perquè només viatgi el que canvia. Moltes menys crides a l'API [PENDENT: xifra], en producció i documentada.",
         tags: ['SAP Cloud Integration', 'SuccessFactors', 'Groovy', 'SFTP'],
       },
       {
         index: '02',
         sector: 'Telecomunicacions',
         title: 'Investigació de dessincronitzacions al LMS',
-        context:
-          "Sincronització de cursos entre una plataforma d'aprenentatge i SuccessFactors. Cursos que no apareixien o no s'actualitzaven correctament a la plataforma destí.",
-        problem:
-          "L'equip no aconseguia reproduir els errors de forma consistent. El flux incloïa transformacions XSLT complexes i diversos filtres encadenats que dificultaven aïllar la causa.",
-        what:
-          "Vaig analitzar el flux complet i vaig identificar tres causes arrel: una finestra incremental de 7 dies que deixava registres fora del rang, un error en el filtre de cursos completats, i un desajust d'esquema en el flux de desassignació. Vaig ampliar la integració per reutilitzar identificadors existents en lloc de crear duplicats.",
-        result:
-          "Problema d'esquema resolt i casos afectats corregits. Com a troballa indirecta, vaig descobrir un problema de qualitat de dades al catàleg: ~2.650 de 2.667 elements tenien títols duplicats.",
+        task: "Esbrinar per què hi havia cursos que no es sincronitzaven entre una plataforma de formació i SuccessFactors.",
+        result: "Tres causes arrel identificades i corregides (una finestra incremental incorrecta, un filtre erroni i un desajust d'esquema). A més, vaig destapar un problema de qualitat de dades: 2.650 de 2.667 títols duplicats.",
         tags: ['SAP Cloud Integration', 'XSLT', 'SuccessFactors', 'Groovy'],
       },
       {
         index: '03',
-        sector: 'Òptica · Retail',
+        sector: 'Òptica',
         title: "Disseny d'integració en 7 fluxos SAP–CRM",
-        context:
-          "Connectar l'ERP d'un client del sector òptic amb el seu CRM. La integració havia de sincronitzar el catàleg complet de productes, clients, comandes i factures entre dos sistemes amb models de dades molt diferents.",
-        problem:
-          "L'API de destí tenia limitacions estrictes: upserts per identificador extern de màxim 30 caràcters i lots de màxim 200 registres. A més, les entitats tenien dependències que obligaven a respectar un ordre d'inserció.",
-        what:
-          "Vaig analitzar les dependències entre entitats i vaig dissenyar l'ordre de la integració en 7 fluxos encadenats: autenticació → clients → adreces d'enviament → famílies de producte → productes → comandes → factures. Vaig documentar les restriccions de l'API i vaig planificar l'execució per garantir que cada flux tingués disponibles les dades que necessitava.",
-        result:
-          "Planificació de ~60 dies d'integració amb dependències clares i sense ambigüitats des del primer dia. L'equip va poder començar el desenvolupament sense necessitat de replantejar l'arquitectura.",
+        task: "Planificar una integració de 7 fluxos entre l'ERP i el CRM d'un client del sector òptic, amb una API de destí molt limitada.",
+        result: "Ordre d'execució definit segons les dependències entre entitats i una planificació d'uns 60 dies, clara des del primer dia.",
         tags: ['SAP Cloud Integration', 'REST', 'JSON', 'Groovy'],
       },
       {
         index: '04',
         sector: 'DevOps · Intern',
         title: 'Pipelines CI/CD per a integracions SAP',
-        context:
-          "Durant les pràctiques, l'equip necessitava controlar la qualitat de les integracions i moure desenvolupaments entre entorns de forma fiable, sense passos manuals propensos a errors.",
-        problem:
-          "Els desplegaments entre entorns eren manuals i no hi havia cap procés automàtic per verificar que les integracions seguien les convencions de l'equip abans de pujar a producció.",
-        what:
-          "Vaig desenvolupar dos workflows de GitHub Actions: un que comprova automàticament les bones pràctiques de les integracions (nomenclatura, configuració, artefactes) i un altre que automatitza la migració d'integracions entre entorns de SAP BTP.",
-        result:
-          "2 pipelines en producció usats per l'equip. Els desplegaments són ara reproduïbles i la revisió de bones pràctiques es fa abans que el codi arribi a producció.",
+        task: "Automatitzar el control de qualitat de les integracions i la seva migració entre entorns.",
+        result: "Dos workflows de GitHub Actions, un que revisa les bones pràctiques i un altre que automatitza la migració. [PENDENT: impacte]",
         tags: ['GitHub Actions', 'SAP BTP', 'SAP Cloud Integration', 'CI/CD'],
       },
     ],
@@ -102,7 +77,7 @@ export const ca: Translations = {
     heading: 'Sobre mi',
     role: 'Junior Consultant · Digital Integrations',
     company: 'Timestamp Spain',
-    companyPeriod: 'nov. 2025 – actualitat · mitja jornada · Barcelona / remot',
+    companyPeriod: 'nov. 2025 – actualitat · jornada completa · Barcelona / remot',
     bio: "Desenvolupo integracions per a processos de recursos humans amb SAP Cloud Integration. Vaig començar com a becària en pràctiques sense conèixer SAP ni Groovy, i en acabar em van oferir un contracte perquè havia assimilat els conceptes ràpidament. Això resumeix bastant bé com treballo.",
     whatSetsApartHeading: 'El que em diferencia',
     traits: [
@@ -111,12 +86,12 @@ export const ca: Translations = {
         text: "Quan em centro en alguna cosa no paro fins que estigui ben feta, provada i documentada per a la persona següent.",
       },
       {
-        label: 'Documentadora',
-        text: "M'agrada deixar les coses ordenades. No per perfeccionisme, sinó perquè sé el que costa trobar alguna cosa que no està ben documentada.",
+        label: 'Ordenada',
+        text: "Documento el que faig i deixo les coses organitzades. No per perfeccionisme, sinó perquè sé el que costa trobar alguna cosa que no està ben explicada.",
       },
       {
         label: 'Aprenc ràpid',
-        text: "Vaig arribar a les meves pràctiques sense conèixer SAP Cloud Integration, Groovy ni SuccessFactors. En pocs mesos ja portava els meus propis projectes.",
+        text: "En pocs mesos vaig passar de no conèixer SAP Cloud Integration a dur integracions de principi a fi per a clients internacionals.",
       },
       {
         label: 'Genero bon ambient',
@@ -130,13 +105,14 @@ export const ca: Translations = {
     communityHeading: 'Comunitat',
     community: [
       {
-        label: 'Rewrite the Code',
-        text: 'Membre d\'aquesta comunitat de dones en tecnologia.',
+        label: 'Rewriting the Code',
+        text: "Membre d'aquesta comunitat de dones en tecnologia.",
+        href: site.rewritingTheCode,
       },
       {
         label: '@yesa.exe',
-        text: "Creo contingut tech a Instagram: curiositats, aprenentatges i coses del dia a dia de la indústria.",
-        href: 'https://www.instagram.com/yesa.exe/',
+        text: "Converteixo idees en projectes i comparteixo el procés: dades, enginyeria i aprendre en públic.",
+        href: site.instagram,
       },
     ],
   },
@@ -156,9 +132,10 @@ export const ca: Translations = {
         period: 'nov. 2025 – actualitat',
         type: 'Mitja jornada · Barcelona / remot',
         bullets: [
-          'Desenvolupament i manteniment d\'integracions per a RRHH amb SAP Cloud Integration.',
-          'Anàlisi de requisits, desenvolupament, proves, desplegament i documentació.',
-          'Tecnologies principals: SAP BTP, SuccessFactors, Groovy, REST, SFTP.',
+          "Desenvolupament i manteniment d'integracions empresarials amb SAP Cloud Integration per a clients multinacionals.",
+          'Cicle complet: disseny, desenvolupament en Groovy i JavaScript, proves, documentació i desplegament en producció.',
+          "Migració completa d'un entorn d'integracions de SAP Neo a Cloud Foundry.",
+          'Projectes per a clients de telecomunicacions, assegurances, farmàcia i gestió de personal.',
         ],
       },
       {
@@ -167,9 +144,9 @@ export const ca: Translations = {
         period: 'mar. – oct. 2025',
         type: 'Pràctiques',
         bullets: [
-          'Primera exposició a SAP Cloud Integration, Groovy i SuccessFactors.',
-          'Desenvolupament de workflows de GitHub Actions per a CI/CD d\'integracions SAP.',
-          'Participació en projectes reals des del primer mes.',
+          'Vaig desenvolupar dos workflows de GitHub Actions: comprovació automàtica de bones pràctiques i migració entre entorns.',
+          'Integració del cicle de vida del personal (altes i baixes) amb sincronització entre plataformes.',
+          "Validació d'integracions amb col·leccions de Postman i documentació tècnica.",
         ],
       },
       {
@@ -178,7 +155,7 @@ export const ca: Translations = {
         period: 'mar. – abr. 2024',
         type: 'Pràctiques Erasmus+ · Amarante, Portugal',
         bullets: [
-          'Suport tècnic, manteniment d\'equips i tasques d\'administració de sistemes.',
+          "Muntatge i configuració d'equips, servidors i dispositius de xarxa. Resolució d'incidències i proves de connectivitat.",
         ],
       },
       {
@@ -187,19 +164,19 @@ export const ca: Translations = {
         period: 'oct. 2023 – gen. 2024',
         type: 'Pràctiques',
         bullets: [
-          'Gestió de xarxes socials i creació de contingut per a clients.',
+          "Creació i gestió de xarxes socials i incorporació de nous membres de l'equip.",
         ],
       },
     ],
     languages: [
       { lang: 'Espanyol', level: 'Natiu' },
-      { lang: 'Anglès', level: 'Intermedi (en millora)' },
+      { lang: 'Anglès', level: 'A2 certificat (Cambridge), en formació activa' },
       { lang: 'Portuguès', level: 'Bàsic' },
     ],
   },
   contact: {
     heading: 'Parlem',
-    intro: "Oberta a conversar sobre integracions, backend i dades. Sense pressió.",
+    intro: "Oberta a conversar sobre integracions, backend i dades.",
     emailLabel: 'Correu directe',
     formHeading: "O escriu-me aquí",
     namePlaceholder: 'El teu nom',
@@ -216,9 +193,20 @@ export const ca: Translations = {
   projects: {
     heading: 'Projectes',
     empty: "Res publicat encara. Només es publiquen projectes acabats.",
+    circuitSim: {
+      title: 'Simulació del Circuit de Barcelona-Catalunya',
+      description: 'Simulació interactiva del circuit amb velocitat basada en curvatura. Canvas API + requestAnimationFrame.',
+      tagline: '[TEXT DE YUNA: per què vas construir això? Una o dues frases en primera persona.]',
+      howItWorksHeading: 'Com calcula la velocitat',
+      howItWorks: '[TEXT DE YUNA: explica l\'algorisme de curvatura amb les teves pròpies paraules.]',
+      techHeading: 'Tecnologies',
+      tech: ['Canvas API', 'requestAnimationFrame', 'IntersectionObserver', 'CSS custom properties', 'JavaScript vanilla'],
+      backLabel: 'Tornar a projectes',
+    },
   },
   nav: {
     experience: 'Experiència',
+    projects: 'Projectes',
     about: 'Sobre mi',
     cv: 'CV',
     contact: 'Contacte',
@@ -230,7 +218,7 @@ export const ca: Translations = {
     ctaLinkedIn: 'LinkedIn',
     ctaGitHub: 'GitHub',
     ctaEmail: 'Escriu-me',
-    outsideHeading: 'Fora del codi',
+    outsideHeading: 'Més enllà del codi',
     outsideItems: [
       {
         label: 'Fórmula 1',
@@ -238,12 +226,13 @@ export const ca: Translations = {
       },
       {
         label: '@yesa.exe',
-        text: "Creo contingut tech a Instagram: curiositats, aprenentatges i coses del dia a dia de la indústria.",
-        href: 'https://www.instagram.com/yesa.exe/',
+        text: 'Converteixo idees en projectes i comparteixo el procés: dades, enginyeria i aprendre en públic.',
+        href: site.instagram,
       },
       {
-        label: 'Lectures',
-        text: "Estoicisme, principalment. Marc Aureli i Epicteto són lectures fixes. També assaig tècnic quan alguna cosa em crida l'atenció.",
+        label: 'Rewriting the Code',
+        text: "Formo part de Rewriting the Code, una comunitat de dones en tecnologia.",
+        href: site.rewritingTheCode,
       },
     ],
     contactHeading: 'Parlem',
@@ -267,7 +256,7 @@ export const ca: Translations = {
         degree: 'CFGS Administració de Sistemes Informàtics en Xarxa',
         spec: 'Linux/Windows Server, Docker, scripting, xarxes, BBDD',
         school: 'IES Sa Palomera',
-        period: '2024',
+        period: '2024 – 2026',
         inProgress: false,
       },
       {
@@ -304,6 +293,10 @@ export const ca: Translations = {
       devops: 'DevOps i eines',
       data: 'Dades',
     },
+    featuredProjectHeading: 'Projecte destacat',
+    featuredProjectTitle: 'Simulació del Circuit de Barcelona-Catalunya',
+    featuredProjectDesc: 'Dos cotxes volten pel circuit de Montmeló. La velocitat es calcula en temps real a partir de la curvatura de cada punt del traçat.',
+    featuredProjectLink: 'Veure el projecte',
     experienceHeading: 'Experiència destacada',
     experienceCta: 'Veure experiència completa',
     experienceResultLabel: 'Resultat',
@@ -312,24 +305,24 @@ export const ca: Translations = {
         sector: 'Farmacèutica · Internacional',
         title: "Sincronització delta d'empleats",
         summary:
-          'Vaig redissenyar una integració diària de SuccessFactors implementant tres modes de càrrega —bulk, delta i snapshot— per enviar només el que ha canviat.',
-        result: 'En producció amb documentació tècnica mantinguda fins a la v1.6.',
-        tags: ['SAP CI', 'SuccessFactors', 'Groovy'],
+          "Redissenyar una integració diària que enviava totes les dades de personal cada dia, haguessin canviat o no.",
+        result: "Nova càrrega en tres modes perquè només viatgi el que canvia. [PENDENT: xifra API]. En producció i documentada.",
+        tags: ['SAP Cloud Integration', 'SuccessFactors', 'Groovy'],
       },
       {
         sector: 'Telecomunicacions',
         title: 'Investigació de dessincronitzacions al LMS',
         summary:
-          "Vaig analitzar el flux complet de sincronització de cursos i vaig identificar diverses causes arrel: finestra incremental incorrecta, filtre erroni i desajust d'esquema.",
-        result: '~2.650 de 2.667 registres amb títols duplicats descoberts.',
-        tags: ['SAP CI', 'XSLT', 'SuccessFactors'],
+          "Esbrinar per què hi havia cursos que no es sincronitzaven entre una plataforma de formació i SuccessFactors.",
+        result: "Tres causes arrel corregides. Un problema de qualitat de dades: 2.650 de 2.667 títols duplicats.",
+        tags: ['SAP Cloud Integration', 'XSLT', 'SuccessFactors'],
       },
       {
         sector: 'DevOps · Intern',
         title: 'Pipelines CI/CD per a integracions SAP',
         summary:
-          "Vaig desenvolupar dos workflows de GitHub Actions: un que verifica bones pràctiques automàticament i un altre que automatitza la migració entre entorns.",
-        result: "2 pipelines en producció usats per l'equip.",
+          "Automatitzar el control de qualitat de les integracions i la seva migració entre entorns.",
+        result: "Dos workflows de GitHub Actions: un revisa bones pràctiques, l'altre automatitza la migració. [PENDENT: impacte]",
         tags: ['GitHub Actions', 'SAP BTP', 'CI/CD'],
       },
     ],
