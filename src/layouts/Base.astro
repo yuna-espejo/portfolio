@@ -1,0 +1,97 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { useTranslations, getLangFromUrl, type Lang } from '../i18n/utils';
+
+interface Props {
+  title?: string;
+  description?: string;
+  lang?: Lang;
+}
+
+const lang = (Astro.props.lang ?? getLangFromUrl(Astro.url)) as Lang;
+const t = useTranslations(lang);
+
+const title = Astro.props.title ?? t.meta.homeTitle;
+const description = Astro.props.description ?? t.meta.homeDescription;
+const canonicalURL = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site)
+  : Astro.url;
+---
+
+<!doctype html>
+<html lang={lang} data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph básico (se ampliará en bloque 12) -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+
+    <!-- Favicon placeholder -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <title>{title}</title>
+
+    <!-- Tema: leer preferencia guardada antes de pintar, evitar flash -->
+    <script is:inline>
+      (function () {
+        const saved = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = saved ?? (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+  </head>
+  <body>
+    <Nav />
+    <slot />
+    <Footer />
+
+    <!-- Animaciones de sección: fade + slide al entrar en pantalla -->
+    <style is:global>
+      .will-animate {
+        opacity: 0;
+        transform: translateY(14px);
+        transition: opacity 700ms ease, transform 700ms ease;
+      }
+      .will-animate.section-visible {
+        opacity: 1;
+        transform: none;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .will-animate {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+    <script>
+      (function () {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        const sections = document.querySelectorAll('section:not(.hero)');
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach(entry => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add('section-visible');
+              io.unobserve(entry.target);
+            });
+          },
+          { threshold: 0.06 }
+        );
+        sections.forEach(el => {
+          el.classList.add('will-animate');
+          io.observe(el);
+        });
+      })();
+    </script>
+  </body>
+</html>

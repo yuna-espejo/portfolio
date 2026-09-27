@@ -1,0 +1,275 @@
+---
+import Base from '../../layouts/Base.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('es');
+const e = t.experience;
+---
+
+<Base lang="es" title={t.meta.experienceTitle} description={t.meta.experienceDescription}>
+  <div class="exp-page">
+
+    <header class="exp-page-header">
+      <div class="exp-page-inner">
+        <h1 class="exp-page-heading">{e.heading}</h1>
+        <p class="exp-page-intro">{e.intro}</p>
+      </div>
+    </header>
+
+    <div class="exp-page-inner">
+      <ol class="cases-list" role="list">
+        {e.cases.map((c) => (
+          <li class="case">
+            <div class="case-meta">
+              <span class="case-index">{c.index}</span>
+              <span class="case-sector">{c.sector}</span>
+              <ul class="case-tags" role="list">
+                {c.tags.map((tag) => (
+                  <li class="case-tag">{tag}</li>
+                ))}
+              </ul>
+            </div>
+            <div class="case-body">
+              <h2 class="case-title">{c.title}</h2>
+              <dl class="case-dl">
+                <dt>{e.taskLabel}</dt>
+                <dd>{c.task}</dd>
+                <dt>{e.resultLabel}</dt>
+                <dd class="case-result">{c.result}</dd>
+              </dl>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <section class="other-works">
+        <h2 class="other-works-heading">{e.otherWorksHeading}</h2>
+        <ul class="other-works-list" role="list">
+          {e.otherWorks.map((item) => (
+            <li class="other-works-item">{item}</li>
+          ))}
+        </ul>
+      </section>
+    </div>
+
+  </div>
+</Base>
+
+<style>
+  .exp-page {
+    padding-bottom: var(--space-20);
+  }
+
+  .exp-page-inner {
+    max-width: 1200px;
+    padding-inline: clamp(24px, 5vw, 96px);
+  }
+
+  /* Cabecera de página */
+  .exp-page-header {
+    padding-block: var(--space-16) var(--space-12);
+    border-bottom: 1px solid var(--line);
+    margin-bottom: var(--space-16);
+  }
+
+  .exp-page-heading {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--text-3xl), 5vw, 3rem);
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-5);
+  }
+
+  .exp-page-intro {
+    font-size: var(--text-base);
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 70ch;
+  }
+
+  /* Lista de casos */
+  .cases-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* Caso individual */
+  .case {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: var(--space-12);
+    padding-block: var(--space-14);
+    border-top: 1px solid var(--line);
+  }
+
+  .case:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  /* Columna izquierda: meta */
+  .case-meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding-top: var(--space-1);
+  }
+
+  .case-index {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--line);
+  }
+
+  .case-sector {
+    font-size: var(--text-sm);
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .case-tags {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    margin-top: var(--space-2);
+  }
+
+  .case-tag {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  /* Columna derecha: cuerpo */
+  .case-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .case-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  /* Definición */
+  .case-dl {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: var(--space-2) var(--space-6);
+    align-items: baseline;
+  }
+
+  .case-dl dt {
+    font-size: var(--text-sm);
+    color: var(--muted);
+    padding-top: 2px;
+  }
+
+  .case-dl dd {
+    margin: 0;
+    font-size: var(--text-base);
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .case-dl dd.case-result {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* Otros trabajos */
+  .other-works {
+    margin-top: var(--space-20);
+  }
+
+  .other-works-heading {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: var(--space-6);
+  }
+
+  .other-works-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .other-works-item {
+    font-size: var(--text-base);
+    color: var(--muted);
+    line-height: 1.65;
+    padding-block: var(--space-4);
+    border-top: 1px solid var(--line);
+    padding-left: var(--space-4);
+    position: relative;
+  }
+
+  .other-works-item:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .other-works-item::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--line);
+    font-family: var(--font-mono);
+  }
+
+  /* Responsive */
+  @media (max-width: 700px) {
+    .case {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    .case-meta {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .case-tags {
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin-top: 0;
+      gap: var(--space-2);
+    }
+
+    .case-tag {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: 1px var(--space-2);
+    }
+
+    .case-dl {
+      grid-template-columns: 1fr;
+      gap: var(--space-1);
+    }
+
+    .case-dl dt {
+      margin-top: var(--space-3);
+    }
+
+    .case-dl dt:first-child {
+      margin-top: 0;
+    }
+  }
+</style>

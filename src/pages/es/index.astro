@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import CircuitSimulation from '../../components/CircuitSimulation.astro';
+import ExperienceHighlights from '../../components/ExperienceHighlights.astro';
+import StackReal from '../../components/StackReal.astro';
+import EducationCerts from '../../components/EducationCerts.astro';
+import OutsideCode from '../../components/OutsideCode.astro';
+import ContactCta from '../../components/ContactCta.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('es');
+---
+
+<Base lang="es" title={t.meta.homeTitle} description={t.meta.homeDescription}>
+  <Hero lang="es" />
+  <ExperienceHighlights lang="es" />
+  <StackReal lang="es" />
+  <EducationCerts lang="es" />
+  <OutsideCode lang="es" />
+  <CircuitSimulation lang="es" />
+  <ContactCta lang="es" />
+</Base>

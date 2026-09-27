@@ -1,0 +1,31 @@
+---
+import Base from '../../layouts/Base.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('es');
+const p = t.projects;
+---
+
+<Base lang="es" title={t.meta.projectsTitle} description={t.meta.projectsDescription}>
+  <div class="projects-page">
+    <div class="projects-inner">
+
+      <header class="projects-header">
+        <h1 class="projects-heading">{p.heading}</h1>
+      </header>
+
+      <p class="projects-empty">Estoy construyendo mi primer proyecto personal. Mientras tanto, puedes ver mi trabajo en integraciones en <a href="/es/experience">Experiencia</a>.</p>
+
+    </div>
+  </div>
+</Base>
+
+<style>
+  .projects-page { padding-bottom: var(--space-20); }
+  .projects-inner { max-width: 1200px; padding-inline: clamp(24px, 5vw, 96px); }
+  .projects-header { padding-block: var(--space-16) var(--space-12); border-bottom: 1px solid var(--line); margin-bottom: var(--space-10); }
+  .projects-heading { font-family: var(--font-serif); font-size: clamp(var(--text-3xl), 5vw, 3rem); font-weight: 600; color: var(--ink); letter-spacing: -0.02em; }
+  .projects-empty { font-size: var(--text-base); color: var(--muted); line-height: 1.65; padding-top: var(--space-4); }
+  .projects-empty a { color: var(--link); text-decoration: none; }
+  .projects-empty a:hover { text-decoration: underline; text-underline-offset: 3px; }
+</style>

@@ -1,0 +1,102 @@
+---
+import CircuitSimulation from './CircuitSimulation.astro';
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const t = useTranslations(Astro.props.lang);
+---
+
+<section class="featured">
+  <div class="featured-inner">
+    <h2 class="featured-heading">{t.home.featuredProjectHeading}</h2>
+    <div class="featured-body">
+      <div class="featured-sim">
+        <CircuitSimulation lang={Astro.props.lang} compact={false} />
+      </div>
+      <div class="featured-meta">
+        <h3 class="featured-title">{t.home.featuredProjectTitle}</h3>
+        <p class="featured-desc">{t.home.featuredProjectDesc}</p>
+        <a href={`/${Astro.props.lang}/projects/circuit-simulation`} class="featured-link">
+          {t.home.featuredProjectLink}
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .featured {
+    padding-block: var(--space-16);
+    border-top: 1px solid var(--line);
+  }
+
+  .featured-inner {
+    max-width: 1200px;
+    padding-inline: clamp(24px, 5vw, 96px);
+  }
+
+  .featured-heading {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin-bottom: var(--space-8);
+  }
+
+  .featured-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .featured-sim {
+    width: 100%;
+  }
+
+  .featured-meta {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .featured-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin-bottom: var(--space-3);
+  }
+
+  .featured-desc {
+    font-size: var(--text-base);
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 52ch;
+    margin-bottom: var(--space-5);
+  }
+
+  .featured-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 2px;
+    transition: border-color var(--transition);
+  }
+
+  .featured-link:hover {
+    border-color: var(--ink);
+  }
+</style>

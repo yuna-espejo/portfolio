@@ -1,0 +1,331 @@
+---
+import Base from '../../layouts/Base.astro';
+import { useTranslations } from '../../i18n/utils';
+import { site } from '../../config/site';
+
+const t = useTranslations('es');
+const c = t.contact;
+---
+
+<Base lang="es" title={t.meta.contactTitle} description={t.meta.contactDescription}>
+  <div class="contact-page">
+    <div class="contact-inner">
+
+      <header class="contact-header">
+        <h1 class="contact-heading">{c.heading}</h1>
+        <p class="contact-intro">{c.intro}</p>
+      </header>
+
+      <div class="contact-body">
+
+        <aside class="contact-left">
+          <div class="contact-left-block">
+            <span class="contact-block-label">LinkedIn</span>
+            <a
+              href={site.linkedin}
+              class="contact-social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {site.linkedin.replace('https://', '')}
+            </a>
+          </div>
+        </aside>
+
+        <div class="contact-right">
+          <h2 class="contact-form-heading">{c.formHeading}</h2>
+          <form class="contact-form" id="contact-form" novalidate>
+            <input
+              type="text"
+              name="website"
+              tabindex="-1"
+              autocomplete="off"
+              style="display:none"
+              aria-hidden="true"
+            />
+            <div class="form-field">
+              <label class="form-label" for="name">{c.nameLabel}</label>
+              <input
+                class="form-input"
+                type="text"
+                id="name"
+                name="name"
+                placeholder={c.namePlaceholder}
+                required
+              />
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="email">{c.emailFieldLabel}</label>
+              <input
+                class="form-input"
+                type="email"
+                id="email"
+                name="email"
+                placeholder={c.emailPlaceholder}
+                required
+              />
+            </div>
+            <div class="form-field">
+              <label class="form-label" for="message">{c.messageLabel}</label>
+              <textarea
+                class="form-textarea"
+                id="message"
+                name="message"
+                placeholder={c.messagePlaceholder}
+                rows="6"
+                required
+              ></textarea>
+            </div>
+            <button class="form-submit" type="submit">{c.submitLabel}</button>
+            <p class="form-success" id="form-success" hidden>{c.successMessage}</p>
+            <p class="form-error" id="form-error" hidden>{c.errorMessage}</p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</Base>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const successEl = document.getElementById('form-success');
+  const errorEl = document.getElementById('form-error');
+  const submitBtn = form?.querySelector<HTMLButtonElement>('.form-submit');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form || !successEl || !errorEl || !submitBtn) return;
+
+    successEl.hidden = true;
+    errorEl.hidden = true;
+
+    const originalText = submitBtn.textContent ?? '';
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="form-submit-spinner" aria-hidden="true"></span>';
+
+    // Yield so the browser paints the spinner before the fetch blocks
+    await new Promise(resolve => requestAnimationFrame(resolve));
+
+    const data = Object.fromEntries(new FormData(form));
+    const minDelay = new Promise(resolve => setTimeout(resolve, 500));
+
+    try {
+      const [res] = await Promise.all([
+        fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        }),
+        minDelay,
+      ]);
+      const json = await res.json();
+      if (json.ok) {
+        successEl.hidden = false;
+        form.reset();
+      } else {
+        errorEl.hidden = false;
+      }
+    } catch {
+      await minDelay;
+      errorEl.hidden = false;
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    }
+  });
+</script>
+
+<style>
+  .contact-page {
+    padding-bottom: var(--space-20);
+  }
+
+  .contact-inner {
+    max-width: 1200px;
+    padding-inline: clamp(24px, 5vw, 96px);
+  }
+
+  /* Header */
+  .contact-header {
+    padding-block: var(--space-16) var(--space-12);
+    border-bottom: 1px solid var(--line);
+    margin-bottom: var(--space-16);
+  }
+
+  .contact-heading {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--text-3xl), 5vw, 3rem);
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-4);
+  }
+
+  .contact-intro {
+    font-size: var(--text-base);
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 70ch;
+  }
+
+  /* Body: two-col layout */
+  .contact-body {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: var(--space-16);
+    align-items: start;
+    max-width: 800px;
+  }
+
+  /* Left */
+  .contact-left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+  }
+
+  .contact-left-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .contact-block-label {
+    font-size: var(--text-sm);
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .contact-email-link {
+    font-size: var(--text-sm);
+    color: var(--link);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .contact-email-link:hover {
+    text-decoration: underline;
+  }
+
+  .contact-social-link {
+    font-size: var(--text-sm);
+    color: var(--link);
+    text-decoration: none;
+  }
+
+  .contact-social-link:hover {
+    text-decoration: underline;
+  }
+
+  /* Right: form */
+  .contact-form-heading {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: var(--space-6);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .form-label {
+    font-size: var(--text-base);
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .form-input,
+  .form-textarea {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: var(--space-3) var(--space-4);
+    width: 100%;
+    outline: none;
+    transition: border-color var(--transition);
+    resize: vertical;
+  }
+
+  .form-input:focus,
+  .form-textarea:focus {
+    border-color: var(--ink);
+  }
+
+  .form-submit {
+    font-size: var(--text-base);
+    color: var(--bg);
+    background: var(--olive);
+    border: none;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    align-self: flex-start;
+    transition: opacity var(--transition);
+  }
+
+  .form-submit:hover {
+    opacity: 0.85;
+  }
+
+  .form-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .form-submit-spinner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    vertical-align: middle;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .form-submit-spinner {
+      animation: none;
+      opacity: 0.5;
+    }
+  }
+
+  .form-success {
+    font-size: var(--text-base);
+    color: var(--olive);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .form-error {
+    font-size: var(--text-base);
+    color: var(--accent);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .contact-body {
+      grid-template-columns: 1fr;
+      gap: var(--space-12);
+    }
+  }
+</style>

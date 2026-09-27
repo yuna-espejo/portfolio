@@ -1,0 +1,165 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const t = useTranslations(Astro.props.lang);
+---
+
+<section class="edu">
+  <div class="edu-inner">
+
+    <h2 class="edu-heading">{t.home.educationHeading}</h2>
+
+    <div class="edu-grid">
+
+      <!-- Formación -->
+      <div class="edu-col">
+        <h3 class="col-subheading">{t.home.educationSubheading}</h3>
+        <ul class="edu-list" role="list">
+          {t.home.education.map((item) => (
+            <li class="edu-item">
+              <div class="edu-item-top">
+                <span class="edu-period">{item.period}</span>
+                {item.inProgress && (
+                  <span class="edu-badge">{t.home.statusInProgress}</span>
+                )}
+              </div>
+              <p class="edu-degree">{item.degree}</p>
+              <p class="edu-school">{item.school}</p>
+              {item.spec && (
+                <p class="edu-spec">{item.spec}</p>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Certificaciones -->
+      <div class="edu-col">
+        <h3 class="col-subheading">{t.home.certsSubheading}</h3>
+        <ul class="edu-list" role="list">
+          {t.home.certifications.map((cert) => (
+            <li class="edu-item">
+              <div class="edu-item-top">
+                {cert.year && <span class="edu-period">{cert.year}</span>}
+              </div>
+              <p class="edu-degree">{cert.name}</p>
+              {cert.detail && (
+                <p class="edu-spec">{cert.detail}</p>
+              )}
+              <p class="edu-school">{cert.issuer}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .edu {
+    padding-block: var(--space-16);
+    border-top: 1px solid var(--line);
+  }
+
+  .edu-inner {
+    max-width: 1200px;
+    padding-inline: clamp(24px, 5vw, 96px);
+  }
+
+  .edu-heading {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin-bottom: var(--space-10);
+  }
+
+  /* Dos columnas */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .col-subheading {
+    font-size: var(--text-sm);
+    color: var(--muted);
+    margin-bottom: var(--space-6);
+  }
+
+  /* Lista */
+  .edu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .edu-item {
+    padding-block: var(--space-5);
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .edu-item:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  /* Fila superior: periodo + badge */
+  .edu-item-top {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-1);
+  }
+
+  .edu-period {
+    font-size: var(--text-sm);
+    color: var(--muted);
+  }
+
+  .edu-badge {
+    font-size: 11px;
+    color: var(--olive);
+    border: 1px solid var(--olive);
+    padding: 1px var(--space-2);
+    border-radius: var(--radius-sm);
+    opacity: 0.8;
+  }
+
+  .edu-degree {
+    font-size: var(--text-base);
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+
+  .edu-spec {
+    font-size: var(--text-xs);
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .edu-school {
+    font-size: var(--text-sm);
+    color: var(--muted);
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .edu-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+    }
+  }
+</style>

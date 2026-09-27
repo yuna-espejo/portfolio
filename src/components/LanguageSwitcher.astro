@@ -1,0 +1,65 @@
+---
+import { getLangFromUrl, translatePath, LANGS, type Lang } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const currentPath = Astro.url.pathname;
+
+const labels: Record<Lang, string> = {
+  es: 'ES',
+  en: 'EN',
+  ca: 'CA',
+};
+---
+
+<nav class="lang-switcher" aria-label="Language selector">
+  {LANGS.map((l) => (
+    <a
+      href={translatePath(currentPath, l)}
+      class:list={['lang-link', { active: l === lang }]}
+      aria-current={l === lang ? 'true' : undefined}
+      hreflang={l}
+    >
+      {labels[l]}
+    </a>
+  ))}
+</nav>
+
+<style>
+  .lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  .lang-link {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    height: 36px;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color var(--transition), background var(--transition);
+    border-right: 1px solid var(--line);
+  }
+
+  .lang-link:last-child {
+    border-right: none;
+  }
+
+  .lang-link:hover {
+    color: var(--ink);
+    background: var(--surface);
+  }
+
+  .lang-link.active {
+    color: var(--ink);
+    background: var(--surface);
+    font-weight: 500;
+  }
+</style>

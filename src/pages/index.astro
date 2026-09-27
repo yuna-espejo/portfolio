@@ -1,0 +1,24 @@
+---
+// Redirección SSR según Accept-Language del navegador.
+// Este archivo corre en el servidor (Vercel) gracias a output: 'hybrid'.
+export const prerender = false;
+
+import { DEFAULT_LANG, type Lang } from '../i18n/utils';
+
+const acceptLang = Astro.request.headers.get('accept-language') ?? '';
+
+function detectLang(header: string): Lang {
+  const preferred = header
+    .split(',')
+    .map((s) => s.split(';')[0].trim().toLowerCase().slice(0, 2));
+  for (const code of preferred) {
+    if (code === 'ca') return 'ca';
+    if (code === 'en') return 'en';
+    if (code === 'es') return 'es';
+  }
+  return DEFAULT_LANG;
+}
+
+const lang = detectLang(acceptLang);
+return Astro.redirect(`/${lang}/`, 302);
+---

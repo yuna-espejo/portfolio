@@ -1,0 +1,599 @@
+---
+interface Props {
+  lang?: 'es' | 'en' | 'ca';
+}
+
+const { lang = 'es' } = Astro.props;
+
+const labels = {
+  es: {
+    heading: 'Circuit de Barcelona-Catalunya',
+    subtitle: 'Montmeló · 4.657 km · 16 curvas',
+    length: 'Longitud',
+    corners: 'Curvas',
+    straight: 'Recta principal',
+    lapRecord: 'Récord de vuelta',
+    running: 'simulación en marcha',
+    swatchLabels: ['Terracota', 'Azul cielo', 'Oliva dorado', 'Crema'],
+  },
+  en: {
+    heading: 'Circuit de Barcelona-Catalunya',
+    subtitle: 'Montmeló · 4.657 km · 16 corners',
+    length: 'Length',
+    corners: 'Corners',
+    straight: 'Main straight',
+    lapRecord: 'Lap record',
+    running: 'simulation running',
+    swatchLabels: ['Terracotta', 'Sky blue', 'Golden olive', 'Cream'],
+  },
+  ca: {
+    heading: 'Circuit de Barcelona-Catalunya',
+    subtitle: 'Montmeló · 4.657 km · 16 corbes',
+    length: 'Longitud',
+    corners: 'Corbes',
+    straight: 'Recta principal',
+    lapRecord: 'Rècord de volta',
+    running: 'simulació en marxa',
+    swatchLabels: ['Terracota', 'Blau cel', 'Oliva daurat', 'Crema'],
+  },
+};
+
+const L = labels[lang];
+
+const swatches = [
+  { color: '#E07A52', label: L.swatchLabels[0] },
+  { color: '#AED0DE', label: L.swatchLabels[1] },
+  { color: '#E0DEAA', label: L.swatchLabels[2] },
+  { color: '#ECEAD6', label: L.swatchLabels[3] },
+];
+
+const polygonPoints = '42,152 61,132 109,108 308,109 320,121 320,147 309,164 293,173 266,179 150,178 127,195 201,253 238,262 298,264 326,249 340,208 411,132 432,122 468,122 754,260 762,253 729,202 668,176 658,166 660,135 693,129 780,159 803,219 841,237 848,298 842,311 822,325 114,310 106,304 110,256 96,241 35,209 32,172';
+---
+
+<section class="circuit-section">
+  <div class="circuit-inner">
+
+    <!-- Heading -->
+    <div class="circuit-heading-block">
+      <h2 class="circuit-heading">{L.heading}</h2>
+      <p class="circuit-subtitle">{L.subtitle}</p>
+    </div>
+
+    <!-- Static SVG para prefers-reduced-motion -->
+    <svg
+      class="circuit-static"
+      viewBox="12 88 855 265"
+      aria-label="Circuit de Barcelona-Catalunya"
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <polygon
+        points={polygonPoints}
+        fill="none"
+        stroke="var(--olive)"
+        stroke-width="2"
+        stroke-linejoin="round"
+      />
+    </svg>
+
+    <!-- Canvas animado -->
+    <canvas class="circuit-canvas" aria-hidden="true"></canvas>
+
+    <!-- Panel de datos -->
+    <div class="circuit-info">
+      <div class="info-left">
+        <dl class="info-dl">
+          <div class="info-row">
+            <dt class="info-dt">{L.length}</dt>
+            <dd class="info-dd">4.657 km</dd>
+          </div>
+          <div class="info-row">
+            <dt class="info-dt">{L.corners}</dt>
+            <dd class="info-dd">16</dd>
+          </div>
+          <div class="info-row">
+            <dt class="info-dt">{L.straight}</dt>
+            <dd class="info-dd">1.047 m</dd>
+          </div>
+          <div class="info-row">
+            <dt class="info-dt">{L.lapRecord}</dt>
+            <dd class="info-dd info-dd--record">1:14.637 · M. Schumacher · Ferrari · 2006</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="info-right">
+        <!-- Selector de color para coche 1 -->
+        <div class="swatch-row">
+          {swatches.map((s, i) => (
+            <button
+              class:list={['swatch', { 'swatch--selected': i === 0 }]}
+              data-color={s.color}
+              style={`background:${s.color}`}
+              title={s.label}
+              aria-label={s.label}
+              type="button"
+            />
+          ))}
+        </div>
+        <!-- Indicador coche 2 (fijo) -->
+        <div class="car2-row">
+          <span class="car2-dot"></span>
+        </div>
+      </div>
+    </div>
+
+    <p class="circuit-status">
+      <span class="status-dot" aria-hidden="true">■</span>
+      {L.running}
+    </p>
+
+  </div>
+</section>
+
+<style>
+  .circuit-section {
+    padding-block: var(--space-16);
+    border-top: 1px solid var(--line);
+  }
+
+  .circuit-inner {
+    max-width: 1200px;
+    padding-inline: clamp(24px, 5vw, 96px);
+  }
+
+  /* Heading */
+  .circuit-heading-block {
+    margin-bottom: var(--space-6);
+  }
+
+  .circuit-heading {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--text-xl), 3vw, var(--text-2xl));
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin-bottom: var(--space-1);
+  }
+
+  .circuit-subtitle {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--muted);
+  }
+
+  /* Canvas */
+  .circuit-canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* SVG estático (solo visible con prefers-reduced-motion) */
+  .circuit-static {
+    display: none;
+    width: 100%;
+    height: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .circuit-canvas { display: none; }
+    .circuit-static { display: block; }
+  }
+
+  /* Panel de info */
+  .circuit-info {
+    display: flex;
+    gap: var(--space-8);
+    align-items: flex-start;
+    padding-top: var(--space-5);
+    margin-top: var(--space-3);
+    border-top: 1px solid var(--line);
+    flex-wrap: wrap;
+  }
+
+  .info-left {
+    flex: 1 1 280px;
+  }
+
+  .info-right {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding-top: 2px;
+  }
+
+  .info-dl {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .info-row {
+    display: flex;
+    gap: var(--space-4);
+    align-items: baseline;
+  }
+
+  .info-dt {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    color: var(--muted);
+    min-width: 110px;
+    flex-shrink: 0;
+  }
+
+  .info-dd {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    color: var(--ink);
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .info-dd--record {
+    color: var(--muted);
+    font-weight: 400;
+    font-size: var(--text-xs);
+  }
+
+  /* Selector de color */
+  .swatch-row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .swatch {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1.5px solid var(--line);
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+    transition: border-color 120ms ease, box-shadow 120ms ease;
+  }
+
+  .swatch--selected {
+    border-color: var(--ink);
+    box-shadow: 0 0 0 2px var(--ink);
+  }
+
+  /* Indicador coche 2 */
+  .car2-row {
+    display: flex;
+    align-items: center;
+  }
+
+  .car2-dot {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--link);
+    border: 1.5px solid var(--line);
+  }
+
+  /* Barra de estado */
+  .circuit-status {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    color: var(--muted);
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--line);
+  }
+
+  .status-dot {
+    color: var(--accent);
+  }
+</style>
+
+<script>
+  (function () {
+    const allSections = document.querySelectorAll('.circuit-section');
+    const section = allSections[allSections.length - 1] as HTMLElement | null;
+    if (!section) return;
+
+    const canvas = section.querySelector('.circuit-canvas') as HTMLCanvasElement | null;
+    const staticSvg = section.querySelector('.circuit-static') as SVGElement | null;
+    const swatchBtns = section.querySelectorAll<HTMLButtonElement>('.swatch');
+
+    if (!canvas) return;
+
+    // Respetar prefers-reduced-motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      canvas.style.display = 'none';
+      if (staticSvg) staticSvg.style.display = 'block';
+      return;
+    }
+
+    // Color seleccionado para coche 1 (por defecto: primera muestra, terracota)
+    let car1Color = '#E07A52';
+
+    // Picker de color
+    swatchBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        swatchBtns.forEach((b) => b.classList.remove('swatch--selected'));
+        btn.classList.add('swatch--selected');
+        car1Color = btn.dataset.color ?? car1Color;
+      });
+    });
+
+    // Datos del circuito
+    const exterior = "M 20,190 L 21,205 L 31,220 L 97,257 L 91,300 L 97,314 L 110,323 L 815,337 L 843,327 L 860,298 L 851,246 L 834,230 L 806,220 L 790,172 L 778,158 L 685,127 L 668,128 L 653,137 L 649,147 L 653,167 L 671,181 L 723,201 L 749,240 L 751,255 L 461,120 L 434,121 L 408,134 L 332,212 L 321,247 L 306,258 L 208,249 L 134,193 L 139,189 L 143,196 L 150,194 L 145,187 L 150,184 L 267,186 L 293,178 L 318,161 L 329,141 L 325,120 L 308,108 L 136,103 L 115,107 L 53,139 L 31,163 Z";
+    const interior = "M 43,184 L 52,164 L 71,144 L 119,120 L 297,121 L 308,129 L 309,142 L 283,164 L 255,170 L 139,169 L 117,184 L 112,202 L 147,235 L 195,267 L 237,276 L 309,277 L 336,261 L 350,220 L 422,144 L 438,136 L 457,135 L 740,273 L 767,272 L 775,260 L 774,248 L 740,195 L 670,160 L 670,147 L 683,141 L 765,166 L 792,231 L 830,247 L 837,289 L 831,302 L 811,317 L 125,301 L 116,296 L 120,247 L 107,233 L 50,205 Z";
+
+    const clPts: [number, number][] = [
+      [32,172],[35,209],[96,241],[110,256],[106,304],[114,310],[822,325],[842,311],
+      [848,298],[841,237],[803,219],[780,159],[693,129],[660,135],[658,166],[668,176],
+      [729,202],[762,253],[754,260],[468,122],[432,122],[411,132],[340,208],[326,249],
+      [298,264],[238,262],[201,253],[127,195],[150,178],[266,179],[293,173],[309,164],
+      [320,147],[320,121],[308,109],[109,108],[61,132],[42,152],
+    ];
+    const pts: [number, number][] = [...clPts].reverse();
+
+    const segLens: number[] = [];
+    let totalLen = 0;
+    for (let i = 0; i < pts.length; i++) {
+      const a = pts[i], b = pts[(i + 1) % pts.length];
+      const d = Math.hypot(b[0] - a[0], b[1] - a[1]);
+      segLens.push(d);
+      totalLen += d;
+    }
+    const cumLen: number[] = [];
+    let acc = 0;
+    for (const l of segLens) { cumLen.push(acc); acc += l; }
+
+    function posAtDist(d: number): [number, number] {
+      d = ((d % totalLen) + totalLen) % totalLen;
+      let i = 0;
+      while (i < cumLen.length - 1 && cumLen[i + 1] <= d) i++;
+      const rem = d - cumLen[i];
+      const frac = rem / segLens[i];
+      const a = pts[i], b = pts[(i + 1) % pts.length];
+      return [a[0] + (b[0] - a[0]) * frac, a[1] + (b[1] - a[1]) * frac];
+    }
+
+    function angleAtDist(d: number): number {
+      const [x1, y1] = posAtDist(d - 2);
+      const [x2, y2] = posAtDist(d + 2);
+      return Math.atan2(y2 - y1, x2 - x1);
+    }
+
+    function speedAt(d: number): number {
+      const a1 = angleAtDist(d - 15);
+      const a2 = angleAtDist(d + 15);
+      let diff = Math.abs(a2 - a1);
+      if (diff > Math.PI) diff = 2 * Math.PI - diff;
+      const curvature = Math.min(diff / Math.PI, 1);
+      return 1.6 - curvature * 1.1;
+    }
+
+    function getCSSVar(name: string): string {
+      return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    }
+
+    function isDark(): boolean {
+      const t = document.documentElement.getAttribute('data-theme');
+      if (t === 'dark') return true;
+      if (t === 'light') return false;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+
+    function parseHex(hex: string): [number, number, number] {
+      const h = hex.trim().replace('#', '');
+      return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)];
+    }
+
+    const VX = 12, VY = 88, VW = 855, VH = 265;
+
+    let tRef = 0;
+    let tRef2 = 200;
+    let finishGlow = 0;
+    let trail1: { x: number; y: number; age: number }[] = [];
+    let trail2: { x: number; y: number; age: number }[] = [];
+    let lastNear1 = false;
+    let lastNear2 = false;
+    let animId = 0;
+    let running = false;
+
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.round(rect.width * dpr);
+      canvas.height = Math.round(rect.width * (VH / VW) * dpr);
+      canvas.style.width = rect.width + 'px';
+      canvas.style.height = (rect.width * VH / VW) + 'px';
+    };
+
+    resize();
+    window.addEventListener('resize', resize);
+
+    function draw() {
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const W = canvas.width, H = canvas.height;
+      const scale = Math.min(W / VW, H / VH);
+      const scaledW = VW * scale;
+      const scaledH = VH * scale;
+      const offsetX = (W - scaledW) / 2;
+      const offsetY = (H - scaledH) / 2;
+
+      const tx = (x: number) => (x - VX) * scale + offsetX;
+      const ty = (y: number) => (y - VY) * scale + offsetY;
+
+      // Leer colores del tema en cada frame
+      const dark = isDark();
+      const linkHex = getCSSVar('--link');
+      const oliveHex = getCSSVar('--olive');
+
+      let car1RGB: [number, number, number] = [224, 122, 82];
+      let linkRGB: [number, number, number] = [63, 95, 138];
+      let oliveRGB: [number, number, number] = [69, 69, 42];
+
+      try { car1RGB = parseHex(car1Color); } catch (_) {}
+      try { linkRGB = parseHex(linkHex); } catch (_) {}
+      try { oliveRGB = parseHex(oliveHex); } catch (_) {}
+
+      const extFill = dark ? '#0a0f1e' : '#c8c4b0';
+      const intFill = dark ? '#020617' : '#dbd7c4';
+
+      ctx.clearRect(0, 0, W, H);
+
+      const drawPath = (d: string, fill?: string, stroke?: string, lw = 1) => {
+        const p = new Path2D(d);
+        ctx.save();
+        ctx.setTransform(scale, 0, 0, scale, offsetX - VX * scale, offsetY - VY * scale);
+        if (fill) { ctx.fillStyle = fill; ctx.fill(p); }
+        if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = lw / scale; ctx.stroke(p); }
+        ctx.restore();
+      };
+
+      // Asfalto y bordes
+      drawPath(exterior, extFill);
+      drawPath(interior, intFill);
+      drawPath(exterior, undefined, `rgba(${oliveRGB[0]},${oliveRGB[1]},${oliveRGB[2]},0.5)`, 2);
+      drawPath(interior, undefined, `rgba(${oliveRGB[0]},${oliveRGB[1]},${oliveRGB[2]},0.3)`, 1.5);
+
+      // Línea central discontinua
+      ctx.save();
+      ctx.setLineDash([tx(6) - tx(0), tx(18) - tx(0)]);
+      drawPath(
+        "M 32,172 L 35,209 L 96,241 L 110,256 L 106,304 L 114,310 L 822,325 L 842,311 L 848,298 L 841,237 L 803,219 L 780,159 L 693,129 L 660,135 L 658,166 L 668,176 L 729,202 L 762,253 L 754,260 L 468,122 L 432,122 L 411,132 L 340,208 L 326,249 L 298,264 L 238,262 L 201,253 L 127,195 L 150,178 L 266,179 L 293,173 L 309,164 L 320,147 L 320,121 L 308,109 L 109,108 L 61,132 L 42,152 Z",
+        undefined,
+        `rgba(${oliveRGB[0]},${oliveRGB[1]},${oliveRGB[2]},0.15)`,
+        1
+      );
+      ctx.restore();
+
+      // Línea de meta
+      const sfX = tx(540), sfY1 = ty(308), sfY2 = ty(338);
+      ctx.fillStyle = `rgba(${oliveRGB[0]},${oliveRGB[1]},${oliveRGB[2]},0.9)`;
+      ctx.fillRect(sfX, sfY1, tx(3) - tx(0), sfY2 - sfY1);
+      ctx.fillStyle = `rgba(${oliveRGB[0]},${oliveRGB[1]},${oliveRGB[2]},0.4)`;
+      ctx.fillRect(sfX + (tx(9) - tx(0)), sfY1, tx(3) - tx(0), sfY2 - sfY1);
+
+      // Destello de meta
+      if (finishGlow > 0) {
+        const prog = finishGlow / 20;
+        ctx.shadowColor = `rgba(${oliveRGB[0]},${oliveRGB[1]},${oliveRGB[2]},1)`;
+        ctx.shadowBlur = 16 * prog;
+        ctx.fillStyle = `rgba(${oliveRGB[0]},${oliveRGB[1]},${oliveRGB[2]},${0.6 * prog})`;
+        ctx.fillRect(sfX, sfY1, tx(3) - tx(0), sfY2 - sfY1);
+        ctx.shadowBlur = 0;
+        finishGlow--;
+      }
+
+      // Avanzar posiciones
+      const BASE = totalLen / (74 * 60);
+      tRef = (tRef + BASE * speedAt(tRef) + totalLen) % totalLen;
+      tRef2 = (tRef2 + BASE * speedAt(tRef2) * 0.8 + totalLen) % totalLen;
+
+      const [cx, cy] = posAtDist(tRef);
+      const [cx2, cy2] = posAtDist(tRef2);
+
+      trail1.push({ x: cx, y: cy, age: 0 });
+      trail2.push({ x: cx2, y: cy2, age: 0 });
+
+      // Detección de meta
+      const near1 = Math.abs(cx - 540) < 10 && Math.abs(cy - 320) < 10;
+      if (near1 && !lastNear1) finishGlow = 40;
+      lastNear1 = near1;
+      const near2 = Math.abs(cx2 - 540) < 10 && Math.abs(cy2 - 320) < 10;
+      if (near2 && !lastNear2) finishGlow = 20;
+      lastNear2 = near2;
+
+      // Envejecer trails
+      for (let i = trail1.length - 1; i >= 0; i--) {
+        trail1[i].age++;
+        if (trail1[i].age > 50) trail1.splice(i, 1);
+      }
+      for (let i = trail2.length - 1; i >= 0; i--) {
+        trail2[i].age++;
+        if (trail2[i].age > 50) trail2.splice(i, 1);
+      }
+
+      // Trails
+      for (let i = 0; i < trail1.length - 1; i++) {
+        const p = trail1[i];
+        const progress = i / trail1.length;
+        const alpha = progress * progress * 0.65;
+        const radius = (tx(5) - tx(0)) * (0.4 + progress * 0.5);
+        ctx.beginPath();
+        ctx.arc(tx(p.x), ty(p.y), radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${car1RGB[0]},${car1RGB[1]},${car1RGB[2]},${alpha.toFixed(2)})`;
+        ctx.fill();
+      }
+
+      for (let i = 0; i < trail2.length - 1; i++) {
+        const p = trail2[i];
+        const progress = i / trail2.length;
+        const alpha = progress * progress * 0.65;
+        const radius = (tx(5) - tx(0)) * (0.4 + progress * 0.5);
+        ctx.beginPath();
+        ctx.arc(tx(p.x), ty(p.y), radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${linkRGB[0]},${linkRGB[1]},${linkRGB[2]},${alpha.toFixed(2)})`;
+        ctx.fill();
+      }
+
+      // Coche 1 (color seleccionado)
+      ctx.save();
+      ctx.shadowColor = `rgba(${car1RGB[0]},${car1RGB[1]},${car1RGB[2]},1)`;
+      ctx.shadowBlur = 10;
+      ctx.beginPath();
+      ctx.arc(tx(cx), ty(cy), tx(9) - tx(0), 0, Math.PI * 2);
+      ctx.fillStyle = `rgb(${car1RGB[0]},${car1RGB[1]},${car1RGB[2]})`;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+      ctx.strokeStyle = dark ? 'rgba(255,255,255,0.55)' : 'rgba(0,0,0,0.45)';
+      ctx.lineWidth = tx(1.5) - tx(0);
+      ctx.stroke();
+      ctx.restore();
+
+      // Coche 2 (link, fijo)
+      ctx.save();
+      ctx.shadowColor = `rgba(${linkRGB[0]},${linkRGB[1]},${linkRGB[2]},1)`;
+      ctx.shadowBlur = 10;
+      ctx.beginPath();
+      ctx.arc(tx(cx2), ty(cy2), tx(9) - tx(0), 0, Math.PI * 2);
+      ctx.fillStyle = `rgb(${linkRGB[0]},${linkRGB[1]},${linkRGB[2]})`;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+      ctx.strokeStyle = dark ? 'rgba(255,255,255,0.55)' : 'rgba(0,0,0,0.45)';
+      ctx.lineWidth = tx(1.5) - tx(0);
+      ctx.stroke();
+      ctx.restore();
+
+      animId = requestAnimationFrame(draw);
+    }
+
+    // Pausa con IntersectionObserver
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          if (!running) { running = true; animId = requestAnimationFrame(draw); }
+        } else {
+          running = false;
+          cancelAnimationFrame(animId);
+        }
+      },
+      { threshold: 0 }
+    );
+    observer.observe(canvas);
+
+    running = true;
+    animId = requestAnimationFrame(draw);
+
+    document.addEventListener('astro:before-swap', () => {
+      cancelAnimationFrame(animId);
+      window.removeEventListener('resize', resize);
+      observer.disconnect();
+    }, { once: true });
+  })();
+</script>

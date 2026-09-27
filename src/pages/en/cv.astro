@@ -1,0 +1,400 @@
+---
+import Base from '../../layouts/Base.astro';
+import { useTranslations } from '../../i18n/utils';
+import { site } from '../../config/site';
+
+const t = useTranslations('en');
+const c = t.cv;
+
+const stack = [
+  {
+    key: 'integration' as const,
+    items: ['SAP Integration Suite', 'SAP Cloud Integration', 'SAP BTP', 'SuccessFactors', 'SAP Plateau'],
+  },
+  {
+    key: 'languages' as const,
+    items: ['Groovy', 'SQL', 'Python', 'JavaScript'],
+  },
+  {
+    key: 'formats' as const,
+    items: ['REST', 'XML', 'XSLT', 'JSON', 'CSV', 'SFTP', 'Microsoft Graph'],
+  },
+  {
+    key: 'devops' as const,
+    items: ['GitHub Actions', 'Git', 'Bitbucket', 'Docker', 'Postman', 'Linux'],
+  },
+  {
+    key: 'data' as const,
+    items: ['PostgreSQL', 'MySQL', 'Power BI', 'Excel'],
+  },
+];
+---
+
+<Base lang="en" title={t.meta.cvTitle} description={t.meta.cvDescription}>
+  <div class="cv-page">
+    <div class="cv-inner">
+
+      <header class="cv-header">
+        <h1 class="cv-name">Yuna Espejo</h1>
+        <p class="cv-role">{t.about.role}</p>
+        <div class="cv-links">
+          <a href={"mailto:" + site.email} class="cv-link">{site.email}</a>
+          <a href={site.linkedin} class="cv-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href={site.github} class="cv-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <div class="cv-download">
+          <a class="cv-download-btn" href="/cv/Yuna_Espejo_Santana_CV.pdf" download>{c.downloadLabel}</a>
+        </div>
+      </header>
+
+      <section class="cv-section">
+        <h2 class="cv-section-heading">{c.experienceHeading}</h2>
+        <ul class="cv-jobs" role="list">
+          {c.jobs.map((job) => (
+            <li class="cv-job">
+              <div class="cv-job-header">
+                <span class="cv-job-title">{job.title}</span>
+                <span class="cv-job-period">{job.period}</span>
+              </div>
+              <p class="cv-job-company">{job.company}</p>
+              <p class="cv-job-type">{job.type}</p>
+              <ul class="cv-job-bullets" role="list">
+                {job.bullets.map((bullet) => (
+                  <li class="cv-job-bullet">{bullet}</li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="cv-section">
+        <h2 class="cv-section-heading">{c.educationHeading}</h2>
+        <ul class="cv-jobs" role="list">
+          {t.home.education.map((edu) => (
+            <li class="cv-job">
+              <div class="cv-job-header">
+                <span class="cv-job-title">{edu.degree}</span>
+                <span class="cv-job-period">{edu.period}</span>
+              </div>
+              <p class="cv-job-company">{edu.school}</p>
+              {edu.spec && <p class="cv-job-type">{edu.spec}</p>}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="cv-section">
+        <h2 class="cv-section-heading">{c.certsHeading}</h2>
+        <ul class="cv-jobs" role="list">
+          {t.home.certifications.map((cert) => (
+            <li class="cv-job">
+              <div class="cv-job-header">
+                <span class="cv-job-title">{cert.name}</span>
+                {cert.year && <span class="cv-job-period">{cert.year}</span>}
+              </div>
+              <p class="cv-job-company">{cert.issuer}</p>
+              {cert.detail && <p class="cv-job-type">{cert.detail}</p>}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="cv-section">
+        <h2 class="cv-section-heading">{c.skillsHeading}</h2>
+        <dl class="cv-stack">
+          {stack.map((row) => (
+            <>
+              <dt class="cv-stack-cat">{t.home.stackCategories[row.key]}</dt>
+              <dd class="cv-stack-items">
+                {row.items.map((item) => (
+                  <span class="cv-stack-pill">{item}</span>
+                ))}
+              </dd>
+            </>
+          ))}
+        </dl>
+      </section>
+
+      <section class="cv-section">
+        <h2 class="cv-section-heading">{c.languagesHeading}</h2>
+        <ul class="cv-languages" role="list">
+          {c.languages.map((lang) => (
+            <li class="cv-lang-item">
+              <span class="cv-lang-name">{lang.lang}</span>
+              <span class="cv-lang-level">{lang.level}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+    </div>
+  </div>
+</Base>
+
+<style>
+  .cv-page {
+    padding-bottom: var(--space-20);
+  }
+
+  .cv-inner {
+    max-width: 1200px;
+    padding-inline: clamp(24px, 5vw, 96px);
+  }
+
+  .cv-header {
+    padding-block: var(--space-16) var(--space-12);
+    border-bottom: 1px solid var(--line);
+    margin-bottom: var(--space-4);
+  }
+
+  .cv-name {
+    font-family: var(--font-serif);
+    font-size: clamp(var(--text-3xl), 5vw, 3rem);
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-2);
+  }
+
+  .cv-role {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--muted);
+    margin-bottom: var(--space-5);
+  }
+
+  .cv-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+  }
+
+  .cv-link {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--link);
+    text-decoration: none;
+  }
+
+  .cv-link:hover {
+    text-decoration: underline;
+  }
+
+  .cv-download {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .cv-download-btn {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--bg);
+    background: var(--olive);
+    border: none;
+    padding: var(--space-2) var(--space-5);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity var(--transition);
+  }
+
+  .cv-download-btn:hover {
+    opacity: 0.85;
+  }
+
+  .cv-download-note {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--muted);
+  }
+
+  .cv-section {
+    border-top: 1px solid var(--line);
+    padding-block: var(--space-16);
+  }
+
+  .cv-section-heading {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-8);
+  }
+
+  .cv-jobs {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cv-job {
+    padding-block: var(--space-6);
+    border-top: 1px solid var(--line);
+  }
+
+  .cv-job:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .cv-job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-4);
+    margin-bottom: var(--space-1);
+    flex-wrap: wrap;
+  }
+
+  .cv-job-title {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .cv-job-period {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .cv-job-company {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--ink);
+    margin: 0 0 var(--space-1);
+  }
+
+  .cv-job-type {
+    font-size: var(--text-sm);
+    color: var(--muted);
+    margin: 0 0 var(--space-4);
+  }
+
+  .cv-job-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .cv-job-bullet {
+    font-size: var(--text-sm);
+    color: var(--muted);
+    line-height: 1.65;
+    padding-left: var(--space-4);
+    position: relative;
+  }
+
+  .cv-job-bullet::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--line);
+    font-family: var(--font-mono);
+  }
+
+  .cv-stack {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 0;
+    margin: 0;
+  }
+
+  .cv-stack-cat,
+  .cv-stack-items {
+    padding-block: var(--space-3);
+    border-top: 1px solid var(--line);
+    margin: 0;
+  }
+
+  .cv-stack-cat {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding-right: var(--space-4);
+    align-self: start;
+  }
+
+  .cv-stack-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    align-content: flex-start;
+  }
+
+  .cv-stack-pill {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 1px var(--space-2);
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+  }
+
+  .cv-languages {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cv-lang-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-block: var(--space-3);
+    border-top: 1px solid var(--line);
+  }
+
+  .cv-lang-item:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .cv-lang-name {
+    font-size: var(--text-sm);
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .cv-lang-level {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--muted);
+  }
+
+  @media (max-width: 640px) {
+    .cv-stack {
+      grid-template-columns: 1fr;
+    }
+
+    .cv-stack-cat {
+      padding-bottom: var(--space-2);
+    }
+
+    .cv-stack-items {
+      border-top: none;
+      padding-top: 0;
+      padding-bottom: var(--space-4);
+    }
+
+    .cv-job-header {
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+  }
+</style>
