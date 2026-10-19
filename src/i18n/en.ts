@@ -4,7 +4,7 @@ import type { Translations } from './es';
 export const en: Translations = {
   meta: {
     siteName: 'Yuna Espejo',
-    homeTitle: 'Yuna Espejo — Software Developer',
+    homeTitle: 'Yuna Espejo — Junior Consultant',
     homeDescription:
       'Junior Consultant in Digital Integrations. I connect systems so data gets from one place to another complete, correct and on time.',
     experienceTitle: 'Experience — Yuna Espejo',
@@ -36,7 +36,7 @@ export const en: Translations = {
         sector: 'Pharma · International',
         title: 'Employee delta sync',
         task: 'Redesign a daily integration that sent all employee data every day regardless of what had changed.',
-        result: 'New three-mode load (full, incremental and snapshot) so only changes are transferred. Significantly fewer API calls [PENDING: figure], in production and documented.',
+        result: 'New three-mode load (full, incremental and snapshot) so only changes are transferred. Significantly fewer daily API calls, in production and documented to version 1.6.',
         tags: ['SAP Cloud Integration', 'SuccessFactors', 'Groovy', 'SFTP'],
       },
       {
@@ -60,7 +60,7 @@ export const en: Translations = {
         sector: 'DevOps · Internal',
         title: 'CI/CD pipelines for SAP integrations',
         task: 'Automate integration quality checks and migration between environments.',
-        result: 'Two GitHub Actions workflows: one checks best practices, one automates migration. [PENDING: impact]',
+        result: 'Two GitHub Actions workflows: one checks best practices, one automates migration. Both still in use by the team in production.',
         tags: ['GitHub Actions', 'SAP BTP', 'SAP Cloud Integration', 'CI/CD'],
       },
     ],
@@ -306,7 +306,7 @@ export const en: Translations = {
         title: 'Employee delta sync',
         summary:
           'Redesign a daily integration that was sending all employee data every day regardless of what had changed.',
-        result: 'New three-mode load so only changes travel. [PENDING: API figure]. In production and documented.',
+        result: 'New three-mode load so only changes travel. Significantly fewer daily API calls. In production and documented.',
         tags: ['SAP Cloud Integration', 'SuccessFactors', 'Groovy'],
       },
       {
@@ -322,7 +322,7 @@ export const en: Translations = {
         title: 'CI/CD pipelines for SAP integrations',
         summary:
           'Automate integration quality checks and migration between environments.',
-        result: 'Two GitHub Actions workflows: one checks best practices, the other automates migration. [PENDING: impact]',
+        result: 'Two GitHub Actions workflows: one checks best practices, the other automates migration. Both in production and in use by the team.',
         tags: ['GitHub Actions', 'SAP BTP', 'CI/CD'],
       },
     ],

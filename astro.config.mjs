@@ -4,6 +4,7 @@ import vercel from '@astrojs/vercel';
 import react from '@astrojs/react';
 
 export default defineConfig({
+  site: 'https://yunaespejo.com',
   adapter: vercel(),
   integrations: [react()],
   i18n: {

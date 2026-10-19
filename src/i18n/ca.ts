@@ -4,7 +4,7 @@ import type { Translations } from './es';
 export const ca: Translations = {
   meta: {
     siteName: 'Yuna Espejo',
-    homeTitle: 'Yuna Espejo — Software Developer',
+    homeTitle: 'Yuna Espejo — Junior Consultant',
     homeDescription:
       'Junior Consultant en Digital Integrations. Connecto sistemes perquè les dades arribin completes, correctes i a temps.',
     experienceTitle: 'Experiència — Yuna Espejo',
@@ -36,7 +36,7 @@ export const ca: Translations = {
         sector: 'Farmacèutica · Internacional',
         title: 'Sincronització delta de personal',
         task: "Redissenyar una integració diària que enviava totes les dades de personal cada dia, haguessin canviat o no.",
-        result: "Nova càrrega en tres modes (completa, incremental i snapshot) perquè només viatgi el que canvia. Moltes menys crides a l'API [PENDENT: xifra], en producció i documentada.",
+        result: "Nova càrrega en tres modes (completa, incremental i snapshot) perquè només viatgi el que canvia. Reducció dràstica de les crides diàries a l'API, en producció i documentada fins a la versió 1.6.",
         tags: ['SAP Cloud Integration', 'SuccessFactors', 'Groovy', 'SFTP'],
       },
       {
@@ -60,7 +60,7 @@ export const ca: Translations = {
         sector: 'DevOps · Intern',
         title: 'Pipelines CI/CD per a integracions SAP',
         task: "Automatitzar el control de qualitat de les integracions i la seva migració entre entorns.",
-        result: "Dos workflows de GitHub Actions, un que revisa les bones pràctiques i un altre que automatitza la migració. [PENDENT: impacte]",
+        result: "Dos workflows de GitHub Actions, un que revisa les bones pràctiques i un altre que automatitza la migració. Tots dos segueixen en ús per l'equip en producció.",
         tags: ['GitHub Actions', 'SAP BTP', 'SAP Cloud Integration', 'CI/CD'],
       },
     ],
@@ -306,7 +306,7 @@ export const ca: Translations = {
         title: "Sincronització delta d'empleats",
         summary:
           "Redissenyar una integració diària que enviava totes les dades de personal cada dia, haguessin canviat o no.",
-        result: "Nova càrrega en tres modes perquè només viatgi el que canvia. [PENDENT: xifra API]. En producció i documentada.",
+        result: "Nova càrrega en tres modes perquè només viatgi el que canvia. Reducció dràstica de les crides diàries a l'API. En producció i documentada.",
         tags: ['SAP Cloud Integration', 'SuccessFactors', 'Groovy'],
       },
       {
@@ -322,7 +322,7 @@ export const ca: Translations = {
         title: 'Pipelines CI/CD per a integracions SAP',
         summary:
           "Automatitzar el control de qualitat de les integracions i la seva migració entre entorns.",
-        result: "Dos workflows de GitHub Actions: un revisa bones pràctiques, l'altre automatitza la migració. [PENDENT: impacte]",
+        result: "Dos workflows de GitHub Actions: un revisa bones pràctiques, l'altre automatitza la migració. Tots dos en producció i en ús per l'equip.",
         tags: ['GitHub Actions', 'SAP BTP', 'CI/CD'],
       },
     ],
