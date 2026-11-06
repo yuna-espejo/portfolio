@@ -1,0 +1,64 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from './PageHero.astro';
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const text = {
+  es: ['Estoy construyendo mi primer proyecto personal. Mientras tanto, puedes ver mi trabajo en integraciones en ', '.'],
+  en: ['I am working on my first personal project. In the meantime, you can see my integration work in ', '.'],
+  ca: ['Estic construint el meu primer projecte personal. Mentrestant, pots veure la meva feina en integracions a ', '.'],
+}[lang];
+---
+
+<Base lang={lang} title={t.meta.projectsTitle} description={t.meta.projectsDescription}>
+  <PageHero eyebrow={t.home.eyebrow} title={t.projects.heading} outline={t.nav.projects} />
+
+  <section class="projects">
+    <div class="wrap projects-inner">
+      <div class="projects-card">
+        <p>{text[0]}<a href={`/${lang}/experience`}>{t.nav.experience}</a>{text[1]}</p>
+        <a class="projects-cta" href={`/${lang}/experience`}>{t.nav.experience} →</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .projects-inner { padding-block: clamp(56px, 7vw, 112px); }
+
+  .projects-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    align-items: flex-start;
+    max-width: 720px;
+    padding: clamp(28px, 4vw, 56px);
+    border-radius: 6px;
+    background: var(--surface);
+    font-size: clamp(18px, 2vw, 24px);
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+  }
+  .projects-card p a { color: var(--accent-ink); text-decoration: none; }
+  .projects-card p a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  .projects-cta {
+    padding: 14px 28px;
+    border-radius: var(--radius-pill);
+    background: var(--navy);
+    color: var(--bg);
+    font-size: var(--text-base);
+    font-weight: 800;
+    text-decoration: none;
+    transition: transform 200ms ease, background 200ms ease;
+  }
+  .projects-cta:hover { transform: translateY(-2px); background: var(--accent); color: var(--ink); }
+</style>

@@ -1,0 +1,215 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from './PageHero.astro';
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const e = t.experience;
+---
+
+<Base lang={lang} title={t.meta.experienceTitle} description={t.meta.experienceDescription}>
+  <PageHero eyebrow={t.home.eyebrow} title={e.heading} intro={e.intro} outline={t.nav.experience} />
+
+  <section class="cases">
+    <div class="wrap cases-inner">
+      <ol class="cases-list" role="list">
+        {e.cases.map((c) => (
+          <li class="case">
+            <div class="case-meta">
+              <span class="case-index">{c.index}</span>
+              <span class="case-sector">{c.sector}</span>
+              <ul class="case-tags" role="list">
+                {c.tags.map((tag) => <li class="case-tag">{tag}</li>)}
+              </ul>
+            </div>
+            <div class="case-body">
+              <h2 class="case-title">{c.title}</h2>
+              <div class="case-block">
+                <span class="case-label">{e.taskLabel}</span>
+                <p>{c.task}</p>
+              </div>
+              <div class="case-block case-block--result">
+                <span class="case-label">{e.resultLabel}</span>
+                <p>{c.result}</p>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="others">
+    <div class="wrap others-inner">
+      <h2 class="others-heading">{e.otherWorksHeading}</h2>
+      <ul class="others-list" role="list">
+        {e.otherWorks.map((item, i) => (
+          <li class="others-item">
+            <span class="others-num">{String(i + 1).padStart(2, '0')}</span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .cases-inner { padding-block: clamp(56px, 7vw, 96px); }
+
+  .cases-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .case {
+    display: grid;
+    grid-template-columns: minmax(200px, 280px) 1fr;
+    gap: clamp(28px, 5vw, 72px);
+    padding: clamp(28px, 4vw, 56px);
+    border-radius: 6px;
+    background: var(--navy);
+    color: var(--bg);
+    transition: transform 300ms ease;
+  }
+  .case:hover { transform: translateY(-4px); }
+
+  .case:nth-child(even) {
+    background: var(--surface);
+    color: var(--ink);
+  }
+
+  .case-meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .case-index {
+    font-weight: 900;
+    font-size: clamp(64px, 8vw, 104px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--accent);
+  }
+  .case:nth-child(even) .case-index { -webkit-text-stroke-color: var(--accent-ink); }
+
+  .case-sector {
+    font-weight: 600;
+    font-size: var(--text-sm);
+    color: var(--navy-soft);
+  }
+  .case:nth-child(even) .case-sector { color: var(--navy); }
+
+  .case-tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+  }
+  .case-tag {
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+    background: var(--bg);
+    color: var(--ink);
+    font-size: var(--text-xs);
+    font-weight: 600;
+  }
+  .case:nth-child(even) .case-tag { background: var(--navy); color: var(--bg); }
+
+  .case-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    min-width: 0;
+  }
+
+  .case-title {
+    font-weight: 800;
+    font-size: clamp(26px, 3.2vw, 40px);
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+    color: inherit;
+  }
+
+  .case-block p { line-height: 1.65; color: #E3E9F5; }
+  .case:nth-child(even) .case-block p { color: var(--muted); }
+
+  .case-label {
+    display: block;
+    margin-bottom: var(--space-1);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--navy-soft);
+  }
+  .case:nth-child(even) .case-label { color: var(--navy); }
+
+  .case-block--result {
+    padding: var(--space-4) var(--space-5);
+    border-left: 4px solid var(--accent);
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 0 6px 6px 0;
+  }
+  .case:nth-child(even) .case-block--result { background: rgba(27, 47, 87, 0.08); }
+  .case-block--result .case-label { color: var(--accent); }
+  .case:nth-child(even) .case-block--result .case-label { color: var(--accent-ink); }
+  .case-block--result p { color: var(--bg); font-weight: 500; }
+  .case:nth-child(even) .case-block--result p { color: var(--ink); }
+
+  /* Otros trabajos */
+  .others { background: var(--navy-deep); color: var(--bg); }
+  .others-inner { padding-block: clamp(56px, 7vw, 96px); }
+
+  .others-heading {
+    font-weight: 900;
+    font-size: clamp(36px, 5vw, 64px);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--bg);
+    margin-bottom: var(--space-8);
+  }
+
+  .others-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+
+  .others-item {
+    display: flex;
+    gap: var(--space-4);
+    align-items: baseline;
+    padding: var(--space-5);
+    border: 1px solid var(--navy-line);
+    border-radius: 6px;
+    line-height: 1.55;
+    color: #E3E9F5;
+    transition: border-color 250ms ease, transform 250ms ease;
+  }
+  .others-item:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+  .others-num {
+    font-weight: 900;
+    font-size: 22px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 860px) {
+    .case { grid-template-columns: 1fr; }
+    .case-meta { flex-direction: row; flex-wrap: wrap; align-items: center; gap: var(--space-3); }
+    .case-index { font-size: 56px; }
+    .case-tags { margin-top: 0; }
+    .others-list { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,126 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  intro?: string;
+  outline?: string;
+}
+
+const { eyebrow, title, intro, outline } = Astro.props;
+---
+
+<header class={`page-hero${outline ? ' has-outline' : ''}`}>
+  <div class="wrap page-hero-inner">
+    <svg class="page-hero-line" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 120 L420 120 C480 120 490 84 530 66 L660 20 C700 8 740 16 760 46 L810 112 C830 136 870 136 900 120 L1200 120" />
+    </svg>
+
+    {eyebrow && <p class="page-hero-eyebrow">{eyebrow}</p>}
+    <h1 class="page-hero-title">{title}</h1>
+    {intro && <p class="page-hero-intro">{intro}</p>}
+
+    {outline && (
+      <div class="page-hero-outline" aria-hidden="true">
+        <span>{outline}</span>
+        <span class="faded">{outline}</span>
+      </div>
+    )}
+  </div>
+</header>
+
+<style>
+  .page-hero {
+    background: var(--navy);
+    color: var(--bg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-hero-inner {
+    position: relative;
+    padding-block: clamp(56px, 8vw, 112px) clamp(64px, 9vw, 128px);
+  }
+
+  .page-hero-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 24px;
+    width: 100%;
+    height: 160px;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  .page-hero-line path {
+    fill: none;
+    stroke: #9FB4DA;
+    stroke-width: 1.5;
+    stroke-dasharray: 6 8;
+  }
+
+  .page-hero-eyebrow {
+    position: relative;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy-soft);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .page-hero-eyebrow::before {
+    content: '';
+    width: 36px;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--accent);
+  }
+
+  .page-hero-title {
+    position: relative;
+    margin-top: var(--space-3);
+    font-weight: 900;
+    font-size: clamp(52px, 9vw, 136px);
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+    color: var(--bg);
+    overflow-wrap: anywhere;
+  }
+
+  .page-hero-intro {
+    position: relative;
+    margin-top: var(--space-6);
+    max-width: 62ch;
+    font-size: clamp(17px, 1.6vw, 20px);
+    line-height: 1.65;
+    color: #E3E9F5;
+  }
+
+  .page-hero-outline {
+    position: absolute;
+    right: var(--wrap-pad);
+    bottom: 40px;
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    pointer-events: none;
+  }
+  .page-hero-outline span {
+    font-weight: 900;
+    font-size: clamp(44px, 5vw, 80px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--accent);
+    white-space: nowrap;
+  }
+  .page-hero-outline .faded { opacity: 0.5; }
+
+  @media (max-width: 700px) {
+    .page-hero-line { display: none; }
+  }
+
+  @media (min-width: 1280px) {
+    .page-hero-outline { display: flex; }
+    .has-outline .page-hero-intro { max-width: min(62ch, 52%); }
+  }
+</style>

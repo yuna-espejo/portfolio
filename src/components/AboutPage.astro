@@ -1,0 +1,171 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from './PageHero.astro';
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const a = t.about;
+---
+
+<Base lang={lang} title={t.meta.aboutTitle} description={t.meta.aboutDescription}>
+  <PageHero eyebrow={a.role} title="Yuna Espejo" intro={a.bio} outline={t.nav.about} />
+
+  <section class="traits">
+    <div class="wrap traits-inner">
+      <h2 class="block-heading">{a.whatSetsApartHeading}</h2>
+      <ul class="traits-grid" role="list">
+        {a.traits.map((trait, i) => (
+          <li class="trait">
+            <span class="trait-num">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="trait-label">{trait.label}</h3>
+            <p class="trait-text">{trait.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="why">
+    <div class="wrap why-inner">
+      <h2 class="why-heading">{a.whyHeading}</h2>
+      <p class="why-body">{a.why}</p>
+    </div>
+  </section>
+
+  <section class="community">
+    <div class="wrap community-inner">
+      <h2 class="block-heading">{a.communityHeading}</h2>
+      <ul class="community-list" role="list">
+        {a.community.map((item) => (
+          <li class="community-item">
+            <span class="community-label">{item.label}</span>
+            {item.href ? (
+              <a href={item.href} class="community-text community-link" target="_blank" rel="noopener noreferrer">{item.text} ↗</a>
+            ) : (
+              <span class="community-text">{item.text}</span>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .block-heading {
+    font-weight: 900;
+    font-size: clamp(36px, 5vw, 64px);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: var(--space-8);
+  }
+
+  .traits-inner { padding-block: clamp(56px, 7vw, 96px); }
+
+  .traits-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .trait {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-8);
+    border-radius: 6px;
+    background: var(--surface);
+    transition: transform 300ms ease;
+  }
+  .trait:hover { transform: translateY(-4px); }
+  .trait:nth-child(odd) { background: var(--navy); color: var(--bg); }
+
+  .trait-num {
+    font-weight: 900;
+    font-size: 44px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--accent-ink);
+  }
+  .trait:nth-child(odd) .trait-num { -webkit-text-stroke-color: var(--accent); }
+
+  .trait-label {
+    font-weight: 800;
+    font-size: var(--text-xl);
+    letter-spacing: -0.02em;
+    color: inherit;
+  }
+
+  .trait-text { line-height: 1.65; color: var(--muted); }
+  .trait:nth-child(odd) .trait-text { color: #E3E9F5; }
+
+  /* Por qué */
+  .why { background: var(--navy-deep); color: var(--bg); }
+  .why-inner {
+    padding-block: clamp(64px, 9vw, 128px);
+    display: grid;
+    grid-template-columns: minmax(200px, 340px) 1fr;
+    gap: clamp(28px, 6vw, 96px);
+    align-items: start;
+  }
+
+  .why-heading {
+    font-weight: 900;
+    font-size: clamp(36px, 5vw, 64px);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  .why-body {
+    font-size: clamp(20px, 2.3vw, 30px);
+    font-weight: 600;
+    line-height: 1.45;
+    letter-spacing: -0.01em;
+    color: var(--bg);
+    max-width: 34ch;
+  }
+
+  /* Comunidad */
+  .community-inner { padding-block: clamp(56px, 7vw, 96px); }
+
+  .community-list {
+    list-style: none;
+    border-top: 2px solid var(--navy);
+  }
+
+  .community-item {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-8);
+    align-items: baseline;
+    padding-block: var(--space-5);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .community-label {
+    flex: 0 0 200px;
+    font-weight: 800;
+    font-size: var(--text-lg);
+  }
+
+  .community-text { flex: 1 1 280px; color: var(--muted); line-height: 1.6; }
+
+  .community-link {
+    color: var(--accent-ink);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .community-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  @media (max-width: 760px) {
+    .why-inner { grid-template-columns: 1fr; }
+  }
+</style>

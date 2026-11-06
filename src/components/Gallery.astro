@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import PageHero from './PageHero.astro';
 import { useTranslations, type Lang } from '../i18n/utils';
 
 interface Props {
@@ -26,10 +27,15 @@ const photos = Object.entries(files)
   .map(([path, img]) => ({ img, alt: caption(path) }));
 ---
 
+<PageHero
+  eyebrow={t.home.eyebrow}
+  title={t.photography.heading}
+  intro={t.home.outsideItems[0].text}
+  outline={t.photography.heading}
+/>
+
 <section class="gallery">
   <div class="wrap gallery-inner">
-    <h1 class="gallery-heading">{t.photography.heading}</h1>
-
     {photos.length === 0 ? (
       <p class="gallery-empty">{t.photography.empty}</p>
     ) : (
@@ -54,17 +60,10 @@ const photos = Object.entries(files)
 
 <style>
   .gallery-inner {
-    padding-block: 64px 112px;
+    padding-block: clamp(48px, 6vw, 88px) 112px;
     display: flex;
     flex-direction: column;
     gap: 40px;
-  }
-
-  .gallery-heading {
-    font-weight: 900;
-    font-size: clamp(48px, 7vw, 96px);
-    letter-spacing: -0.04em;
-    line-height: 1;
   }
 
   .gallery-empty {

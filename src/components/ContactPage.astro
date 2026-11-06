@@ -1,0 +1,210 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from './PageHero.astro';
+import { useTranslations, type Lang } from '../i18n/utils';
+import { site } from '../config/site';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const c = t.contact;
+---
+
+<Base lang={lang} title={t.meta.contactTitle} description={t.meta.contactDescription}>
+  <PageHero eyebrow={t.home.eyebrow} title={c.heading} intro={c.intro} outline={t.nav.contact} />
+
+  <section class="contact">
+    <div class="wrap contact-inner">
+
+      <aside class="contact-card">
+        <h2 class="contact-card-title">{t.nav.contact}</h2>
+        <a href={site.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+        <a href={site.instagram} target="_blank" rel="noopener noreferrer">Instagram · @yesa.exe ↗</a>
+        <a href={site.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      </aside>
+
+      <div class="contact-form-wrap">
+        <h2 class="contact-form-heading">{c.formHeading}</h2>
+        <form class="contact-form" id="contact-form" novalidate>
+          <input type="text" name="website" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" />
+          <div class="form-field">
+            <label class="form-label" for="name">{c.nameLabel}</label>
+            <input class="form-input" type="text" id="name" name="name" placeholder={c.namePlaceholder} required />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="email">{c.emailFieldLabel}</label>
+            <input class="form-input" type="email" id="email" name="email" placeholder={c.emailPlaceholder} required />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="message">{c.messageLabel}</label>
+            <textarea class="form-textarea" id="message" name="message" placeholder={c.messagePlaceholder} rows="6" required></textarea>
+          </div>
+          <button class="form-submit" type="submit">{c.submitLabel}</button>
+          <p class="form-success" id="form-success" hidden>{c.successMessage}</p>
+          <p class="form-error" id="form-error" hidden>{c.errorMessage}</p>
+        </form>
+      </div>
+
+    </div>
+  </section>
+</Base>
+
+<style is:global>
+  .contact-inner {
+    display: grid;
+    grid-template-columns: minmax(260px, 360px) 1fr;
+    gap: clamp(32px, 6vw, 96px);
+    align-items: start;
+    padding-block: clamp(56px, 7vw, 96px);
+  }
+
+  .contact-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-10) var(--space-8);
+    border-radius: 6px;
+    background: var(--navy-deep);
+    color: var(--bg);
+  }
+  .contact-card a { color: var(--bg); text-decoration: none; font-weight: 500; }
+  .contact-card a:hover { color: var(--accent); }
+  .contact-card-title {
+    font-weight: 800;
+    font-size: 30px;
+    letter-spacing: -0.02em;
+    color: var(--bg);
+    margin-bottom: var(--space-2);
+  }
+
+  .contact-form-heading {
+    font-weight: 900;
+    font-size: clamp(32px, 4vw, 52px);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: var(--space-8);
+  }
+
+  .contact-form { display: flex; flex-direction: column; gap: var(--space-6); }
+  .form-field { display: flex; flex-direction: column; gap: var(--space-2); }
+  .form-label { font-weight: 700; font-size: var(--text-sm); color: var(--navy); }
+
+  .form-input,
+  .form-textarea {
+    width: 100%;
+    padding: 16px 18px;
+    border: 2px solid var(--line);
+    border-radius: 6px;
+    background: #fff;
+    color: var(--ink);
+    font: inherit;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+  }
+  .form-input::placeholder,
+  .form-textarea::placeholder { color: #8C97AB; }
+  .form-input:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--navy);
+    box-shadow: 0 0 0 4px rgba(232, 102, 42, 0.25);
+  }
+  .form-textarea { resize: vertical; min-height: 160px; }
+
+  .form-submit {
+    align-self: flex-start;
+    min-width: 180px;
+    padding: 16px 34px;
+    border: none;
+    border-radius: var(--radius-pill);
+    background: var(--accent);
+    color: var(--ink);
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 200ms ease, background 200ms ease;
+  }
+  .form-submit:hover { transform: translateY(-2px); background: var(--accent-ink); color: var(--bg); }
+  .form-submit:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+
+  .form-submit-spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    vertical-align: middle;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) {
+    .form-submit-spinner { animation: none; opacity: 0.5; }
+  }
+
+  .form-success,
+  .form-error {
+    padding: var(--space-4) var(--space-5);
+    border-radius: 6px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .form-success { background: var(--surface); color: var(--navy); border-left: 4px solid var(--navy); }
+  .form-error { background: #FBE3D9; color: #7A2A08; border-left: 4px solid var(--accent-ink); }
+
+  @media (max-width: 860px) {
+    .contact-inner { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const successEl = document.getElementById('form-success');
+  const errorEl = document.getElementById('form-error');
+  const submitBtn = form?.querySelector<HTMLButtonElement>('.form-submit');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form || !successEl || !errorEl || !submitBtn) return;
+
+    successEl.hidden = true;
+    errorEl.hidden = true;
+
+    const originalText = submitBtn.textContent ?? '';
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="form-submit-spinner" aria-hidden="true"></span>';
+
+    // Yield so the browser paints the spinner before the fetch blocks
+    await new Promise(resolve => requestAnimationFrame(resolve));
+
+    const data = Object.fromEntries(new FormData(form));
+    const minDelay = new Promise(resolve => setTimeout(resolve, 500));
+
+    try {
+      const [res] = await Promise.all([
+        fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        }),
+        minDelay,
+      ]);
+      const json = await res.json();
+      if (json.ok) {
+        successEl.hidden = false;
+        form.reset();
+      } else {
+        errorEl.hidden = false;
+      }
+    } catch {
+      await minDelay;
+      errorEl.hidden = false;
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    }
+  });
+</script>
