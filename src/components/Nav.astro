@@ -91,6 +91,12 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '');
     z-index: 100;
     background: var(--navy);
     color: var(--bg);
+    transition: transform 300ms ease;
+  }
+  .site-header.is-hidden { transform: translateY(-100%); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-header { transition: none; }
   }
 
   .header-inner {
@@ -291,6 +297,31 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '');
       closeMenu();
     }
   });
+
+  // Ocultar la cabecera al bajar y mostrarla al subir
+  const header = document.getElementById('site-header');
+  let lastY = window.scrollY;
+  let ticking = false;
+
+  function updateHeader() {
+    ticking = false;
+    if (!header) return;
+    const y = window.scrollY;
+    const delta = y - lastY;
+    if (y <= 80 || delta < -4) {
+      header.classList.remove('is-hidden');
+    } else if (delta > 4 && menu?.getAttribute('aria-hidden') !== 'false') {
+      header.classList.add('is-hidden');
+    }
+    if (Math.abs(delta) > 4) lastY = y;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(updateHeader);
+    }
+  }, { passive: true });
 
   // Focus trap
   menu?.addEventListener('keydown', (e) => {
