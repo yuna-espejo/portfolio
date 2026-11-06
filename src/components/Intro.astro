@@ -1,0 +1,184 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+import { site } from '../config/site';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="intro" id="hola">
+  <div class="wrap intro-inner">
+    <div class="intro-text">
+      <h2 class="intro-heading">{t.home.helloLine1}<br />{t.home.helloLine2}</h2>
+      <p class="intro-body">{t.home.helloIntro}</p>
+      <a href={site.linkedin} target="_blank" rel="noopener noreferrer" class="intro-linkedin">
+        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 L12 4 M6 4 H12 V10" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        <span>linkedin.com/in/yuna-espejo-santana</span>
+      </a>
+    </div>
+
+    <div class="intro-card-col">
+      <div class="intro-visual">
+        <div class="intro-circle"></div>
+        <div class="intro-photo-clip">
+          <img src="/retrato-recorte-2.png" alt="Retrato de Yuna Espejo" class="intro-photo" width="1000" height="759" loading="lazy" decoding="async" />
+        </div>
+        <span class="chip chip--left">{t.home.locationChip}</span>
+        <span class="chip chip--right">{t.home.roleChip}</span>
+      </div>
+
+      <div class="contact-card">
+        <h3 class="contact-card-title">{t.nav.contact}</h3>
+        <a href={site.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+        <a href={site.instagram} target="_blank" rel="noopener noreferrer">Instagram · @yesa.exe ↗</a>
+        <a href={`/${lang}/contact`} class="contact-card-cta">{t.home.contactForm} →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .intro-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 56px;
+    padding-top: clamp(80px, 9vw, 140px);
+    padding-bottom: 96px;
+  }
+
+  .intro-text {
+    flex: 1 1 440px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .intro-heading {
+    font-weight: 900;
+    font-size: clamp(52px, 7vw, 96px);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+  }
+
+  .intro-body {
+    max-width: 520px;
+    font-size: 19px;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+
+  .intro-linkedin {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 28px;
+    border-radius: var(--radius-pill);
+    background: var(--navy);
+    color: var(--bg);
+    font-weight: 700;
+    font-size: 17px;
+    text-decoration: none;
+    transition: background var(--transition);
+  }
+  .intro-linkedin:hover { background: var(--navy-deep); color: var(--bg); }
+
+  .intro-card-col {
+    flex: 0 1 340px;
+    min-width: 0;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .intro-visual {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 340 / 242;
+    background: var(--navy);
+    border-radius: 6px;
+  }
+
+  .intro-circle {
+    position: absolute;
+    left: 19%;
+    top: 2%;
+    width: 62%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--bg);
+  }
+
+  /* El recorte sobresale por arriba del bloque azul, delante del círculo crema */
+  .intro-photo-clip {
+    position: absolute;
+    inset: 0;
+    clip-path: inset(-300px 0 0 0);
+  }
+
+  .intro-photo {
+    position: absolute;
+    left: 12.8%;
+    top: -5.8%;
+    width: 71.2%;
+    height: auto;
+  }
+
+  .chip {
+    position: absolute;
+    padding: 10px 20px;
+    border-radius: var(--radius-pill);
+    background: var(--accent);
+    color: var(--ink);
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .chip--left { left: -34px; top: 96px; }
+  .chip--right {
+    right: -17px;
+    top: 104px;
+    width: 136px;
+    padding: 10px 14px;
+    border-radius: 28px;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .contact-card {
+    position: relative;
+    margin-top: -80px;
+    padding: 28px;
+    background: var(--navy-deep);
+    color: var(--bg);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 64px;
+  }
+  .contact-card a {
+    color: var(--bg);
+    text-decoration: none;
+  }
+  .contact-card a:hover { color: var(--accent); }
+  .contact-card-title {
+    color: var(--bg);
+    font-weight: 800;
+    font-size: 30px;
+    letter-spacing: -0.02em;
+  }
+  .contact-card .contact-card-cta {
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  @media (max-width: 480px) {
+    .chip--left { left: 8px; }
+    .chip--right { right: 8px; }
+  }
+</style>

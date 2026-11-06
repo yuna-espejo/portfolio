@@ -1,0 +1,104 @@
+---
+import { Image } from 'astro:assets';
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const t = useTranslations(Astro.props.lang);
+
+const files = import.meta.glob<ImageMetadata>(
+  '../assets/photography/*.{jpg,jpeg,png,webp,avif,JPG,JPEG,PNG,WEBP}',
+  { eager: true, import: 'default' },
+);
+
+// "02-calle-de-noche.jpg" → "calle de noche"
+const caption = (path: string) =>
+  (path.split('/').pop() ?? '')
+    .replace(/\.[^.]+$/, '')
+    .replace(/^\d+[-_ ]*/, '')
+    .replace(/[-_]+/g, ' ')
+    .trim();
+
+const photos = Object.entries(files)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([path, img]) => ({ img, alt: caption(path) }));
+---
+
+<section class="gallery">
+  <div class="wrap gallery-inner">
+    <h1 class="gallery-heading">{t.photography.heading}</h1>
+
+    {photos.length === 0 ? (
+      <p class="gallery-empty">{t.photography.empty}</p>
+    ) : (
+      <ul class="gallery-grid" role="list">
+        {photos.map(({ img, alt }) => (
+          <li class="gallery-item">
+            <a href={img.src} target="_blank" rel="noopener noreferrer" class="gallery-link">
+              <Image
+                src={img}
+                alt={alt}
+                widths={[480, 800, 1200]}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                loading="lazy"
+              />
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</section>
+
+<style>
+  .gallery-inner {
+    padding-block: 64px 112px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .gallery-heading {
+    font-weight: 900;
+    font-size: clamp(48px, 7vw, 96px);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .gallery-empty {
+    color: var(--muted);
+    font-size: var(--text-lg);
+  }
+
+  /* Columnas tipo mosaico: respeta la proporción de cada foto */
+  .gallery-grid {
+    list-style: none;
+    columns: 3 280px;
+    column-gap: var(--space-4);
+  }
+
+  .gallery-item {
+    break-inside: avoid;
+    margin-bottom: var(--space-4);
+  }
+
+  .gallery-link {
+    display: block;
+    overflow: hidden;
+    border-radius: 6px;
+    background: var(--surface);
+  }
+
+  .gallery-link :global(img) {
+    width: 100%;
+    height: auto;
+    transition: transform 300ms ease;
+  }
+  .gallery-link:hover :global(img) { transform: scale(1.03); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gallery-link :global(img) { transition: none; }
+  }
+</style>

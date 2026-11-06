@@ -9,196 +9,222 @@ interface Props {
 const t = useTranslations(Astro.props.lang);
 ---
 
-<section class="hero">
-  <div class="hero-inner">
+<section class="hero" id="top">
+  <div class="wrap hero-top">
+    <svg class="hero-line" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 160 L340 160 C400 160 410 120 450 100 L600 40 C640 24 680 30 700 60 L760 150 C780 180 820 180 850 160 L1200 160" />
+    </svg>
 
-    <div class="hero-photo-wrap">
-      <img
-        src="/me.jpg"
-        alt="Yuna Espejo"
-        class="hero-photo"
-        width="320"
-        height="400"
-        loading="eager"
-        decoding="async"
-      />
-    </div>
+    <p class="hero-eyebrow">{t.home.eyebrow}</p>
+    <h1 class="hero-name">Yuna Espejo</h1>
 
-    <div class="hero-content">
-      <p class="hero-role">{t.home.role}</p>
-      <h1 class="hero-name">Yuna Espejo</h1>
-      <p class="hero-headline">{t.home.headline}</p>
+    <div class="hero-row">
+      <div class="hero-photo-wrap">
+        <img
+          src="/foto-atardecer-2.jpg"
+          alt="Yuna Espejo"
+          class="hero-photo"
+          width="340"
+          height="420"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
 
-      <div class="hero-ctas">
-        <a
-          href={site.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="cta cta-primary"
-        >
-          {t.home.ctaLinkedIn}
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        </a>
-        <a
-          href={site.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="cta cta-secondary"
-        >
-          {t.home.ctaGitHub}
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        </a>
-        <a
-          href={"mailto:" + site.email}
-          class="cta cta-secondary"
-        >
-          {t.home.ctaEmail}
-        </a>
+      <div class="hero-side">
+        <span class="outline-word" aria-hidden="true">{t.home.outlineWord}</span>
+        <span class="outline-word outline-word--faded" aria-hidden="true">{t.home.outlineWord}</span>
+        <ul class="hero-links" role="list">
+          <li><a href={site.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn · /yuna-espejo-santana</a></li>
+          <li><a href={site.instagram} target="_blank" rel="noopener noreferrer">Instagram · @yesa.exe</a></li>
+          <li><a href={site.github} target="_blank" rel="noopener noreferrer">GitHub · /yuna-espejo</a></li>
+        </ul>
       </div>
     </div>
+  </div>
 
+  <div class="hero-strip">
+    <div class="wrap hero-strip-inner">
+      <p class="hero-headline">{t.home.headline}</p>
+      <a href="#hola" class="hero-scroll">
+        <span>{t.home.scrollLine1}</span>
+        <span>{t.home.scrollLine2}</span>
+        <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 2 V12 M3 8 L7 12 L11 8" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+      </a>
+    </div>
   </div>
 </section>
 
 <style>
   .hero {
-    padding-block: var(--space-16) var(--space-12);
+    background: var(--navy);
+    color: var(--bg);
+    position: relative;
   }
 
-  .hero-inner {
-    max-width: 1200px;
-    padding-inline: clamp(24px, 5vw, 96px);
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: var(--space-12);
-    align-items: start;
+  .hero-top {
+    position: relative;
+    padding-top: var(--space-10);
   }
 
-  /* Foto */
+  .hero-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 140px;
+    width: 100%;
+    height: 220px;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .hero-line path {
+    fill: none;
+    stroke: #9FB4DA;
+    stroke-width: 1.5;
+    stroke-dasharray: 6 8;
+  }
+
+  .hero-eyebrow {
+    position: relative;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--navy-soft);
+  }
+
+  .hero-name {
+    position: relative;
+    margin-top: var(--space-2);
+    font-weight: 900;
+    font-size: clamp(60px, 10.5vw, 160px);
+    line-height: 0.92;
+    letter-spacing: -0.045em;
+    color: var(--bg);
+  }
+
+  .hero-row {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: var(--space-10);
+    margin-top: var(--space-8);
+  }
+
   .hero-photo-wrap {
-    position: sticky;
-    top: 80px;
+    flex: 0 0 auto;
+    width: min(340px, 100%);
+    height: 420px;
+    margin-bottom: -140px;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    border-radius: 6px;
+    background: var(--accent);
   }
 
   .hero-photo {
     width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 5;
+    height: 100%;
     object-fit: cover;
-    object-position: center top;
-    border-radius: 16px;
-    display: block;
+    object-position: 50% 30%;
   }
 
-  /* Contenido */
-  .hero-content {
+  .hero-side {
+    flex: 1 1 380px;
+    min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--space-4);
-    padding-top: var(--space-2);
+    gap: var(--space-1);
+    padding-bottom: var(--space-5);
   }
 
-  .hero-role {
-    font-family: var(--font-sans);
-    font-size: var(--text-sm);
-    color: var(--muted);
-    line-height: 1.6;
+  .outline-word {
+    font-weight: 900;
+    font-size: clamp(44px, 6.5vw, 96px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--accent);
+    white-space: nowrap;
+  }
+  .outline-word--faded { opacity: 0.55; }
+
+  .hero-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-top: var(--space-6);
+    font-weight: 500;
+  }
+  .hero-links a {
+    color: var(--bg);
+    text-decoration: none;
+  }
+  .hero-links a:hover {
+    color: var(--accent);
+    text-decoration: underline;
   }
 
-  .hero-name {
-    font-family: var(--font-serif);
-    font-size: clamp(var(--text-3xl), 5vw, 3rem);
-    font-weight: 600;
-    color: var(--ink);
-    letter-spacing: -0.02em;
-    line-height: 1.1;
+  /* Franja inferior */
+  .hero-strip {
+    background: var(--navy-deep);
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-strip-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+    padding-block: 36px;
   }
 
   .hero-headline {
-    font-size: var(--text-lg);
-    color: var(--muted);
-    line-height: 1.65;
-    max-width: 52ch;
+    flex: 0 1 520px;
+    font-size: 17px;
+    line-height: 1.55;
+    color: #E3E9F5;
   }
 
-  /* CTAs */
-  .hero-ctas {
+  .hero-scroll {
+    width: 112px;
+    height: 112px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--ink);
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-3);
-    margin-top: var(--space-2);
-  }
-
-  .cta {
-    display: inline-flex;
+    flex-direction: column;
     align-items: center;
-    gap: var(--space-2);
-    padding: var(--space-2) var(--space-4);
-    border-radius: var(--radius-sm);
-    font-size: var(--text-sm);
-    font-weight: 500;
+    justify-content: center;
+    gap: var(--space-1);
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
     text-decoration: none;
-    transition: background var(--transition), color var(--transition), border-color var(--transition);
-    white-space: nowrap;
+    transition: transform var(--transition);
+  }
+  .hero-scroll:hover { color: var(--ink); transform: translateY(2px); }
+
+  /* La foto sobresale sobre la franja: el texto se aparta */
+  @media (min-width: 760px) {
+    .hero-strip-inner { padding-left: calc(var(--wrap-pad) + 340px + var(--space-10)); }
   }
 
-  .cta-primary {
-    background: var(--olive);
-    color: var(--bg);
-    border: 1px solid transparent;
-  }
-
-  .cta-primary:hover {
-    background: var(--ink);
-    color: var(--bg);
-  }
-
-  .cta-secondary {
-    background: transparent;
-    color: var(--ink);
-    border: 1px solid var(--line);
-  }
-
-  .cta-secondary:hover {
-    border-color: var(--muted);
-    background: var(--surface);
-    color: var(--ink);
-  }
-
-  /* Animación de entrada */
   @keyframes hero-in {
     from { opacity: 0; transform: translateY(14px); }
     to   { opacity: 1; transform: none; }
   }
-
-  .hero-photo-wrap { animation: hero-in 700ms ease both; }
-  .hero-role       { animation: hero-in 650ms ease 120ms both; }
-  .hero-name       { animation: hero-in 700ms ease 240ms both; }
-  .hero-headline   { animation: hero-in 700ms ease 380ms both; }
-  .hero-ctas       { animation: hero-in 650ms ease 520ms both; }
+  .hero-eyebrow    { animation: hero-in 650ms ease both; }
+  .hero-name       { animation: hero-in 700ms ease 120ms both; }
+  .hero-photo-wrap { animation: hero-in 700ms ease 240ms both; }
+  .hero-side       { animation: hero-in 700ms ease 360ms both; }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero-photo-wrap,
-    .hero-role,
-    .hero-name,
-    .hero-headline,
-    .hero-ctas { animation: none; opacity: 1; transform: none; }
-  }
-
-  /* Móvil */
-  @media (max-width: 640px) {
-    .hero-inner {
-      grid-template-columns: 1fr;
-      gap: var(--space-8);
-    }
-
-    .hero-photo-wrap {
-      position: static;
-      max-width: 160px;
-    }
-
-    .hero {
-      padding-block: var(--space-8);
-    }
+    .hero-eyebrow, .hero-name, .hero-photo-wrap, .hero-side { animation: none; }
+    .hero-scroll { transition: none; }
   }
 </style>

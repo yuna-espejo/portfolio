@@ -1,19 +1,17 @@
 /* ============================================================
    Design tokens — yunaespejo.com
-   Source of truth: BRIEF.md § 6. Identidad visual
+   Dirección editorial: azul marino, naranja y crema.
    ============================================================ */
 
 /* Fuentes self-hosted */
-@import '@fontsource-variable/geist';
+@import '@fontsource-variable/figtree';
 @import '@fontsource-variable/geist-mono';
-@import '@fontsource/newsreader/400.css';
-@import '@fontsource/newsreader/600.css';
 
 :root {
   /* Tipografía */
-  --font-serif: 'Newsreader', Georgia, serif;
-  --font-sans:  'Geist Variable', system-ui, sans-serif;
-  --font-mono:  'Geist Mono Variable', 'Courier New', monospace;
+  --font-display: 'Figtree Variable', system-ui, sans-serif;
+  --font-sans:    'Figtree Variable', system-ui, sans-serif;
+  --font-mono:    'Geist Mono Variable', 'Courier New', monospace;
 
   /* Escala tipográfica */
   --text-xs:   0.75rem;   /* 12px */
@@ -44,59 +42,34 @@
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  /* Layout */
+  --wrap-max: 1280px;
+  --wrap-pad: clamp(20px, 4vw, 56px);
 
   /* Transiciones */
   --transition: 150ms ease;
-}
 
-/* ============================================================
-   Modo claro (por defecto)
-   ============================================================ */
-:root,
-[data-theme="light"] {
-  --bg:      #F4F2E3;
-  --surface: #FBFAF2;
-  --ink:     #33331F;
-  --muted:   #5E5D45;
-  --line:    #D8D3B9;
-  --olive:   #45452A;
-  --sky:     #AED0DE;
-  --link:    #3F5F8A;
-  --accent:  #A8492A;
+  /* Color */
+  --bg:         #F7F4EC; /* crema */
+  --surface:    #DDE6F3; /* azul claro para tarjetas */
+  --ink:        #111B2E;
+  --muted:      #4A566E;
+  --line:       #D5D9E2;
+
+  --navy:       #1B2F57; /* bloques principales */
+  --navy-deep:  #0F1A2E; /* franjas y pie */
+  --navy-line:  #5B72A0; /* bordes sobre azul */
+  --navy-soft:  #C5D0E6; /* texto secundario sobre azul */
+
+  --accent:     #E8662A; /* relleno: botones y chips (texto en --ink) */
+  --accent-ink: #B3410F; /* naranja para texto sobre crema */
+  --link:       #1B2F57;
+
+  /* Alias de la paleta anterior: los componentes que no se han tocado
+     siguen funcionando con los colores nuevos. */
+  --olive:      var(--navy);
 
   color-scheme: light;
-}
-
-/* ============================================================
-   Modo oscuro
-   ============================================================ */
-[data-theme="dark"] {
-  --bg:      #1D1D16;
-  --surface: #27271E;
-  --ink:     #ECEAD6;
-  --muted:   #BAB7A0;
-  --line:    #3E3E2C;
-  --olive:   #E0DEAA;
-  --sky:     #4F6D7A;
-  --link:    #AED0DE;
-  --accent:  #E07A52;
-
-  color-scheme: dark;
-}
-
-/* Detección automática del sistema */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg:      #1D1D16;
-    --surface: #27271E;
-    --ink:     #ECEAD6;
-    --muted:   #BAB7A0;
-    --line:    #3E3E2C;
-    --olive:   #E0DEAA;
-    --sky:     #4F6D7A;
-    --link:    #AED0DE;
-    --accent:  #E07A52;
-
-    color-scheme: dark;
-  }
 }

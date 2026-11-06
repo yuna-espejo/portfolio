@@ -1,0 +1,218 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const hashtag = (label: string) =>
+  '#' + label.split(/\s+/).map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join('');
+---
+
+<section class="timeline-section" id="experiencia">
+  <div class="wrap timeline-inner">
+
+    <div class="exp-card">
+      <h2 class="exp-title">{t.nav.experience}</h2>
+
+      <ol class="jobs" role="list">
+        {t.cv.jobs.map((job) => (
+          <li class="job">
+            <span class="job-period">{job.period}</span>
+            <div class="job-body">
+              <span class="job-title">{job.title} · {job.company}</span>
+              <span class="job-text">{job.bullets[0]}</span>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <ul class="traits" role="list">
+        {t.about.traits.map((trait) => (
+          <li class="trait">{hashtag(trait.label)}</li>
+        ))}
+      </ul>
+
+      <a href={`/${lang}/experience`} class="exp-link">{t.home.experienceCta} →</a>
+    </div>
+
+    <div class="side">
+      <h2 class="side-title">{t.home.languagesHeading}</h2>
+      <ul class="langs" role="list">
+        {t.cv.languages.map((l) => (
+          <li class="lang">
+            <span class="lang-name">{l.lang}</span>
+            <span class="lang-level">{l.level}</span>
+          </li>
+        ))}
+      </ul>
+
+      <hr class="side-rule" />
+
+      <h2 class="side-title">{t.home.certsSubheading}</h2>
+      <ul class="certs" role="list">
+        {t.home.certifications.map((cert) => (
+          <li class="cert">
+            <span class="cert-year">{cert.year || 'MOS'}</span>
+            <span class="cert-name">
+              {cert.name}
+              {cert.detail && <span class="cert-detail"> · {cert.detail}</span>}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .timeline-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 56px;
+    align-items: flex-start;
+    padding-bottom: 96px;
+  }
+
+  .exp-card {
+    flex: 1 1 520px;
+    min-width: 0;
+    margin-top: -72px;
+    position: relative;
+    z-index: 2;
+    background: var(--surface);
+    padding: clamp(28px, 4vw, 52px);
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .exp-title {
+    font-weight: 900;
+    font-size: 52px;
+    letter-spacing: -0.03em;
+  }
+
+  .jobs {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .job {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 24px;
+  }
+
+  .job-period {
+    flex: 0 0 150px;
+    font-weight: 800;
+    font-size: 19px;
+  }
+
+  .job-body {
+    flex: 1 1 240px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .job-title {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .job-text {
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  .traits {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .trait {
+    padding: 10px 18px;
+    border-radius: var(--radius-pill);
+    background: var(--navy);
+    color: var(--bg);
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .exp-link {
+    align-self: flex-start;
+    padding-bottom: 2px;
+    border-bottom: 2px solid var(--accent);
+    color: var(--ink);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .exp-link:hover { color: var(--accent-ink); }
+
+  /* Columna derecha */
+  .side {
+    flex: 1 1 360px;
+    min-width: 0;
+    padding-top: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .side-title {
+    font-weight: 900;
+    font-size: 42px;
+    letter-spacing: -0.03em;
+  }
+
+  .langs {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px 32px;
+  }
+
+  .lang {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .lang-name { font-weight: 800; font-size: 22px; }
+  .lang-level { color: var(--muted); max-width: 22ch; }
+
+  .side-rule {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 12px 0;
+  }
+
+  .certs {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .cert {
+    display: flex;
+    gap: 20px;
+  }
+  .cert-year {
+    flex: 0 0 96px;
+    font-weight: 800;
+    font-size: 18px;
+  }
+  .cert-name { font-size: 17px; }
+  .cert-detail { color: var(--muted); }
+</style>

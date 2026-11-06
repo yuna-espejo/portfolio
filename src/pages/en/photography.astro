@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import Gallery from '../../components/Gallery.astro';
+import { useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('en');
+---
+
+<Base lang="en" title={t.meta.photographyTitle} description={t.meta.photographyDescription}>
+  <Gallery lang="en" />
+</Base>

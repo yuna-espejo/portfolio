@@ -21,7 +21,7 @@ const canonicalURL = Astro.site
 ---
 
 <!doctype html>
-<html lang={lang} data-theme="light">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -38,16 +38,6 @@ const canonicalURL = Astro.site
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
     <title>{title}</title>
-
-    <!-- Tema: leer preferencia guardada antes de pintar, evitar flash -->
-    <script is:inline>
-      (function () {
-        const saved = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const theme = saved ?? (prefersDark ? 'dark' : 'light');
-        document.documentElement.setAttribute('data-theme', theme);
-      })();
-    </script>
   </head>
   <body>
     <Nav />

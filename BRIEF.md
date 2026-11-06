@@ -163,7 +163,7 @@ Español (nativo), inglés (en mejora), portugués (básico). *(propuesta: mostr
 
 **GitHub:** necesita limpieza antes de enlazarlo. **[PENDIENTE]** tarea previa al lanzamiento.
 
-**Simulación del circuito:** se mantiene solo como detalle decorativo. Como la web se rehace desde cero, *(propuesta)* se recrea como una ilustración ligera en SVG (el trazado del circuito dibujado con una línea fina) en lugar de reutilizar el código de la simulación.
+**Simulación del circuito:** primer proyecto publicado. La lógica del Canvas + requestAnimationFrame del repo anterior se reutiliza y adapta: pista en --olive, un coche en --accent y otro en --link; colores leídos de CSS vars para que cambie con el tema; canvas responsive y nítido en retina (devicePixelRatio); pausa con IntersectionObserver cuando no es visible; respeta prefers-reduced-motion (trazado estático). La pestaña "Proyectos" queda activa en el menú desde el lanzamiento. Página propia: /projects/circuit-simulation.
 
 ---
 
@@ -227,7 +227,7 @@ Reglas: el acento se usa con cuentagotas (indicadores, un botón clave, el detal
 **Páginas *(propuesta)*:**
 - `/` Home
 - `/experience` Experiencia (casos detallados)
-- `/projects` y `/projects/[slug]` (ocultas hasta que haya proyectos)
+- `/projects` y `/projects/[slug]`
 - `/about` Sobre mí (incluye "Fuera del código")
 - `/cv` CV en la web + descarga del PDF
 - `/contact` Contacto
@@ -237,6 +237,7 @@ Reglas: el acento se usa con cuentagotas (indicadores, un botón clave, el detal
 2. Experiencia destacada: los 3 casos en formato breve, enlazando a `/experience`.
 3. Stack real.
 4. Formación y certificaciones.
+4b. Proyecto destacado: simulación en marcha + enlace a su página.
 5. Fuera del código (compacto): F1, @yesa.exe, lecturas.
 6. Contacto.
 

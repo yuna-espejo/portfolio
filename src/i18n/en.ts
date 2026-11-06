@@ -21,6 +21,8 @@ export const en: Translations = {
       'Send me a message or reach out via email or LinkedIn.',
     projectsTitle: 'Projects — Yuna Espejo',
     projectsDescription: "Personal projects by Yuna Espejo. Coming soon.",
+    photographyTitle: 'Photography — Yuna Espejo',
+    photographyDescription: 'Photo gallery by Yuna Espejo.',
   },
   experience: {
     heading: 'Experience',
@@ -193,16 +195,10 @@ export const en: Translations = {
   projects: {
     heading: 'Projects',
     empty: 'Nothing published yet. Only finished projects are published.',
-    circuitSim: {
-      title: 'Barcelona-Catalunya Circuit Simulation',
-      description: 'Interactive circuit simulation with curvature-based speed. Canvas API + requestAnimationFrame.',
-      tagline: "[YUNA'S TEXT: why did you build this? One or two sentences in first person.]",
-      howItWorksHeading: 'How the speed is calculated',
-      howItWorks: "[YUNA'S TEXT: explain the curvature algorithm in your own words.]",
-      techHeading: 'Technologies',
-      tech: ['Canvas API', 'requestAnimationFrame', 'IntersectionObserver', 'CSS custom properties', 'Vanilla JavaScript'],
-      backLabel: 'Back to projects',
-    },
+  },
+  photography: {
+    heading: 'Photography',
+    empty: 'No photos published yet.',
   },
   nav: {
     experience: 'Experience',
@@ -221,8 +217,9 @@ export const en: Translations = {
     outsideHeading: 'Beyond code',
     outsideItems: [
       {
-        label: 'Formula 1',
-        text: "I'm fascinated by how telemetry and lap times drive every strategic call during a race. The software behind all of it is what interests me most.",
+        label: 'Photography',
+        text: 'Learning to take photos with a digital camera.',
+        href: '/en/photography',
       },
       {
         label: '@yesa.exe',
@@ -235,6 +232,17 @@ export const en: Translations = {
         href: site.rewritingTheCode,
       },
     ],
+    eyebrow: 'Portfolio · 2026',
+    outlineWord: 'integrations',
+    scrollLine1: 'Keep',
+    scrollLine2: 'scrolling',
+    helloLine1: 'Hi,',
+    helloLine2: "I'm Yuna.",
+    helloIntro: 'Junior Consultant in Digital Integrations and Software Engineering student at UOC. I build integrations for HR processes with SAP Cloud Integration.',
+    locationChip: 'Barcelona',
+    roleChip: 'Backend · Integrations',
+    languagesHeading: 'Languages',
+    contactBigHeading: 'Shall we talk?',
     contactHeading: "Let's talk",
     contactTagline: 'Open to conversations about integrations, backend and data.',
     contactEmail: 'Send me an email',
@@ -293,10 +301,6 @@ export const en: Translations = {
       devops: 'DevOps & tools',
       data: 'Data',
     },
-    featuredProjectHeading: 'Featured project',
-    featuredProjectTitle: 'Barcelona-Catalunya Circuit Simulation',
-    featuredProjectDesc: 'Two cars lap the Montmeló circuit. Speed is calculated in real time from the curvature at each point on the track.',
-    featuredProjectLink: 'View project',
     experienceHeading: 'Featured experience',
     experienceCta: 'See full experience',
     experienceResultLabel: 'Result',
@@ -328,12 +332,7 @@ export const en: Translations = {
     ],
   },
   footer: {
-    madeWith: 'Built with Astro',
     rights: 'Yuna Espejo',
-  },
-  themeToggle: {
-    light: 'Switch to dark mode',
-    dark: 'Switch to light mode',
   },
   langSwitcher: {
     label: 'Language',

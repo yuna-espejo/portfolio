@@ -10,99 +10,83 @@ const t = useTranslations(Astro.props.lang);
 ---
 
 <section class="contact">
-  <div class="contact-inner">
+  <div class="wrap contact-inner">
+    <h2 class="contact-heading">{t.home.contactBigHeading}</h2>
 
-    <h2 class="contact-heading">{t.home.contactHeading}</h2>
-    <p class="contact-tagline">{t.home.contactTagline}</p>
-
-    <div class="contact-actions">
-      <a
-        href={"mailto:" + site.email}
-        class="cta cta-primary"
-      >
-        {t.home.contactEmail}
-      </a>
-      <a
-        href={`/${Astro.props.lang}/contact`}
-        class="cta cta-secondary"
-      >
-        {t.home.contactForm}
-        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
+    <div class="contact-side">
+      <p class="contact-tagline">{t.home.contactTagline}</p>
+      <div class="contact-actions">
+        <a href={`/${Astro.props.lang}/contact`} class="cta cta-primary">{t.home.contactForm} →</a>
+        <a href={"mailto:" + site.email} class="cta cta-secondary">{t.home.contactEmail}</a>
+      </div>
     </div>
-
   </div>
 </section>
 
 <style>
   .contact {
-    padding-block: var(--space-16);
-    border-top: 1px solid var(--line);
+    background: var(--navy-deep);
+    color: var(--bg);
   }
 
   .contact-inner {
-    max-width: 1200px;
-    padding-inline: clamp(24px, 5vw, 96px);
     display: flex;
-    flex-direction: column;
-    gap: var(--space-5);
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    padding-top: 88px;
+    padding-bottom: 56px;
   }
 
   .contact-heading {
-    font-family: var(--font-serif);
-    font-size: clamp(var(--text-3xl), 4vw, 2.5rem);
-    font-weight: 600;
-    color: var(--ink);
-    letter-spacing: -0.02em;
-    line-height: 1.1;
+    font-weight: 900;
+    font-size: clamp(56px, 9vw, 128px);
+    line-height: 0.92;
+    letter-spacing: -0.045em;
+    color: var(--bg);
+  }
+
+  .contact-side {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    max-width: 440px;
   }
 
   .contact-tagline {
     font-size: var(--text-lg);
-    color: var(--muted);
     line-height: 1.6;
-    max-width: 48ch;
+    color: #B9C6DD;
   }
 
   .contact-actions {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-3);
-    margin-top: var(--space-2);
   }
 
   .cta {
     display: inline-flex;
     align-items: center;
-    gap: var(--space-2);
-    padding: var(--space-3) var(--space-5);
-    border-radius: var(--radius-sm);
-    font-size: var(--text-sm);
-    font-weight: 500;
+    padding: 16px 28px;
+    border-radius: var(--radius-pill);
+    font-size: var(--text-base);
+    font-weight: 700;
     text-decoration: none;
-    transition: background var(--transition), color var(--transition), border-color var(--transition);
     white-space: nowrap;
+    transition: opacity var(--transition), border-color var(--transition);
   }
 
   .cta-primary {
-    background: var(--olive);
-    color: var(--bg);
-    border: 1px solid transparent;
+    background: var(--accent);
+    color: var(--ink);
   }
-
-  .cta-primary:hover {
-    background: var(--ink);
-    color: var(--bg);
-  }
+  .cta-primary:hover { color: var(--ink); opacity: 0.9; }
 
   .cta-secondary {
-    background: transparent;
-    color: var(--ink);
-    border: 1px solid var(--line);
+    border: 1.5px solid var(--navy-line);
+    color: var(--bg);
   }
-
-  .cta-secondary:hover {
-    border-color: var(--muted);
-    background: var(--surface);
-  }
+  .cta-secondary:hover { color: var(--bg); border-color: var(--bg); }
 </style>

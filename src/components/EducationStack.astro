@@ -1,0 +1,222 @@
+---
+import { useTranslations, type Lang } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const t = useTranslations(Astro.props.lang);
+
+const stack = [
+  {
+    key: 'integration' as const,
+    items: ['SAP Integration Suite', 'SAP Cloud Integration', 'SAP BTP', 'SuccessFactors', 'SAP Plateau'],
+  },
+  {
+    key: 'languages' as const,
+    items: ['Groovy', 'SQL', 'Python', 'JavaScript'],
+  },
+  {
+    key: 'formats' as const,
+    items: ['REST', 'XML', 'XSLT', 'JSON', 'CSV', 'SFTP', 'Microsoft Graph'],
+  },
+  {
+    key: 'devops' as const,
+    items: ['GitHub Actions', 'Git', 'Bitbucket', 'Docker', 'Postman', 'Linux'],
+  },
+  {
+    key: 'data' as const,
+    items: ['PostgreSQL', 'MySQL', 'Power BI', 'Excel'],
+  },
+];
+---
+
+<section class="edu-stack" id="cv">
+  <div class="wrap edu-stack-inner">
+
+    <div class="col">
+      <h2 class="col-heading">{t.home.educationSubheading}</h2>
+      <ol class="timeline" role="list">
+        {t.home.education.map((item) => (
+          <li class="timeline-item">
+            <span class="timeline-dot" aria-hidden="true"></span>
+            <span class="timeline-period">{item.period}</span>
+            <div class="timeline-body">
+              <span class="timeline-title">
+                {item.degree}
+                {item.inProgress && <span class="badge">{t.home.statusInProgress}</span>}
+              </span>
+              <span class="timeline-sub">
+                {item.school}{item.spec ? ` · ${item.spec}` : ''}
+              </span>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <div class="col col--stack">
+      <div class="stack-bg" aria-hidden="true">
+        <span>STACK</span><span>STACK</span><span>STACK</span>
+      </div>
+      <h2 class="col-heading col-heading--stack">{t.home.stackHeading}</h2>
+
+      <dl class="stack-groups">
+        {stack.map((row) => (
+          <div class="stack-group">
+            <dt>{t.home.stackCategories[row.key]}</dt>
+            <dd>
+              {row.items.map((item) => (
+                <span class="stack-pill">{item}</span>
+              ))}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .edu-stack {
+    background: var(--navy);
+    color: var(--bg);
+  }
+
+  .edu-stack-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 64px;
+    padding-top: 96px;
+    padding-bottom: 150px; /* deja sitio a la tarjeta de experiencia que sube */
+  }
+
+  .col {
+    flex: 1 1 420px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    position: relative;
+  }
+  .col--stack { flex-basis: 440px; }
+
+  .col-heading {
+    font-weight: 900;
+    font-size: 52px;
+    letter-spacing: -0.03em;
+    color: var(--accent);
+    position: relative;
+  }
+  .col-heading--stack { margin-top: 140px; }
+
+  /* Formación */
+  .timeline {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    border-left: 1.5px dashed #6C82AC;
+    margin-left: 9px;
+    padding-left: 28px;
+  }
+
+  .timeline-item {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: -39px;
+    top: 4px;
+    width: 18px;
+    height: 18px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    background: var(--navy);
+    border: 2px solid var(--accent);
+  }
+
+  .timeline-period {
+    flex: 0 0 130px;
+    font-weight: 800;
+    font-size: 21px;
+  }
+
+  .timeline-body {
+    flex: 1 1 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .timeline-title {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .badge {
+    margin-left: var(--space-2);
+    padding: 2px 10px;
+    border-radius: var(--radius-pill);
+    background: var(--accent);
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 700;
+    vertical-align: middle;
+  }
+
+  .timeline-sub {
+    font-size: 15px;
+    color: var(--navy-soft);
+  }
+
+  /* Stack */
+  .stack-bg {
+    position: absolute;
+    right: 0;
+    top: -40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-weight: 900;
+    font-size: clamp(60px, 7.5vw, 112px);
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--navy-line);
+    pointer-events: none;
+  }
+
+  .stack-groups {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .stack-group dt {
+    font-weight: 800;
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .stack-group dd {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .stack-pill {
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 600;
+  }
+</style>

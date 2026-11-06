@@ -19,6 +19,8 @@ export const es = {
       'Escríbeme un mensaje o contacta por email o LinkedIn.',
     projectsTitle: 'Proyectos — Yuna Espejo',
     projectsDescription: 'Proyectos personales de Yuna Espejo. Próximamente.',
+    photographyTitle: 'Fotografía — Yuna Espejo',
+    photographyDescription: 'Galería de fotografías de Yuna Espejo.',
   },
   experience: {
     heading: 'Experiencia',
@@ -191,16 +193,10 @@ export const es = {
   projects: {
     heading: 'Proyectos',
     empty: 'Nada publicado aún. Solo se publican proyectos terminados.',
-    circuitSim: {
-      title: 'Simulación del Circuito de Barcelona-Catalunya',
-      description: 'Simulación interactiva del circuito con velocidad basada en curvatura. Canvas API + requestAnimationFrame.',
-      tagline: '[TEXTO DE YUNA: ¿por qué construiste esto? Una o dos frases en primera persona.]',
-      howItWorksHeading: 'Cómo calcula la velocidad',
-      howItWorks: '[TEXTO DE YUNA: explica el algoritmo de curvatura en tus propias palabras. Puedes decir algo como: el coche lee la diferencia de ángulo 15 unidades antes y después de su posición, y eso le da la curvatura. A más curvatura, menos velocidad.]',
-      techHeading: 'Tecnologías',
-      tech: ['Canvas API', 'requestAnimationFrame', 'IntersectionObserver', 'CSS custom properties', 'JavaScript vanilla'],
-      backLabel: 'Volver a proyectos',
-    },
+  },
+  photography: {
+    heading: 'Fotografía',
+    empty: 'Aún no hay fotos publicadas.',
   },
   nav: {
     experience: 'Experiencia',
@@ -219,8 +215,9 @@ export const es = {
     outsideHeading: 'Más allá del código',
     outsideItems: [
       {
-        label: 'Fórmula 1',
-        text: 'Me fascina cómo la telemetría y los tiempos guían cada decisión estratégica en carrera. El software detrás de todo eso es lo que más me interesa.',
+        label: 'Fotografía',
+        text: 'Aprendiendo a hacer fotografías con una cámara digital.',
+        href: '/es/photography',
       },
       {
         label: '@yesa.exe',
@@ -233,6 +230,17 @@ export const es = {
         href: site.rewritingTheCode,
       },
     ],
+    eyebrow: 'Portfolio · 2026',
+    outlineWord: 'integraciones',
+    scrollLine1: 'Sigue',
+    scrollLine2: 'bajando',
+    helloLine1: 'Hola,',
+    helloLine2: 'soy Yuna.',
+    helloIntro: 'Junior Consultant en Digital Integrations y estudiante de Ingeniería Informática en la UOC. Desarrollo integraciones para procesos de recursos humanos con SAP Cloud Integration.',
+    locationChip: 'Barcelona',
+    roleChip: 'Backend · Integraciones',
+    languagesHeading: 'Idiomas',
+    contactBigHeading: '¿Hablamos?',
     contactHeading: 'Hablamos',
     contactTagline: 'Abierta a conversar sobre integraciones, backend y datos.',
     contactEmail: 'Escríbeme un email',
@@ -291,10 +299,6 @@ export const es = {
       devops: 'DevOps y herramientas',
       data: 'Datos',
     },
-    featuredProjectHeading: 'Proyecto destacado',
-    featuredProjectTitle: 'Simulación del Circuito de Barcelona-Catalunya',
-    featuredProjectDesc: 'Dos coches compiten en el circuito de Montmeló. La velocidad se calcula en tiempo real a partir de la curvatura de cada punto del trazado.',
-    featuredProjectLink: 'Ver el proyecto',
     experienceHeading: 'Experiencia destacada',
     experienceCta: 'Ver experiencia completa',
     experienceResultLabel: 'Resultado',
@@ -326,12 +330,7 @@ export const es = {
     ],
   },
   footer: {
-    madeWith: 'Hecho con Astro',
     rights: 'Yuna Espejo',
-  },
-  themeToggle: {
-    light: 'Cambiar a modo oscuro',
-    dark: 'Cambiar a modo claro',
   },
   langSwitcher: {
     label: 'Idioma',

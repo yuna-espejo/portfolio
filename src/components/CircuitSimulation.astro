@@ -14,7 +14,7 @@ const labels = {
     straight: 'Recta principal',
     lapRecord: 'Récord de vuelta',
     running: 'simulación en marcha',
-    swatchLabels: ['Terracota', 'Azul cielo', 'Oliva dorado', 'Crema'],
+    swatchLabels: ['Naranja', 'Azul', 'Naranja oscuro', 'Marino'],
   },
   en: {
     heading: 'Circuit de Barcelona-Catalunya',
@@ -24,7 +24,7 @@ const labels = {
     straight: 'Main straight',
     lapRecord: 'Lap record',
     running: 'simulation running',
-    swatchLabels: ['Terracotta', 'Sky blue', 'Golden olive', 'Cream'],
+    swatchLabels: ['Orange', 'Blue', 'Dark orange', 'Navy'],
   },
   ca: {
     heading: 'Circuit de Barcelona-Catalunya',
@@ -34,17 +34,17 @@ const labels = {
     straight: 'Recta principal',
     lapRecord: 'Rècord de volta',
     running: 'simulació en marxa',
-    swatchLabels: ['Terracota', 'Blau cel', 'Oliva daurat', 'Crema'],
+    swatchLabels: ['Taronja', 'Blau', 'Taronja fosc', 'Marí'],
   },
 };
 
 const L = labels[lang];
 
 const swatches = [
-  { color: '#E07A52', label: L.swatchLabels[0] },
-  { color: '#AED0DE', label: L.swatchLabels[1] },
-  { color: '#E0DEAA', label: L.swatchLabels[2] },
-  { color: '#ECEAD6', label: L.swatchLabels[3] },
+  { color: '#E8662A', label: L.swatchLabels[0] },
+  { color: '#5B72A0', label: L.swatchLabels[1] },
+  { color: '#B3410F', label: L.swatchLabels[2] },
+  { color: '#0F1A2E', label: L.swatchLabels[3] },
 ];
 
 const polygonPoints = '42,152 61,132 109,108 308,109 320,121 320,147 309,164 293,173 266,179 150,178 127,195 201,253 238,262 298,264 326,249 340,208 411,132 432,122 468,122 754,260 762,253 729,202 668,176 658,166 660,135 693,129 780,159 803,219 841,237 848,298 842,311 822,325 114,310 106,304 110,256 96,241 35,209 32,172';
@@ -132,14 +132,9 @@ const polygonPoints = '42,152 61,132 109,108 308,109 320,121 320,147 309,164 293
 </section>
 
 <style>
+  /* Se coloca dentro de un contenedor (home y página de proyecto): sin márgenes propios */
   .circuit-section {
-    padding-block: var(--space-16);
-    border-top: 1px solid var(--line);
-  }
-
-  .circuit-inner {
-    max-width: 1200px;
-    padding-inline: clamp(24px, 5vw, 96px);
+    padding-block: var(--space-4);
   }
 
   /* Heading */
@@ -148,9 +143,9 @@ const polygonPoints = '42,152 61,132 109,108 308,109 320,121 320,147 309,164 293
   }
 
   .circuit-heading {
-    font-family: var(--font-serif);
+    font-family: var(--font-display);
     font-size: clamp(var(--text-xl), 3vw, var(--text-2xl));
-    font-weight: 600;
+    font-weight: 800;
     color: var(--ink);
     letter-spacing: -0.01em;
     margin-bottom: var(--space-1);
@@ -289,7 +284,7 @@ const polygonPoints = '42,152 61,132 109,108 308,109 320,121 320,147 309,164 293
   }
 
   .status-dot {
-    color: var(--accent);
+    color: var(--accent-ink);
   }
 </style>
 
@@ -313,7 +308,7 @@ const polygonPoints = '42,152 61,132 109,108 308,109 320,121 320,147 309,164 293
     }
 
     // Color seleccionado para coche 1 (por defecto: primera muestra, terracota)
-    let car1Color = '#E07A52';
+    let car1Color = '#E8662A';
 
     // Picker de color
     swatchBtns.forEach((btn) => {
@@ -378,11 +373,9 @@ const polygonPoints = '42,152 61,132 109,108 308,109 320,121 320,147 309,164 293
       return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
     }
 
+    // La web ya no tiene modo oscuro.
     function isDark(): boolean {
-      const t = document.documentElement.getAttribute('data-theme');
-      if (t === 'dark') return true;
-      if (t === 'light') return false;
-      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+      return false;
     }
 
     function parseHex(hex: string): [number, number, number] {
@@ -433,16 +426,16 @@ const polygonPoints = '42,152 61,132 109,108 308,109 320,121 320,147 309,164 293
       const linkHex = getCSSVar('--link');
       const oliveHex = getCSSVar('--olive');
 
-      let car1RGB: [number, number, number] = [224, 122, 82];
-      let linkRGB: [number, number, number] = [63, 95, 138];
-      let oliveRGB: [number, number, number] = [69, 69, 42];
+      let car1RGB: [number, number, number] = [232, 102, 42];
+      let linkRGB: [number, number, number] = [27, 47, 87];
+      let oliveRGB: [number, number, number] = [27, 47, 87];
 
       try { car1RGB = parseHex(car1Color); } catch (_) {}
       try { linkRGB = parseHex(linkHex); } catch (_) {}
       try { oliveRGB = parseHex(oliveHex); } catch (_) {}
 
-      const extFill = dark ? '#0a0f1e' : '#c8c4b0';
-      const intFill = dark ? '#020617' : '#dbd7c4';
+      const extFill = dark ? '#0a0f1e' : '#C5D0E6';
+      const intFill = dark ? '#020617' : '#DDE6F3';
 
       ctx.clearRect(0, 0, W, H);
 

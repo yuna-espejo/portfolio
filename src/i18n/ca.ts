@@ -21,6 +21,8 @@ export const ca: Translations = {
       "Escriu-me un missatge o contacta per correu o LinkedIn.",
     projectsTitle: 'Projectes — Yuna Espejo',
     projectsDescription: 'Projectes personals de Yuna Espejo. Properament.',
+    photographyTitle: 'Fotografia — Yuna Espejo',
+    photographyDescription: 'Galeria de fotografies de Yuna Espejo.',
   },
   experience: {
     heading: 'Experiència',
@@ -193,16 +195,10 @@ export const ca: Translations = {
   projects: {
     heading: 'Projectes',
     empty: "Res publicat encara. Només es publiquen projectes acabats.",
-    circuitSim: {
-      title: 'Simulació del Circuit de Barcelona-Catalunya',
-      description: 'Simulació interactiva del circuit amb velocitat basada en curvatura. Canvas API + requestAnimationFrame.',
-      tagline: '[TEXT DE YUNA: per què vas construir això? Una o dues frases en primera persona.]',
-      howItWorksHeading: 'Com calcula la velocitat',
-      howItWorks: '[TEXT DE YUNA: explica l\'algorisme de curvatura amb les teves pròpies paraules.]',
-      techHeading: 'Tecnologies',
-      tech: ['Canvas API', 'requestAnimationFrame', 'IntersectionObserver', 'CSS custom properties', 'JavaScript vanilla'],
-      backLabel: 'Tornar a projectes',
-    },
+  },
+  photography: {
+    heading: 'Fotografia',
+    empty: 'Encara no hi ha fotos publicades.',
   },
   nav: {
     experience: 'Experiència',
@@ -221,8 +217,9 @@ export const ca: Translations = {
     outsideHeading: 'Més enllà del codi',
     outsideItems: [
       {
-        label: 'Fórmula 1',
-        text: "Em fascina com la telemetria i els temps guien cada decisió estratègica en carrera. El software que hi ha darrere és el que més m'interessa.",
+        label: 'Fotografia',
+        text: 'Aprenent a fer fotografies amb una càmera digital.',
+        href: '/ca/photography',
       },
       {
         label: '@yesa.exe',
@@ -235,6 +232,17 @@ export const ca: Translations = {
         href: site.rewritingTheCode,
       },
     ],
+    eyebrow: 'Portfolio · 2026',
+    outlineWord: 'integracions',
+    scrollLine1: 'Continua',
+    scrollLine2: 'baixant',
+    helloLine1: 'Hola,',
+    helloLine2: 'sóc la Yuna.',
+    helloIntro: "Junior Consultant en Digital Integrations i estudiant d'Enginyeria Informàtica a la UOC. Desenvolupo integracions per a processos de recursos humans amb SAP Cloud Integration.",
+    locationChip: 'Barcelona',
+    roleChip: 'Backend · Integracions',
+    languagesHeading: 'Idiomes',
+    contactBigHeading: 'Parlem?',
     contactHeading: 'Parlem',
     contactTagline: 'Oberta a conversar sobre integracions, backend i dades.',
     contactEmail: "Escriu-me un correu",
@@ -293,10 +301,6 @@ export const ca: Translations = {
       devops: 'DevOps i eines',
       data: 'Dades',
     },
-    featuredProjectHeading: 'Projecte destacat',
-    featuredProjectTitle: 'Simulació del Circuit de Barcelona-Catalunya',
-    featuredProjectDesc: 'Dos cotxes volten pel circuit de Montmeló. La velocitat es calcula en temps real a partir de la curvatura de cada punt del traçat.',
-    featuredProjectLink: 'Veure el projecte',
     experienceHeading: 'Experiència destacada',
     experienceCta: 'Veure experiència completa',
     experienceResultLabel: 'Resultat',
@@ -328,12 +332,7 @@ export const ca: Translations = {
     ],
   },
   footer: {
-    madeWith: 'Fet amb Astro',
     rights: 'Yuna Espejo',
-  },
-  themeToggle: {
-    light: 'Canviar a mode fosc',
-    dark: 'Canviar a mode clar',
   },
   langSwitcher: {
     label: 'Idioma',
