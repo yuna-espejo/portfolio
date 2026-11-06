@@ -139,10 +139,11 @@ const label = { es: 'Cargando', en: 'Loading', ca: 'Carregant' }[lang];
       if (waitLoad && !loaded) window.addEventListener('load', () => { loaded = true; }, { once: true });
 
       const easeInOut = (x: number) => (x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2);
-      // El avance se ajusta al tiempo mínimo para que el tramo final no sea un acelerón
-      const tau = minMs > 0 ? Math.max(350, minMs / 2.5) : 1100;
+      // El patito avanza frenando poco a poco hasta el 96 % justo al cumplirse el tiempo mínimo;
+      // el último tramo arranca desde casi parado, así que no hay acelerón.
+      const tau = 1100;
+      const FINISH_MS = 500;
 
-      // El patito avanza a ritmo continuo: sin saltos ni arrancadas al terminar la carga.
       const tick = (now: number) => {
         if (closed || id !== run) return;
         const elapsed = now - start;
@@ -153,27 +154,26 @@ const label = { es: 'Cargando', en: 'Loading', ca: 'Carregant' }[lang];
         }
 
         if (finishAt) {
-          const k = Math.min(1, (now - finishAt) / (450 + (100 - finishFrom) * 7));
+          const k = Math.min(1, (now - finishAt) / FINISH_MS);
           p = finishFrom + (100 - finishFrom) * easeInOut(k);
           wrap.style.setProperty('--p', p.toFixed(2));
           if (k >= 1) { setTimeout(close, 200); return; }
         } else {
-          // Se acerca despacio al 85 %, frenando poco a poco (nunca se para en seco)
-          p = 85 * (1 - Math.exp(-elapsed / tau));
+          p = minMs > 0
+            ? 96 * (1 - Math.pow(1 - Math.min(1, elapsed / minMs), 2))
+            : 85 * (1 - Math.exp(-elapsed / tau));
           wrap.style.setProperty('--p', p.toFixed(2));
         }
         requestAnimationFrame(tick);
       };
       requestAnimationFrame(tick);
 
-      // Red de seguridad: nunca bloquear la página más de 6 s
-      setTimeout(close, 6000);
+      // Red de seguridad: nunca bloquear la página más de 10 s
+      setTimeout(close, 10000);
     };
 
-    // Carga de la página (la primera visita dura un poco más)
-    let seen = false;
-    try { seen = sessionStorage.getItem('loader-seen') === '1'; sessionStorage.setItem('loader-seen', '1'); } catch (_) {}
-    show(reduce ? 0 : seen ? 800 : 1400, true);
+    // Carga de la página: unos 5 s antes de cerrar
+    show(reduce ? 0 : 5000, true);
 
     // Al volver con el botón atrás (caché del navegador) no debe quedar el loader encima
     window.addEventListener('pageshow', (e) => {
