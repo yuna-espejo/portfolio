@@ -172,8 +172,8 @@ const label = { es: 'Cargando', en: 'Loading', ca: 'Carregant' }[lang];
       setTimeout(close, 10000);
     };
 
-    // Carga de la página: unos 4 s antes de cerrar
-    show(reduce ? 0 : 4000, true);
+    // Carga de la página: unos 2,5 s antes de cerrar
+    show(reduce ? 0 : 2500, true);
 
     // Al volver con el botón atrás (caché del navegador) no debe quedar el loader encima
     window.addEventListener('pageshow', (e) => {
