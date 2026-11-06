@@ -79,14 +79,17 @@ const t = useTranslations(lang);
     align-items: center;
     gap: 12px;
     padding: 15px 28px;
-    border-radius: var(--radius-pill);
+    border-radius: 32px;
     background: var(--navy);
     color: var(--bg);
     font-weight: 700;
     font-size: 17px;
+    max-width: 100%;
     text-decoration: none;
     transition: background var(--transition);
   }
+  .intro-linkedin svg { flex-shrink: 0; }
+  .intro-linkedin span { min-width: 0; overflow-wrap: anywhere; }
   .intro-linkedin:hover { background: var(--navy-deep); color: var(--bg); }
 
   .intro-card-col {
@@ -178,6 +181,7 @@ const t = useTranslations(lang);
   }
 
   @media (max-width: 480px) {
+    .intro-linkedin { font-size: 15px; padding: 14px 22px; }
     .chip--left { left: 8px; }
     .chip--right { right: 8px; }
   }

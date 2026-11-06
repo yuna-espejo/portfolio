@@ -1,0 +1,184 @@
+---
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const label = { es: 'Cargando', en: 'Loading', ca: 'Carregant' }[lang];
+---
+
+<div class="loader" role="status" aria-live="polite" aria-label={label}>
+  <div class="loader-track-wrap">
+    <div class="loader-duck" aria-hidden="true">
+      <svg viewBox="0 0 64 60" width="64" height="60" xmlns="http://www.w3.org/2000/svg">
+        <!-- patas (detrás del cuerpo, no se balancean con él) -->
+        <g class="leg leg--back">
+          <path d="M25 42 V51" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M22 54 Q27 49 33 54 Z" fill="var(--accent)" stroke="var(--accent)" stroke-width="1.5" stroke-linejoin="round"/>
+        </g>
+        <g class="leg leg--front">
+          <path d="M36 42 V51" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M33 54 Q38 49 44 54 Z" fill="var(--accent)" stroke="var(--accent)" stroke-width="1.5" stroke-linejoin="round"/>
+        </g>
+        <g class="duck-body">
+          <path d="M12 30 L4 22 L16 26 Z" fill="var(--bg)"/>
+          <ellipse cx="30" cy="35" rx="20" ry="13" fill="var(--bg)"/>
+          <path d="M20 35 C24 41 34 41 38 33" fill="none" stroke="var(--navy-line)" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="47" cy="19" r="10" fill="var(--bg)"/>
+          <path d="M56 17 L64 21 L56 24 Z" fill="var(--accent)" stroke="var(--accent)" stroke-width="1.5" stroke-linejoin="round"/>
+          <circle cx="50.5" cy="16.5" r="1.8" fill="var(--navy-deep)"/>
+        </g>
+      </svg>
+    </div>
+    <div class="loader-track"><div class="loader-fill"></div></div>
+  </div>
+</div>
+
+<style is:global>
+  .loader {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--navy-deep);
+    transition: opacity 500ms ease, visibility 500ms ease;
+  }
+  .loader.is-hidden { opacity: 0; visibility: hidden; }
+  .no-loader .loader { display: none; }
+  .loader-lock { overflow: hidden; }
+
+  .loader-track-wrap {
+    --p: 0;
+    position: relative;
+    width: min(320px, 70vw);
+    padding-top: 60px;
+  }
+
+  .loader-track {
+    height: 8px;
+    border-radius: 8px;
+    background: var(--navy);
+    overflow: hidden;
+  }
+
+  .loader-fill {
+    height: 100%;
+    width: calc(var(--p) * 1%);
+    border-radius: 8px;
+    background: var(--accent);
+  }
+
+  .loader-duck {
+    position: absolute;
+    top: 5px;
+    left: calc(var(--p) * 1%);
+    width: 64px;
+    height: 60px;
+    transform: translateX(-50%);
+  }
+
+  .duck-body { animation: duck-bob 560ms ease-in-out infinite; }
+  .leg { transform-box: view-box; animation: duck-step 1120ms linear infinite; }
+  .leg--back  { transform-origin: 25px 42px; }
+  .leg--front { transform-origin: 36px 42px; animation-delay: -560ms; }
+
+  /* Paso: la pata se levanta al adelantarse y arrastra por el suelo al volver */
+  @keyframes duck-step {
+    0%   { transform: rotate(22deg) translateY(0); }
+    25%  { transform: rotate(0deg) translateY(-3px); }
+    50%  { transform: rotate(-22deg) translateY(0); }
+    100% { transform: rotate(22deg) translateY(0); }
+  }
+  @keyframes duck-bob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-2px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .duck-body, .leg { animation: none; }
+    .loader { transition: none; }
+  }
+</style>
+
+<noscript><style>.loader { display: none; }</style></noscript>
+
+<script>
+  (function () {
+    const loader = document.querySelector<HTMLElement>('.loader');
+    if (!loader) return;
+    const wrap = loader.querySelector<HTMLElement>('.loader-track-wrap')!;
+    const root = document.documentElement;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let run = 0;
+
+    // Muestra el loader y lo anima. Si waitLoad, se cierra al terminar de cargar la página;
+    // si no (clic en un enlace), se queda hasta que el navegador cambie de página.
+    const show = (minMs: number, waitLoad: boolean) => {
+      const id = ++run;
+      const start = performance.now();
+      let last = start;
+      let p = 0;
+      let loaded = !waitLoad ? false : document.readyState === 'complete';
+      let closed = false;
+
+      wrap.style.setProperty('--p', '0');
+      root.classList.remove('no-loader');
+      loader.classList.remove('is-hidden');
+      document.body.classList.add('loader-lock');
+
+      const close = () => {
+        if (closed || id !== run) return;
+        closed = true;
+        loader.classList.add('is-hidden');
+        document.body.classList.remove('loader-lock');
+        setTimeout(() => { if (id === run) root.classList.add('no-loader'); }, 600);
+      };
+
+      if (waitLoad && !loaded) window.addEventListener('load', () => { loaded = true; }, { once: true });
+
+      const tick = (now: number) => {
+        if (closed || id !== run) return;
+        const elapsed = now - start;
+        const dt = now - last;
+        last = now;
+        const done = waitLoad && loaded && elapsed >= minMs;
+        const target = done ? 100 : Math.min(88, 88 * (elapsed / 1800));
+        p += (target - p) * Math.min(1, dt / 180);
+        wrap.style.setProperty('--p', p.toFixed(2));
+        if (done && p > 99.4) {
+          wrap.style.setProperty('--p', '100');
+          setTimeout(close, 250);
+          return;
+        }
+        requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+
+      // Red de seguridad: nunca bloquear la página más de 6 s
+      setTimeout(close, 6000);
+    };
+
+    // Carga de la página (la primera visita dura un poco más)
+    let seen = false;
+    try { seen = sessionStorage.getItem('loader-seen') === '1'; sessionStorage.setItem('loader-seen', '1'); } catch (_) {}
+    show(reduce ? 0 : seen ? 800 : 1400, true);
+
+    // Al volver con el botón atrás (caché del navegador) no debe quedar el loader encima
+    window.addEventListener('pageshow', (e) => {
+      if (e.persisted) { run++; loader.classList.add('is-hidden'); document.body.classList.remove('loader-lock'); root.classList.add('no-loader'); }
+    });
+
+    // Al hacer clic en un enlace interno, el patito sale ya mientras se abre la página siguiente
+    document.addEventListener('click', (e) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = (e.target as Element).closest('a');
+      if (!a || a.target === '_blank' || a.hasAttribute('download')) return;
+      const url = new URL(a.href, location.href);
+      if (url.origin !== location.origin) return;
+      if (url.pathname === location.pathname && url.search === location.search) return;
+      if (reduce) return;
+      show(0, false);
+    });
+  })();
+</script>

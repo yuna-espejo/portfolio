@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import Loader from '../components/Loader.astro';
 import { useTranslations, getLangFromUrl, type Lang } from '../i18n/utils';
 
 interface Props {
@@ -38,8 +39,10 @@ const canonicalURL = Astro.site
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
     <title>{title}</title>
+
   </head>
   <body>
+    <Loader />
     <Nav />
     <slot />
     <Footer />

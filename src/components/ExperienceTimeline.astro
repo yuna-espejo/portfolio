@@ -93,7 +93,7 @@ const hashtag = (label: string) =>
 
   .exp-title {
     font-weight: 900;
-    font-size: 52px;
+    font-size: clamp(38px, 11vw, 52px);
     letter-spacing: -0.03em;
   }
 
@@ -172,8 +172,9 @@ const hashtag = (label: string) =>
 
   .side-title {
     font-weight: 900;
-    font-size: 42px;
+    font-size: clamp(32px, 9.5vw, 42px);
     letter-spacing: -0.03em;
+    overflow-wrap: anywhere;
   }
 
   .langs {
