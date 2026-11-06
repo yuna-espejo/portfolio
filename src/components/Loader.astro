@@ -139,10 +139,10 @@ const label = { es: 'Cargando', en: 'Loading', ca: 'Carregant' }[lang];
       if (waitLoad && !loaded) window.addEventListener('load', () => { loaded = true; }, { once: true });
 
       const easeInOut = (x: number) => (x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2);
-      // El patito avanza frenando poco a poco hasta el 96 % justo al cumplirse el tiempo mínimo;
-      // el último tramo arranca desde casi parado, así que no hay acelerón.
+      // El patito avanza a ritmo constante hasta el 99 % justo al cumplirse el tiempo mínimo,
+      // y el último tramo es muy corto: ni se frena ni acelera al final.
       const tau = 1100;
-      const FINISH_MS = 500;
+      const FINISH_MS = 250;
 
       const tick = (now: number) => {
         if (closed || id !== run) return;
@@ -157,10 +157,10 @@ const label = { es: 'Cargando', en: 'Loading', ca: 'Carregant' }[lang];
           const k = Math.min(1, (now - finishAt) / FINISH_MS);
           p = finishFrom + (100 - finishFrom) * easeInOut(k);
           wrap.style.setProperty('--p', p.toFixed(2));
-          if (k >= 1) { setTimeout(close, 200); return; }
+          if (k >= 1) { setTimeout(close, 80); return; }
         } else {
           p = minMs > 0
-            ? 96 * (1 - Math.pow(1 - Math.min(1, elapsed / minMs), 2))
+            ? 99 * Math.min(1, elapsed / minMs)
             : 85 * (1 - Math.exp(-elapsed / tau));
           wrap.style.setProperty('--p', p.toFixed(2));
         }
