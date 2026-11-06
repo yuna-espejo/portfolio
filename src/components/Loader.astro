@@ -77,10 +77,10 @@ const label = { es: 'Cargando', en: 'Loading', ca: 'Carregant' }[lang];
     transform: translateX(-50%);
   }
 
-  .duck-body { animation: duck-bob 560ms ease-in-out infinite; }
-  .leg { transform-box: view-box; animation: duck-step 1120ms linear infinite; }
+  .duck-body { animation: duck-bob 600ms ease-in-out infinite; }
+  .leg { transform-box: view-box; animation: duck-step 1200ms linear infinite; }
   .leg--back  { transform-origin: 25px 42px; }
-  .leg--front { transform-origin: 36px 42px; animation-delay: -560ms; }
+  .leg--front { transform-origin: 36px 42px; animation-delay: -600ms; }
 
   /* Paso: la pata se levanta al adelantarse y arrastra por el suelo al volver */
   @keyframes duck-step {
@@ -117,10 +117,11 @@ const label = { es: 'Cargando', en: 'Loading', ca: 'Carregant' }[lang];
     const show = (minMs: number, waitLoad: boolean) => {
       const id = ++run;
       const start = performance.now();
-      let last = start;
       let p = 0;
       let loaded = !waitLoad ? false : document.readyState === 'complete';
       let closed = false;
+      let finishAt = 0;
+      let finishFrom = 0;
 
       wrap.style.setProperty('--p', '0');
       root.classList.remove('no-loader');
@@ -137,19 +138,29 @@ const label = { es: 'Cargando', en: 'Loading', ca: 'Carregant' }[lang];
 
       if (waitLoad && !loaded) window.addEventListener('load', () => { loaded = true; }, { once: true });
 
+      const easeInOut = (x: number) => (x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2);
+      // El avance se ajusta al tiempo mínimo para que el tramo final no sea un acelerón
+      const tau = minMs > 0 ? Math.max(350, minMs / 2.5) : 1100;
+
+      // El patito avanza a ritmo continuo: sin saltos ni arrancadas al terminar la carga.
       const tick = (now: number) => {
         if (closed || id !== run) return;
         const elapsed = now - start;
-        const dt = now - last;
-        last = now;
-        const done = waitLoad && loaded && elapsed >= minMs;
-        const target = done ? 100 : Math.min(88, 88 * (elapsed / 1800));
-        p += (target - p) * Math.min(1, dt / 180);
-        wrap.style.setProperty('--p', p.toFixed(2));
-        if (done && p > 99.4) {
-          wrap.style.setProperty('--p', '100');
-          setTimeout(close, 250);
-          return;
+
+        if (!finishAt && waitLoad && loaded && elapsed >= minMs) {
+          finishAt = now;
+          finishFrom = p;
+        }
+
+        if (finishAt) {
+          const k = Math.min(1, (now - finishAt) / (450 + (100 - finishFrom) * 7));
+          p = finishFrom + (100 - finishFrom) * easeInOut(k);
+          wrap.style.setProperty('--p', p.toFixed(2));
+          if (k >= 1) { setTimeout(close, 200); return; }
+        } else {
+          // Se acerca despacio al 85 %, frenando poco a poco (nunca se para en seco)
+          p = 85 * (1 - Math.exp(-elapsed / tau));
+          wrap.style.setProperty('--p', p.toFixed(2));
         }
         requestAnimationFrame(tick);
       };
